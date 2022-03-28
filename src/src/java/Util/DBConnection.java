@@ -9,19 +9,29 @@ import java.sql.DriverManager;
 
 public abstract class DBConnection {
     
-    private final String db_url = "";
-    private final String db_username = "postgres";
-    private final String db_pass = "12345";
-    public Connection connect() {
-        Connection c = null;
-        
+    private static Connection c;
+    
+    private static final String db_url = "";
+    private static final String db_username = "postgres";
+    private static final String db_pass = "12345";
+    
+    private static Connection connect() {       
         // Connect to Database
         try {
             Class.forName("org.postgres.Driver");
-            c = DriverManager.getConnection(db_url, db_username, db_pass);
+            DBConnection.c = DriverManager.getConnection(db_url, db_username, db_pass);
         } catch(Exception e) {
             System.out.println("Err: " + e.getMessage() );
         }
         return c; 
+    }
+    
+    public static Connection getConnection() throws Exception {
+        if ( DBConnection.c != null && ! DBConnection.c.isClosed() ) {
+            return DBConnection.c;
+        }
+        else {
+            return DBConnection.connect();
+        }
     }
 }
