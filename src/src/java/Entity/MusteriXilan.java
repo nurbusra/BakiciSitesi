@@ -6,23 +6,23 @@ package Entity;
 
 import java.sql.Timestamp;
 
-public class LoginLog {
+public class MusteriXilan {
 
     private int id;
-    private String ip_addr;
-    private Timestamp tarih;
-    private int user_id;
+    private int ilan_id;
+    private int musteri_id;
+    private boolean odendi;
     private Timestamp created;
     private Timestamp updated;
 
-    public LoginLog() {
+    public MusteriXilan() {
     }
 
-    public LoginLog(int id, String ip_addr, Timestamp tarih, int user_id, Timestamp created, Timestamp updated) {
+    public MusteriXilan(int id, int ilan_id, int musteri_id, boolean odendi, Timestamp created, Timestamp updated) {
         this.id = id;
-        this.ip_addr = ip_addr;
-        this.tarih = tarih;
-        this.user_id = user_id;
+        this.ilan_id = ilan_id;
+        this.musteri_id = musteri_id;
+        this.odendi = odendi;
         this.created = created;
         this.updated = updated;
     }
@@ -35,28 +35,28 @@ public class LoginLog {
         this.id = id;
     }
 
-    public String getIp_addr() {
-        return ip_addr;
+    public int getIlan_id() {
+        return ilan_id;
     }
 
-    public void setIp_addr(String ip_addr) {
-        this.ip_addr = ip_addr;
+    public void setIlan_id(int ilan_id) {
+        this.ilan_id = ilan_id;
     }
 
-    public Timestamp getTarih() {
-        return tarih;
+    public int getMusteri_id() {
+        return musteri_id;
     }
 
-    public void setTarih(Timestamp tarih) {
-        this.tarih = tarih;
+    public void setMusteri_id(int musteri_id) {
+        this.musteri_id = musteri_id;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public boolean isOdendi() {
+        return odendi;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setOdendi(boolean odendi) {
+        this.odendi = odendi;
     }
 
     public Timestamp getCreated() {
@@ -77,7 +77,7 @@ public class LoginLog {
 
     @Override
     public String toString() {
-        return "LoginLog{" + "id=" + id + ", ip_addr=" + ip_addr + ", tarih=" + tarih + ", user_id=" + user_id + ",created= " + created + ",updated= " + '}';
+        return "MusteriXilan{" + "id=" + id + ", ilan_id=" + ilan_id + ", musteri_id=" + musteri_id + ", odendi=" + odendi + ",created= " + created + ",updated= " + '}';
 
     }
 

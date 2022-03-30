@@ -1,17 +1,26 @@
 package Entity;
 
+import java.sql.Timestamp;
+
 public class Bakici {
 
     private int id;
     private int neg_referans;
     private int poz_referans;
     private int gecmis_alisveris;
+    private Timestamp created;
+    private Timestamp updated;
 
-    public Bakici(int id, int neg_referans, int poz_referans, int gecmis_alisveris) {
+    public Bakici() {
+    }
+
+    public Bakici(int id, int neg_referans, int poz_referans, int gecmis_alisveris, Timestamp created, Timestamp updated) {
         this.id = id;
-        this.gecmis_alisveris = gecmis_alisveris;
         this.neg_referans = neg_referans;
         this.poz_referans = poz_referans;
+        this.gecmis_alisveris = gecmis_alisveris;
+        this.created = created;
+        this.updated = updated;
     }
 
     public int getId() {
@@ -46,9 +55,25 @@ public class Bakici {
         this.gecmis_alisveris = gecmis_alisveris;
     }
 
+    public Timestamp getCreated() {
+        return created;
+    }
+
+    public void setCreated(Timestamp created) {
+        this.created = created;
+    }
+
+    public Timestamp getUpdated() {
+        return updated;
+    }
+
+    public void setUpdated(Timestamp updated) {
+        this.updated = updated;
+    }
+
     @Override
     public String toString() {
-        return "Bakici{" + "id=" + id + ", gecmis_alisveris=" + gecmis_alisveris + ", poz_referans=" + poz_referans + ", neg_referans=" + neg_referans + '}';
+        return "Bakici{" + "id=" + id + ", gecmis_alisveris=" + gecmis_alisveris + ", poz_referans=" + poz_referans + ", neg_referans=" + neg_referans + ",created= " + created + ",updated= " + '}';
 
     }
 

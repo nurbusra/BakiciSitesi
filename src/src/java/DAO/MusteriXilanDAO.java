@@ -4,7 +4,7 @@
  */
 package DAO;
 
-import Entity.Kazanc;
+import Entity.MusteriXilan;
 import Util.DBConnection;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -13,48 +13,48 @@ import java.util.ArrayList;
 import java.util.List;
 import java.sql.Timestamp;
 
-public class KazancDAO extends DBConnection {
+public class MusteriXilanDAO extends DBConnection {
 
     private Connection db;
 
-    public void createKazanc(Kazanc c) {
+    public void createMusteriXilan(MusteriXilan c) {
         try {
             Statement st = this.getDb().createStatement();
 
-            String query = "insert into kazanc(created) values('" + c.getCreated() + "')";
+            String query = "insert into musterixilan(created) values('" + c.getCreated() + "')";
             int r = st.executeUpdate(query);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
     }
 
-    public void delete(Kazanc c) {
+    public void delete(MusteriXilan c) {
         try {
             Statement st = this.getDb().createStatement();
 
-            String query = "delete from kazanc where id=" + c.getId();
+            String query = "delete from musterixilan where id=" + c.getId();
             int r = st.executeUpdate(query);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
     }
 
-    public List<Kazanc> getBakiciList() {
-        List<Kazanc> kazancList = new ArrayList<>();
+    public List<MusteriXilan> getMusteriXilanList() {
+        List<MusteriXilan> musterixilanList = new ArrayList<>();
         try {
             Statement st = this.getDb().createStatement();
 
-            String query = "select * from kazanc";
+            String query = "select * from musterixilan";
             ResultSet rs = st.executeQuery(query);
 
             while (rs.next()) {
-                kazancList.add(new Kazanc(rs.getInt("id"), rs.getInt("alisveris_id"), rs.getString("config"), rs.getTimestamp("created"), rs.getTimestamp("updated")));
+                musterixilanList.add(new MusteriXilan(rs.getInt("id"), rs.getInt("ilan_id"), rs.getInt("musteri_id"), rs.getBoolean("odendi"), rs.getTimestamp("created"), rs.getTimestamp("updated")));
 
             }
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
-        return kazancList;
+        return musterixilanList;
     }
 
     public Connection getDb() throws Exception {
