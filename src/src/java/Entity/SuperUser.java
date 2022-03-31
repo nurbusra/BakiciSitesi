@@ -43,6 +43,6 @@ public class SuperUser {
 
     @Override
     public String toString() {
-        return "SuperUser{" + "id=" + id + ",created= " + created + ",updated= " + '}';
+        return "SuperUser{" + "id=" + id + ",created= " + created + ",updated= " + updated + '}';
     }
 }

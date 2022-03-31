@@ -87,7 +87,7 @@ public class Ilan {
 
     @Override
     public String toString() {
-        return "Ilan{" + "id=" + id + ", bakici_id=" + bakici_id + ", aciklama=" + aciklama + ", aktif=" + aktif + ", ucret=" + ucret + ",created= " + created + ",updated= " + '}';
+        return "Ilan{" + "id=" + id + ", bakici_id=" + bakici_id + ", aciklama=" + aciklama + ", aktif=" + aktif + ", ucret=" + ucret + ",created= " + created + ",updated= " + updated+'}';
 
     }
 

@@ -77,7 +77,7 @@ public class LoginLog {
 
     @Override
     public String toString() {
-        return "LoginLog{" + "id=" + id + ", ip_addr=" + ip_addr + ", tarih=" + tarih + ", user_id=" + user_id + ",created= " + created + ",updated= " + '}';
+        return "LoginLog{" + "id=" + id + ", ip_addr=" + ip_addr + ", tarih=" + tarih + ", user_id=" + user_id + ",created= " + created + ",updated= " +updated+ '}';
 
     }
 

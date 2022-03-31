@@ -63,7 +63,7 @@ public class Referans {
 
     @Override
     public String toString() {
-        return "Referans{" + "id=" + id + ", alisveri_id=" + alisveris_id + ", deger=" + deger + ",created= " + created + ",updated= " + '}';
+        return "Referans{" + "id=" + id + ", alisveri_id=" + alisveris_id + ", deger=" + deger + ",created= " + created + ",updated= " + updated+'}';
     }
 
 }

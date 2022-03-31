@@ -53,7 +53,7 @@ public class Config {
 
     @Override
     public String toString() {
-        return "Config{" + "option=" + option + ", value=" + value + ",created= " + created + ",updated= " + '}';
+        return "Config{" + "option=" + option + ", value=" + value + ",created= " + created + ",updated= " +updated+ '}';
     }
 
 }

@@ -73,7 +73,7 @@ public class Bakici {
 
     @Override
     public String toString() {
-        return "Bakici{" + "id=" + id + ", gecmis_alisveris=" + gecmis_alisveris + ", poz_referans=" + poz_referans + ", neg_referans=" + neg_referans + ",created= " + created + ",updated= " + '}';
+        return "Bakici{" + "id=" + id + ", gecmis_alisveris=" + gecmis_alisveris + ", poz_referans=" + poz_referans + ", neg_referans=" + neg_referans + ",created= " + created + ",updated= " +updated+ '}';
 
     }
 

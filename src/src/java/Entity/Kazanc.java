@@ -63,7 +63,7 @@ public class Kazanc {
 
     @Override
     public String toString() {
-        return "Kazanc{" + "id=" + id + ", alisveri_id=" + alisveris_id + ", config=" + config + ",created= " + created + ",updated= " + '}';
+        return "Kazanc{" + "id=" + id + ", alisveri_id=" + alisveris_id + ", config=" + config + ",created= " + created + ",updated= " +updated+ '}';
     }
 
 }

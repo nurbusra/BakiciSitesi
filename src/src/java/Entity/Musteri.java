@@ -52,7 +52,7 @@ public class Musteri {
     }
 
     public String toString() {
-        return "Musteri{" + "id=" + id + ", gecmis_alisveris=" + gecmis_alisveris + ",created= " + created + ",updated= " + '}';
+        return "Musteri{" + "id=" + id + ", gecmis_alisveris=" + gecmis_alisveris + ",created= " + created + ",updated= " +updated+ '}';
 
     }
 }

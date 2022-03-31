@@ -77,7 +77,7 @@ public class MusteriXilan {
 
     @Override
     public String toString() {
-        return "MusteriXilan{" + "id=" + id + ", ilan_id=" + ilan_id + ", musteri_id=" + musteri_id + ", odendi=" + odendi + ",created= " + created + ",updated= " + '}';
+        return "MusteriXilan{" + "id=" + id + ", ilan_id=" + ilan_id + ", musteri_id=" + musteri_id + ", odendi=" + odendi + ",created= " + created + ",updated= " + updated+'}';
 
     }
 
