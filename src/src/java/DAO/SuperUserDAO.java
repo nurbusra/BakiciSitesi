@@ -12,7 +12,7 @@ public class SuperUserDAO extends DBConnection {
 
     private Connection db;
 
-    public void createSuperUser(SuperUser c) {
+    public void create(SuperUser c) {
         try {
             Statement st = this.getDb().createStatement();
 
@@ -34,7 +34,7 @@ public class SuperUserDAO extends DBConnection {
         }
     }
 
-    public List<SuperUser> getSuperUserList() {
+    public List<SuperUser> getList() {
         List<SuperUser> superuserList = new ArrayList<>();
         try {
             Statement st = this.getDb().createStatement();

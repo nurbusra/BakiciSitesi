@@ -21,7 +21,7 @@ public class LoginLogDAO extends DBConnection {
 
     private Connection db;
 
-    public void createLoginLog(LoginLog c) {
+    public void create(LoginLog c) {
         try {
             Statement st = this.getDb().createStatement();
 
@@ -43,7 +43,7 @@ public class LoginLogDAO extends DBConnection {
         }
     }
 
-    public List<LoginLog> getLoginLogList() {
+    public List<LoginLog> getList() {
         List<LoginLog> loginlogList = new ArrayList<>();
         try {
             Statement st = this.getDb().createStatement();

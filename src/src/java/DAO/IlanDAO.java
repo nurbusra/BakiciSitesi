@@ -17,7 +17,7 @@ public class IlanDAO extends DBConnection {
 
     private Connection db;
 
-    public void createIlan(Ilan c) {
+    public void create(Ilan c) {
         try {
             Statement st = this.getDb().createStatement();
 
@@ -39,7 +39,7 @@ public class IlanDAO extends DBConnection {
         }
     }
 
-    public List<Ilan> getIlanList() {
+    public List<Ilan> getList() {
         List<Ilan> ilanList = new ArrayList<>();
         try {
             Statement st = this.getDb().createStatement();

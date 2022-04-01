@@ -18,7 +18,7 @@ public class ConfigDAO extends DBConnection {
 
     private Connection db;
 
-    public void createConfig(Config c) {
+    public void create(Config c) {
         try {
             Statement st = this.getDb().createStatement();
 
@@ -40,7 +40,7 @@ public class ConfigDAO extends DBConnection {
         }
     }
 
-    public List<Config> getConfigList() {
+    public List<Config> getList() {
         List<Config> configList = new ArrayList<>();
         try {
             Statement st = this.getDb().createStatement();

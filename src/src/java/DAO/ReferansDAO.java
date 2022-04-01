@@ -12,7 +12,7 @@ public class ReferansDAO extends DBConnection {
 
     private Connection db;
 
-    public void createReferans(Referans c) {
+    public void create(Referans c) {
         try {
             Statement st = this.getDb().createStatement();
 
@@ -34,7 +34,7 @@ public class ReferansDAO extends DBConnection {
         }
     }
 
-    public List<Referans> getReferansList() {
+    public List<Referans> getList() {
         List<Referans> referansList = new ArrayList<>();
         try {
             Statement st = this.getDb().createStatement();

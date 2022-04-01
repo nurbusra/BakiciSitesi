@@ -17,7 +17,7 @@ public class KazancDAO extends DBConnection {
 
     private Connection db;
 
-    public void createKazanc(Kazanc c) {
+    public void create(Kazanc c) {
         try {
             Statement st = this.getDb().createStatement();
 
@@ -39,7 +39,7 @@ public class KazancDAO extends DBConnection {
         }
     }
 
-    public List<Kazanc> getBakiciList() {
+    public List<Kazanc> getList() {
         List<Kazanc> kazancList = new ArrayList<>();
         try {
             Statement st = this.getDb().createStatement();

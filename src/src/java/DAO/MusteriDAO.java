@@ -17,7 +17,7 @@ public class MusteriDAO extends DBConnection {
 
     private Connection db;
 
-    public void createMusteri(Musteri c) {
+    public void create(Musteri c) {
         try {
             Statement st = this.getDb().createStatement();
 
@@ -39,7 +39,7 @@ public class MusteriDAO extends DBConnection {
         }
     }
 
-    public List<Musteri> getMusteriList() {
+    public List<Musteri> getList() {
         List<Musteri> musteriList = new ArrayList<>();
         try {
             Statement st = this.getDb().createStatement();

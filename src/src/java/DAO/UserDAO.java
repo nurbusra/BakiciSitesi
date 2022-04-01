@@ -16,7 +16,7 @@ public class UserDAO extends DBConnection {
 
     private Connection db;
 
-    public void createUser(User c) {
+    public void create(User c) {
         try {
             Statement st = this.getDb().createStatement();
 
@@ -38,7 +38,7 @@ public class UserDAO extends DBConnection {
         }
     }
 
-    public List<User> getUserList() {
+    public List<User> getList() {
         List<User> userList = new ArrayList<>();
         try {
             Statement st = this.getDb().createStatement();

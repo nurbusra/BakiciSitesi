@@ -14,7 +14,7 @@ public class BakiciDAO extends DBConnection {
 
     private Connection db;
 
-    public void createBakici(Bakici c) {
+    public void create(Bakici c) {
         try {
             Statement st = this.getDb().createStatement();
 
@@ -36,7 +36,7 @@ public class BakiciDAO extends DBConnection {
         }
     }
 
-    public List<Bakici> getBakiciList() {
+    public List<Bakici> getList() {
         List<Bakici> bakiciList = new ArrayList<>();
         try {
             Statement st = this.getDb().createStatement();
