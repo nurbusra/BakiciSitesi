@@ -11,7 +11,6 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.sql.Timestamp;
 
 public class KazancDAO extends DBConnection {
 
@@ -48,7 +47,7 @@ public class KazancDAO extends DBConnection {
             ResultSet rs = st.executeQuery(query);
 
             while (rs.next()) {
-                kazancList.add(new Kazanc(rs.getInt("id"), rs.getInt("alisveris_id"), rs.getString("config"), rs.getTimestamp("created"), rs.getTimestamp("updated")));
+                kazancList.add(new Kazanc(rs.getInt("id"), rs.getInt("alisveris_id"), rs.getString("config"), rs.getBoolean("referans"), rs.getTimestamp("created"), rs.getTimestamp("updated")));
 
             }
         } catch (Exception ex) {
