@@ -1,6 +1,6 @@
 package Entity;
 
-public class User {
+public class User_ {
 
     private int id;
     private String isim;
@@ -9,17 +9,17 @@ public class User {
     private int sinif;
 
     // Constructor for the controller class
-    public User() {
+    public User_() {
     }
 
     // Constructor for login action
-    public User(String email, String sifre) {
+    public User_(String email, String sifre) {
         this.email = email;
         this.sifre = sifre;
     }
 
     // Constructor for retrieving
-    public User(int id, String isim, String email, String sifre, int sinif) {
+    public User_(int id, String isim, String email, String sifre, int sinif) {
         this.id = id;
         this.isim = isim;
         this.email = email;
@@ -28,7 +28,7 @@ public class User {
     }
     
     // Constructor for creating
-//    public User(String isim, String email, String sifre, int sinif) {
+//    public User_(String isim, String email, String sifre, int sinif) {
 //        this.isim = isim;
 //        this.email = email;
 //        this.sifre = sifre;

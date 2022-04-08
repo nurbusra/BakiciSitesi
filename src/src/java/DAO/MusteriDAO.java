@@ -19,9 +19,20 @@ public class MusteriDAO extends DBConnection {
     public void create(Musteri c) {
         try {
             Statement st = this.getDb().createStatement();
-
-            String query = "insert into musteri(created) values('" + c.getCreated() + "')";
+            String values = "VALUES(" + 
+                    "'" + c.getIsim() + "'" + ", " +
+                    "'" + c.getEmail() + "'" + ", " +
+                    "'" + c.getSifre() + "'" + ", " +
+                    c.getSinif() + 
+                    ");";
+            
+            String query = 
+                    "insert into MUSTERI(isim, email, sifre, sinif)" + values;
+                            
             int r = st.executeUpdate(query);
+            
+            System.out.println("DB INSERT returned with: " + r);
+            
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
@@ -30,9 +41,11 @@ public class MusteriDAO extends DBConnection {
     public void delete(Musteri c) {
         try {
             Statement st = this.getDb().createStatement();
-
-            String query = "delete from musteri where id=" + c.getId();
+            String query = "delete from MUSTERI where id=" + c.getId();          
             int r = st.executeUpdate(query);
+            
+            System.out.println("DB DELETE returned with: " + r);
+            
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
@@ -43,13 +56,22 @@ public class MusteriDAO extends DBConnection {
         try {
             Statement st = this.getDb().createStatement();
 
-            String query = "select * from musteri";
+            String query = "select * from MUSTERI";
             ResultSet rs = st.executeQuery(query);
 
             while (rs.next()) {
-                musteriList.add(new Musteri(rs.getInt("id"), rs.getInt("gecmis_alisveris"), rs.getTimestamp("created"), rs.getTimestamp("updated")));
-
+                musteriList.add( new Musteri(
+                        rs.getInt("id"),
+                        rs.getString("isim"),
+                        rs.getString("email"), 
+                        rs.getString("sifre"),
+                        rs.getInt("sinif"),
+                        rs.getInt("musteri_id"),
+                        rs.getInt("gecmis_alisveris")
+                    )
+                );
             }
+            
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
@@ -58,7 +80,7 @@ public class MusteriDAO extends DBConnection {
 
     public Connection getDb() throws Exception {
         if (this.db == null) {
-            this.db = this.getConnection();
+            this.db = getConnection();
         }
         return db;
     }
@@ -66,5 +88,4 @@ public class MusteriDAO extends DBConnection {
     public void setDb(Connection db) {
         this.db = db;
     }
-
 }

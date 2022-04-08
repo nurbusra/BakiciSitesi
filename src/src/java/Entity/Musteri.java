@@ -1,7 +1,7 @@
 package Entity;
 
 
-public class Musteri extends User {
+public class Musteri extends User_ {
 
     private int musteri_id, gecmis_alisveris;
 

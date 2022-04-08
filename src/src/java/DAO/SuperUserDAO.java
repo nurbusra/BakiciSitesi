@@ -1,6 +1,6 @@
 package DAO;
 
-import Entity.SuperUser;
+import Entity.Superuser;
 import Util.DBConnection;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -8,11 +8,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SuperUserDAO extends DBConnection {
+public class SuperuserDAO extends DBConnection {
 
     private Connection db;
 
-    public void create(SuperUser c) {
+    public void create(Superuser c) {
         try {
             Statement st = this.getDb().createStatement();
 
@@ -23,7 +23,7 @@ public class SuperUserDAO extends DBConnection {
         }
     }
 
-    public void delete(SuperUser c) {
+    public void delete(Superuser c) {
         try {
             Statement st = this.getDb().createStatement();
 
@@ -34,8 +34,8 @@ public class SuperUserDAO extends DBConnection {
         }
     }
 
-    public List<SuperUser> getList() {
-        List<SuperUser> superuserList = new ArrayList<>();
+    public List<Superuser> getList() {
+        List<Superuser> superuserList = new ArrayList<>();
         try {
             Statement st = this.getDb().createStatement();
 
@@ -43,7 +43,7 @@ public class SuperUserDAO extends DBConnection {
             ResultSet rs = st.executeQuery(query);
 
             while (rs.next()) {
-                superuserList.add(new SuperUser(rs.getInt("id"), rs.getTimestamp("created"), rs.getTimestamp("updated")));
+                superuserList.add(new Superuser(rs.getInt("id"), rs.getTimestamp("created"), rs.getTimestamp("updated")));
 
             }
         } catch (Exception ex) {

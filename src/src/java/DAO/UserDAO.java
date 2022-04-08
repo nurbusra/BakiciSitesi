@@ -4,7 +4,7 @@
  */
 package DAO;
 
-import Entity.User;
+import Entity.User_;
 import Util.DBConnection;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -16,40 +16,60 @@ public class UserDAO extends DBConnection {
 
     private Connection db;
 
-    public void create(User c) {
+    public void create(User_ c) {
         try {
             Statement st = this.getDb().createStatement();
-
-            String query = "insert into user(created) values('" + c.getCreated() + "')";
+            String values = "VALUES(" + 
+                    "'" + c.getIsim() + "'" + ", " +
+                    "'" + c.getEmail() + "'" + ", " +
+                    "'" + c.getSifre() + "'" + ", " +
+                    c.getSinif() + 
+                    ");";
+            
+            String query = 
+                    "insert into USER_(isim, email, sifre, sinif)" + values;
+                            
             int r = st.executeUpdate(query);
+            
+            System.out.println("DB INSERT returned with: " + r);
+            
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
     }
 
-    public void delete(User c) {
+    public void delete(User_ c) {
         try {
             Statement st = this.getDb().createStatement();
-
-            String query = "delete from user where id=" + c.getId();
+            String query = "delete from USER_ where id=" + c.getId();          
             int r = st.executeUpdate(query);
+            
+            System.out.println("DB DELETE returned with: " + r);
+            
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
     }
 
-    public List<User> getList() {
-        List<User> userList = new ArrayList<>();
+    public List<User_> getList() {
+        List<User_> userList = new ArrayList<>();
         try {
             Statement st = this.getDb().createStatement();
 
-            String query = "select * from user";
+            String query = "select * from USER_";
             ResultSet rs = st.executeQuery(query);
 
             while (rs.next()) {
-                userList.add(new User(rs.getInt("id"), rs.getString("isim"), rs.getString("e_mail"), rs.getString("sifre"), rs.getInt("sinif"), rs.getTimestamp("created"), rs.getTimestamp("updated")));
-
+                userList.add(new User_(
+                        rs.getInt("id"),
+                        rs.getString("isim"),
+                        rs.getString("email"), 
+                        rs.getString("sifre"),
+                        rs.getInt("sinif")
+                    )
+                );
             }
+            
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
@@ -58,7 +78,7 @@ public class UserDAO extends DBConnection {
 
     public Connection getDb() throws Exception {
         if (this.db == null) {
-            this.db = this.getConnection();
+            this.db = getConnection();
         }
         return db;
     }
@@ -66,5 +86,4 @@ public class UserDAO extends DBConnection {
     public void setDb(Connection db) {
         this.db = db;
     }
-
 }

@@ -2,16 +2,16 @@ package Entity;
 
 import java.sql.Timestamp;
 
-public class SuperUser {
+public class Superuser {
 
     private int id;
     private Timestamp created;
     private Timestamp updated;
 
-    public SuperUser() {
+    public Superuser() {
     }
 
-    public SuperUser(int id, Timestamp created, Timestamp updated) {
+    public Superuser(int id, Timestamp created, Timestamp updated) {
         this.id = id;
         this.created = created;
         this.updated = updated;
