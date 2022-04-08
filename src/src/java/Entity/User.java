@@ -1,34 +1,39 @@
 package Entity;
 
-import java.sql.Timestamp;
-
 public class User {
 
     private int id;
     private String isim;
-    private String e_mail;
+    private String email;
     private String sifre;
     private int sinif;
-    private Timestamp created;
-    private Timestamp updated;
 
+    // Constructor for the controller class
     public User() {
     }
 
-    public User(String e_mail, String sifre) {
-        this.e_mail = e_mail;
+    // Constructor for login action
+    public User(String email, String sifre) {
+        this.email = email;
         this.sifre = sifre;
     }
 
-    public User(int id, String isim, String e_mail, String sifre, int sinif, Timestamp created, Timestamp updated) {
+    // Constructor for retrieving
+    public User(int id, String isim, String email, String sifre, int sinif) {
         this.id = id;
         this.isim = isim;
-        this.e_mail = e_mail;
+        this.email = email;
         this.sifre = sifre;
         this.sinif = sinif;
-        this.created = created;
-        this.updated = updated;
     }
+    
+    // Constructor for creating
+//    public User(String isim, String email, String sifre, int sinif) {
+//        this.isim = isim;
+//        this.email = email;
+//        this.sifre = sifre;
+//        this.sinif = sinif;
+//    }
 
     public int getId() {
         return id;
@@ -46,12 +51,12 @@ public class User {
         this.isim = isim;
     }
 
-    public String getE_mail() {
-        return e_mail;
+    public String getEmail() {
+        return email;
     }
 
-    public void setE_mail(String e_mail) {
-        this.e_mail = e_mail;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getSifre() {
@@ -70,26 +75,10 @@ public class User {
         this.sinif = sinif;
     }
 
-    public Timestamp getCreated() {
-        return created;
-    }
-
-    public void setCreated(Timestamp created) {
-        this.created = created;
-    }
-
-    public Timestamp getUpdated() {
-        return updated;
-    }
-
-    public void setUpdated(Timestamp updated) {
-        this.updated = updated;
-    }
-
     @Override
     public String toString() {
-        return "User{" + "id=" + id + ", isim=" + isim + ", e_mail=" + e_mail + ", sifre=" + sifre + ", sinif=" + sinif + ",created= " + created + ",updated= " +updated+ '}';
-
+        return "User{" + "id=" + this.id + ", isim=" + this.isim + 
+                ", e_mail=" + this.email + ", sinif=" + this.sinif + '}';
     }
-
+    
 }

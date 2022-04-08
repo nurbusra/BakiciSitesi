@@ -1,30 +1,41 @@
 package Entity;
 
-import java.sql.Timestamp;
 
-public class Musteri {
+public class Musteri extends User {
 
-    private int id;
-    private int gecmis_alisveris;
-    private Timestamp created;
-    private Timestamp updated;
+    private int musteri_id, gecmis_alisveris;
 
+    // Constructor for controller class
     public Musteri() {
     }
-
-    public Musteri(int id, int gecmis_alisveris, Timestamp created, Timestamp updated) {
-        this.id = id;
+    
+    // Constructor for retrieving
+    public Musteri(int id, String isim, String email, String sifre,
+                    int sinif, int musteri_id, int gecmis_alisveris) {
+        super.setId(id);
+        super.setIsim(isim);
+        super.setEmail(email);
+        super.setSifre(sifre);
+        super.setSinif(sinif);
+        
+        this.musteri_id = musteri_id;
         this.gecmis_alisveris = gecmis_alisveris;
-        this.created = created;
-        this.updated = updated;
+    }
+    
+    // Constructor for creating
+    public Musteri(String isim, String email, String sifre, int sinif) {
+        super.setIsim(isim);
+        super.setEmail(email);
+        super.setSifre(sifre);
+        super.setSinif(sinif);
+    }
+    
+    public int getMusteri_id() {
+        return musteri_id;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public void setMusetri_id(int id) {
+        this.musteri_id = id;
     }
 
     public int getGecmis_alisveris() {
@@ -35,24 +46,9 @@ public class Musteri {
         this.gecmis_alisveris = gecmis_alisveris;
     }
 
-    public Timestamp getCreated() {
-        return created;
-    }
-
-    public void setCreated(Timestamp created) {
-        this.created = created;
-    }
-
-    public Timestamp getUpdated() {
-        return updated;
-    }
-
-    public void setUpdated(Timestamp updated) {
-        this.updated = updated;
-    }
-
+    @Override
     public String toString() {
-        return "Musteri{" + "id=" + id + ", gecmis_alisveris=" + gecmis_alisveris + ",created= " + created + ",updated= " +updated+ '}';
+        return "Musteri{" + "user_id= " + this.getId() + "musteri_id= " + musteri_id + '}';
 
     }
 }
