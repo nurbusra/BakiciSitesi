@@ -27,7 +27,7 @@ public class UserDAO extends DBConnection {
                     ");";
             
             String query = 
-                    "insert into USER_(isim, email, sifre, sinif)" + values;
+                    "insert into USER_(isim, email, sifre, sinif) " + values;
                             
             int r = st.executeUpdate(query);
             

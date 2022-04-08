@@ -27,7 +27,7 @@ public class MusteriDAO extends DBConnection {
                     ");";
             
             String query = 
-                    "insert into MUSTERI(isim, email, sifre, sinif)" + values;
+                    "insert into MUSTERI(isim, email, sifre, sinif) " + values;
                             
             int r = st.executeUpdate(query);
             
