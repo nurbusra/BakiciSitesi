@@ -37,7 +37,7 @@ public class BakiciDAO extends DBConnection {
     public void delete(Bakici c) {
         try {
             Statement st = this.getDb().createStatement();
-            String query = "delete from MUSTERI where id=" + c.getUser_id();          
+            String query = "delete from BAKICI where id=" + c.getUser_id();          
             int r = st.executeUpdate(query);
             
             System.out.println("DB DELETE returned with: " + r);
@@ -52,7 +52,7 @@ public class BakiciDAO extends DBConnection {
         try {
             Statement st = this.getDb().createStatement();
 
-            String query = "select * from MUSTERI";
+            String query = "select * from BAKICI";
             ResultSet rs = st.executeQuery(query);
 
             while (rs.next()) {
