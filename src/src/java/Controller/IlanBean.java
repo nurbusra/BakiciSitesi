@@ -39,7 +39,7 @@ public class IlanBean implements Serializable {
     }
 
     public List<Ilan> getList() {
-        this.list = this.dao.getList();
+        this.list = this.getDao().getList();
         return list;
     }
 
