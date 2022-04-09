@@ -1,48 +1,40 @@
 package Entity;
 
-import java.sql.Timestamp;
 
-public class Superuser {
+public class Superuser extends User_ {
 
-    private int id;
-    private Timestamp created;
-    private Timestamp updated;
+    private int su_id;
 
+    // Controller
     public Superuser() {
     }
 
-    public Superuser(int id, Timestamp created, Timestamp updated) {
-        this.id = id;
-        this.created = created;
-        this.updated = updated;
+    // Veri Çekme
+    public Superuser(int user_id, String isim, String email, 
+            String sifre, int sinif, int su_id) {
+        
+        super(user_id, isim, email, sifre, sinif);
+        this.su_id = su_id;
+    }
+    
+    // Oluşturma 
+    public Superuser(String isim, String email, 
+            String sifre, int sinif) {
+        
+        super(isim, email, sifre, sinif);
+    }
+    
+    public int getSu_id() {
+        return su_id;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public Timestamp getCreated() {
-        return created;
-    }
-
-    public void setCreated(Timestamp created) {
-        this.created = created;
-    }
-
-    public Timestamp getUpdated() {
-        return updated;
-    }
-
-    public void setUpdated(Timestamp updated) {
-        this.updated = updated;
+    public void setSu_id(int su_id) {
+        this.su_id = su_id;
     }
 
     @Override
     public String toString() {
-        return "SuperUser{" + "id=" + id + ",created= " + created + ",updated= " + updated + '}';
+        return "Bakici{" + "user_id= " + this.getUser_id() + 
+                " bakici_id= " + this.su_id + '}';
     }
 }
