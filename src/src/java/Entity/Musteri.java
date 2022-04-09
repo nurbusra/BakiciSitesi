@@ -12,7 +12,7 @@ public class Musteri extends User_ {
     // Constructor for retrieving
     public Musteri(int id, String isim, String email, String sifre,
                     int sinif, int musteri_id, int gecmis_alisveris) {
-        super.setId(id);
+        super.setUser_id(id);
         super.setIsim(isim);
         super.setEmail(email);
         super.setSifre(sifre);
@@ -48,7 +48,7 @@ public class Musteri extends User_ {
 
     @Override
     public String toString() {
-        return "Musteri{" + "user_id= " + this.getId() + "musteri_id= " + musteri_id + '}';
+        return "Musteri{" + "user_id= " + this.getUser_id() + "musteri_id= " + musteri_id + '}';
 
     }
 }

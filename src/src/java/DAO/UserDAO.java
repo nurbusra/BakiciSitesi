@@ -41,7 +41,7 @@ public class UserDAO extends DBConnection {
     public void delete(User_ c) {
         try {
             Statement st = this.getDb().createStatement();
-            String query = "delete from USER_ where id=" + c.getId();          
+            String query = "delete from USER_ where user_id=" + c.getUser_id();          
             int r = st.executeUpdate(query);
             
             System.out.println("DB DELETE returned with: " + r);
@@ -61,7 +61,7 @@ public class UserDAO extends DBConnection {
 
             while (rs.next()) {
                 userList.add(new User_(
-                        rs.getInt("id"),
+                        rs.getInt("user_id"),
                         rs.getString("isim"),
                         rs.getString("email"), 
                         rs.getString("sifre"),

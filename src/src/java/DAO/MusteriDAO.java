@@ -41,7 +41,7 @@ public class MusteriDAO extends DBConnection {
     public void delete(Musteri c) {
         try {
             Statement st = this.getDb().createStatement();
-            String query = "delete from MUSTERI where id=" + c.getId();          
+            String query = "delete from MUSTERI where id=" + c.getUser_id();          
             int r = st.executeUpdate(query);
             
             System.out.println("DB DELETE returned with: " + r);

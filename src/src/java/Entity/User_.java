@@ -2,7 +2,7 @@ package Entity;
 
 public class User_ {
 
-    private int id;
+    private int user_id;
     private String isim;
     private String email;
     private String sifre;
@@ -20,7 +20,7 @@ public class User_ {
 
     // Constructor for retrieving
     public User_(int id, String isim, String email, String sifre, int sinif) {
-        this.id = id;
+        this.user_id = id;
         this.isim = isim;
         this.email = email;
         this.sifre = sifre;
@@ -35,12 +35,12 @@ public class User_ {
 //        this.sinif = sinif;
 //    }
 
-    public int getId() {
-        return id;
+    public int getUser_id() {
+        return user_id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 
     public String getIsim() {
@@ -77,7 +77,7 @@ public class User_ {
 
     @Override
     public String toString() {
-        return "User{" + "id=" + this.id + ", isim=" + this.isim + 
+        return "User{" + "id=" + this.user_id + ", isim=" + this.isim + 
                 ", e_mail=" + this.email + ", sinif=" + this.sinif + '}';
     }
     
