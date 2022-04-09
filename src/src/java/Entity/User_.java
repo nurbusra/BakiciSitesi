@@ -28,12 +28,12 @@ public class User_ {
     }
     
     // Constructor for creating
-//    public User_(String isim, String email, String sifre, int sinif) {
-//        this.isim = isim;
-//        this.email = email;
-//        this.sifre = sifre;
-//        this.sinif = sinif;
-//    }
+    public User_(String isim, String email, String sifre, int sinif) {
+        this.isim = isim;
+        this.email = email;
+        this.sifre = sifre;
+        this.sinif = sinif;
+    }
 
     public int getUser_id() {
         return user_id;
