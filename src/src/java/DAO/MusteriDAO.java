@@ -23,7 +23,7 @@ public class MusteriDAO extends DBConnection {
                     "'" + c.getIsim() + "'" + ", " +
                     "'" + c.getEmail() + "'" + ", " +
                     "'" + c.getSifre() + "'" + ", " +
-                    c.getSinif() + 
+                          c.getSinif() + 
                     ");";
             
             String query = 
@@ -61,7 +61,7 @@ public class MusteriDAO extends DBConnection {
 
             while (rs.next()) {
                 musteriList.add( new Musteri(
-                        rs.getInt("id"),
+                        rs.getInt("user_id"),
                         rs.getString("isim"),
                         rs.getString("email"), 
                         rs.getString("sifre"),

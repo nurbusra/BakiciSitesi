@@ -1,34 +1,40 @@
 package Entity;
 
-import java.sql.Timestamp;
 
-public class Bakici {
+public class Bakici extends User_ {
 
-    private int id;
+    private int bakici_id;
     private int neg_referans;
     private int poz_referans;
     private int gecmis_alisveris;
-    private Timestamp created;
-    private Timestamp updated;
 
+    // Controller Sınıfının Kullanacağı Constructor
     public Bakici() {
     }
 
-    public Bakici(int id, int neg_referans, int poz_referans, int gecmis_alisveris, Timestamp created, Timestamp updated) {
-        this.id = id;
+    // Veri Çekmek İçin Kullanılacak Constructor
+    public Bakici(int user_id, String isim, String email, String sifre,
+                    int sinif, int bakici_id, 
+                    int neg_referans, int poz_referans, int gecmis_alisveris) {
+        
+        super(user_id, isim, email, sifre, sinif);
+        this.bakici_id = bakici_id;
         this.neg_referans = neg_referans;
         this.poz_referans = poz_referans;
         this.gecmis_alisveris = gecmis_alisveris;
-        this.created = created;
-        this.updated = updated;
+    }
+    
+    // Oluşturma İşlemi İçin Kullanılacak Constructor
+    public Bakici(String isim, String email, String sifre, int sinif) {
+        super(isim, email, sifre, sinif);
     }
 
-    public int getId() {
-        return id;
+    public int getBakici_id() {
+        return bakici_id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setBakici_id(int bakici_id) {
+        this.bakici_id = bakici_id;
     }
 
     public int getNeg_referans() {
@@ -55,26 +61,10 @@ public class Bakici {
         this.gecmis_alisveris = gecmis_alisveris;
     }
 
-    public Timestamp getCreated() {
-        return created;
-    }
-
-    public void setCreated(Timestamp created) {
-        this.created = created;
-    }
-
-    public Timestamp getUpdated() {
-        return updated;
-    }
-
-    public void setUpdated(Timestamp updated) {
-        this.updated = updated;
-    }
-
     @Override
     public String toString() {
-        return "Bakici{" + "id=" + id + ", gecmis_alisveris=" + gecmis_alisveris + ", poz_referans=" + poz_referans + ", neg_referans=" + neg_referans + ",created= " + created + ",updated= " +updated+ '}';
-
+        return "Bakici{" + "user_id= " + this.getUser_id() + 
+                " bakici_id= " + this.bakici_id + '}';
     }
 
 }

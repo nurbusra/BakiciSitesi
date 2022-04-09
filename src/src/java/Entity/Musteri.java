@@ -10,13 +10,10 @@ public class Musteri extends User_ {
     }
     
     // Constructor for retrieving
-    public Musteri(int id, String isim, String email, String sifre,
+    public Musteri(int user_id, String isim, String email, String sifre,
                     int sinif, int musteri_id, int gecmis_alisveris) {
-        super.setUser_id(id);
-        super.setIsim(isim);
-        super.setEmail(email);
-        super.setSifre(sifre);
-        super.setSinif(sinif);
+        
+        super(user_id, isim, email, sifre, sinif);
         
         this.musteri_id = musteri_id;
         this.gecmis_alisveris = gecmis_alisveris;
@@ -24,10 +21,7 @@ public class Musteri extends User_ {
     
     // Constructor for creating
     public Musteri(String isim, String email, String sifre, int sinif) {
-        super.setIsim(isim);
-        super.setEmail(email);
-        super.setSifre(sifre);
-        super.setSinif(sinif);
+        super(isim, email, sifre, sinif);
     }
     
     public int getMusteri_id() {

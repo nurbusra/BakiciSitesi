@@ -15,9 +15,20 @@ public class BakiciDAO extends DBConnection {
     public void create(Bakici c) {
         try {
             Statement st = this.getDb().createStatement();
-
-            String query = "insert into bakici(created) values('" + c.getCreated() + "')";
+            String values = "VALUES(" + 
+                    "'" + c.getIsim() + "'" + ", " +
+                    "'" + c.getEmail() + "'" + ", " +
+                    "'" + c.getSifre() + "'" + ", " +
+                          c.getSinif() + 
+                    ");";
+            
+            String query = 
+                    "insert into BAKICI(isim, email, sifre, sinif) " + values;
+                            
             int r = st.executeUpdate(query);
+            
+            System.out.println("DB INSERT returned with: " + r);
+            
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
@@ -26,9 +37,11 @@ public class BakiciDAO extends DBConnection {
     public void delete(Bakici c) {
         try {
             Statement st = this.getDb().createStatement();
-
-            String query = "delete from bakici where id=" + c.getId();
+            String query = "delete from MUSTERI where id=" + c.getUser_id();          
             int r = st.executeUpdate(query);
+            
+            System.out.println("DB DELETE returned with: " + r);
+            
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
@@ -39,13 +52,24 @@ public class BakiciDAO extends DBConnection {
         try {
             Statement st = this.getDb().createStatement();
 
-            String query = "select * from bakici";
+            String query = "select * from MUSTERI";
             ResultSet rs = st.executeQuery(query);
 
             while (rs.next()) {
-                bakiciList.add(new Bakici(rs.getInt("id"), rs.getInt("neg_referans"), rs.getInt("poz_referans"), rs.getInt("gecmis_alisveris"), rs.getTimestamp("created"), rs.getTimestamp("updated")));
-
+                bakiciList.add( new Bakici(
+                        rs.getInt("user_id"),
+                        rs.getString("isim"),
+                        rs.getString("email"), 
+                        rs.getString("sifre"),
+                        rs.getInt("sinif"),
+                        rs.getInt("bakici_id"),
+                        rs.getInt("neg_referans"),
+                        rs.getInt("poz_referans"),
+                        rs.getInt("gecmis_alisveris")
+                    )
+                );
             }
+            
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
