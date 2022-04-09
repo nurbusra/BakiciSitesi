@@ -4,58 +4,61 @@
  */
 package Controller;
 
-import DAO.IlanDAO;
-import Entity.Ilan;
+import DAO.KazancDAO;
+import Entity.Kazanc;
 import jakarta.inject.Named;
 import jakarta.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.List;
 
 
-@Named(value = "ilanBean")
+@Named(value = "kazancBean")
 @SessionScoped
-public class IlanBean implements Serializable {
+public class KazancBean implements Serializable {
 
-    private IlanDAO dao;
-    private Ilan entity;
-    private List<Ilan> list;
-
-    public IlanDAO getDao() {
-        if(this.dao == null) this.dao = new IlanDAO();
+    private KazancDAO dao;
+    private Kazanc entity;
+    private List<Kazanc> list;
+    
+    public KazancBean() {
+    }
+    
+    public KazancDAO getDao() {
+        if(this.dao == null) this.dao = new KazancDAO();
         return dao;
     }
 
-    public void setDao(IlanDAO dao) {
+    public void setDao(KazancDAO dao) {
         this.dao = dao;
     }
 
-    public Ilan getEntity() {
-        if(this.entity == null) this.entity = new Ilan();
+    public Kazanc getEntity() {
+        if(this.entity == null) this.entity = new Kazanc();
         return entity;
     }
 
-    public void setEntity(Ilan entity) {
+    public void setEntity(Kazanc entity) {
         this.entity = entity;
     }
 
-    public List<Ilan> getList() {
+    public List<Kazanc> getList() {
         this.list = this.getDao().getList();
         return list;
     }
 
-    public void setList(List<Ilan> list) {
+    public void setList(List<Kazanc> list) {
         this.list = list;
     }
     
     public String createEntity() {
         this.getDao().create(this.entity);
-        this.entity = new Ilan();
-        return "/ilanlar.xhtml";
+        this.entity = new Kazanc();
+        return "";
     }
     
     public String deleteEntity() {
         this.getDao().delete(entity);
-        this.entity = new Ilan();
-        return "/ilanlar.xhtml";
+        this.entity = new Kazanc();
+        return "";
     }
 }
