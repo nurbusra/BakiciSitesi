@@ -11,7 +11,7 @@ public abstract class DBConnection {
     
     private static Connection c;
     
-    private static final String db_url = "";
+    private static final String db_url = "jdbc:postgresql://127.0.0.1:5432/bakici_db";
     private static final String db_username = "postgres";
     private static final String db_pass = "12345";
     
