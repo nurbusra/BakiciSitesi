@@ -19,9 +19,18 @@ public class IlanDAO extends DBConnection {
     public void create(Ilan c) {
         try {
             Statement st = this.getDb().createStatement();
+            String values = "VALUES("
+                    + "'" + c.getId() + "'" + ", "
+                    + "'" + c.getBakici_id() + "'" + ", "
+                    + c.getAciklama() + "'"
+                    + c.isAktif() + "'"
+                    + c.getUcret() + ");";
 
-            String query = "insert into ilan(created) values('" + c.getCreated() + "')";
+            String query = "insert into ILAN(id,bakici_id,aciklama,aktif,ucret) " + values;
             int r = st.executeUpdate(query);
+
+            System.out.println("DB INSERT returned with: " + r);
+
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
@@ -47,7 +56,7 @@ public class IlanDAO extends DBConnection {
             ResultSet rs = st.executeQuery(query);
 
             while (rs.next()) {
-                ilanList.add(new Ilan(rs.getInt("id"), rs.getInt("bakici_id"), rs.getString("aciklama"), rs.getBoolean("aktif"), rs.getFloat("ucret"), rs.getTimestamp("created"), rs.getTimestamp("updated")));
+                ilanList.add(new Ilan(rs.getInt("id"), rs.getInt("bakici_id"), rs.getString("aciklama"), rs.getBoolean("aktif"), rs.getFloat("ucret")));
 
             }
         } catch (Exception ex) {
@@ -58,7 +67,7 @@ public class IlanDAO extends DBConnection {
 
     public Connection getDb() throws Exception {
         if (this.db == null) {
-            this.db = this.getConnection();
+            this.db = getConnection();
         }
         return db;
     }

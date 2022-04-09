@@ -19,9 +19,16 @@ public class ConfigDAO extends DBConnection {
     public void create(Config c) {
         try {
             Statement st = this.getDb().createStatement();
+            String values = "VALUES("
+                    + "'" + c._getOption()
+                    + "'" + ", "
+                    + "'" + c._getValue() + "'" + ", "
+                    + ");";
 
-            String query = "insert into config(created) values('" + c.getCreated() + "')";
+            String query = "insert into CONFIG(option,value) " + values;
             int r = st.executeUpdate(query);
+
+            System.out.println("DB INSERT returned with: " + r);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
@@ -30,8 +37,7 @@ public class ConfigDAO extends DBConnection {
     public void delete(Config c) {
         try {
             Statement st = this.getDb().createStatement();
-
-            String query = "delete from config where option=" + c.getOption();
+            String query = "delete from config where option=" + c._getOption();
             int r = st.executeUpdate(query);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
@@ -47,7 +53,7 @@ public class ConfigDAO extends DBConnection {
             ResultSet rs = st.executeQuery(query);
 
             while (rs.next()) {
-                configList.add(new Config(rs.getString("option"), rs.getString("value"), rs.getTimestamp("created"), rs.getTimestamp("updated")));
+                configList.add(new Config(rs.getString("_option"), rs.getString("_value")));
 
             }
         } catch (Exception ex) {
@@ -58,7 +64,7 @@ public class ConfigDAO extends DBConnection {
 
     public Connection getDb() throws Exception {
         if (this.db == null) {
-            this.db = this.getConnection();
+            this.db = getConnection();
         }
         return db;
     }

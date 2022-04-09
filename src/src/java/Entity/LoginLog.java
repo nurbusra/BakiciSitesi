@@ -6,25 +6,24 @@ package Entity;
 
 import java.sql.Timestamp;
 
+
+
 public class LoginLog {
 
     private int id;
     private String ip_addr;
     private Timestamp tarih;
     private int user_id;
-    private Timestamp created;
-    private Timestamp updated;
+
 
     public LoginLog() {
     }
 
-    public LoginLog(int id, String ip_addr, Timestamp tarih, int user_id, Timestamp created, Timestamp updated) {
+    public LoginLog(int id, String ip_addr, Timestamp tarih, int user_id) {
         this.id = id;
         this.ip_addr = ip_addr;
         this.tarih = tarih;
         this.user_id = user_id;
-        this.created = created;
-        this.updated = updated;
     }
 
     public int getId() {
@@ -59,25 +58,11 @@ public class LoginLog {
         this.user_id = user_id;
     }
 
-    public Timestamp getCreated() {
-        return created;
-    }
 
-    public void setCreated(Timestamp created) {
-        this.created = created;
-    }
-
-    public Timestamp getUpdated() {
-        return updated;
-    }
-
-    public void setUpdated(Timestamp updated) {
-        this.updated = updated;
-    }
 
     @Override
     public String toString() {
-        return "LoginLog{" + "id=" + id + ", ip_addr=" + ip_addr + ", tarih=" + tarih + ", user_id=" + user_id + ",created= " + created + ",updated= " +updated+ '}';
+        return "LoginLog{" + "id=" + id + ", ip_addr=" + ip_addr + ", tarih=" + tarih + ", user_id=" + user_id +'}';
 
     }
 

@@ -23,9 +23,19 @@ public class LoginLogDAO extends DBConnection {
     public void create(LoginLog c) {
         try {
             Statement st = this.getDb().createStatement();
+            String values = "VALUES("
+                    + "'" + c.getId() + "'" + ", "
+                    + "'" + c.getIp_addr() + "'" + ", "
+                    + "'" + c.getTarih() + "'" + ", "
+                    + c.getUser_id()
+                    + ");";
 
-            String query = "insert into loginlog(created) values('" + c.getCreated() + "')";
+            String query = "insert into LOGINLOG(id,ip_addr, tarih ,user_id) " + values;
+
             int r = st.executeUpdate(query);
+            
+            System.out.println("DB INSERT returned with: " + r);
+            
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
@@ -51,7 +61,7 @@ public class LoginLogDAO extends DBConnection {
             ResultSet rs = st.executeQuery(query);
 
             while (rs.next()) {
-                loginlogList.add(new LoginLog(rs.getInt("id"), rs.getString("ip_addr"), rs.getTimestamp("tarih"), rs.getInt("user_id"), rs.getTimestamp("created"), rs.getTimestamp("updated")));
+                loginlogList.add(new LoginLog(rs.getInt("id"), rs.getString("ip_addr"), rs.getTimestamp("tarih"), rs.getInt("user_id")));
 
             }
         } catch (Exception ex) {
@@ -62,7 +72,7 @@ public class LoginLogDAO extends DBConnection {
 
     public Connection getDb() throws Exception {
         if (this.db == null) {
-            this.db = this.getConnection();
+            this.db = getConnection();
         }
         return db;
     }

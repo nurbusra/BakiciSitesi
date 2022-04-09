@@ -1,24 +1,19 @@
 package Entity;
 
-import java.sql.Timestamp;
 
 public class Referans {
 
     private int id;
     private int alisveris_id;
     private int deger;
-    private Timestamp created;
-    private Timestamp updated;
 
     public Referans() {
     }
 
-    public Referans(int id, int alisveris_id, int deger, Timestamp created, Timestamp updated) {
+    public Referans(int id, int alisveris_id, int deger) {
         this.id = id;
         this.alisveris_id = alisveris_id;
         this.deger = deger;
-        this.created = created;
-        this.updated = updated;
     }
 
     public int getId() {
@@ -45,25 +40,9 @@ public class Referans {
         this.deger = deger;
     }
 
-    public Timestamp getCreated() {
-        return created;
-    }
-
-    public void setCreated(Timestamp created) {
-        this.created = created;
-    }
-
-    public Timestamp getUpdated() {
-        return updated;
-    }
-
-    public void setUpdated(Timestamp updated) {
-        this.updated = updated;
-    }
-
     @Override
     public String toString() {
-        return "Referans{" + "id=" + id + ", alisveri_id=" + alisveris_id + ", deger=" + deger + ",created= " + created + ",updated= " + updated+'}';
+        return "Referans{" + "id=" + id + ", alisveri_id=" + alisveris_id + ", deger=" + deger +'}';
     }
 
 }

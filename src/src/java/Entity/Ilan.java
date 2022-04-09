@@ -4,29 +4,25 @@
  */
 package Entity;
 
-import java.sql.Timestamp;
 
-public class Ilan {
+public class Ilan{
 
     private int id;
     private int bakici_id;
     private String aciklama;
     private boolean aktif;
     private float ucret;
-    private Timestamp created;
-    private Timestamp updated;
 
     public Ilan() {
     }
 
-    public Ilan(int id, int bakici_id, String aciklama, boolean aktif, float ucret, Timestamp created, Timestamp updated) {
+    public Ilan(int id, int bakici_id, String aciklama, boolean aktif, float ucret) {
         this.id = id;
         this.bakici_id = bakici_id;
         this.aciklama = aciklama;
         this.aktif = aktif;
         this.ucret = ucret;
-        this.created = created;
-        this.updated = updated;
+        
     }
 
     public int getId() {
@@ -69,25 +65,11 @@ public class Ilan {
         this.ucret = ucret;
     }
 
-    public Timestamp getCreated() {
-        return created;
-    }
 
-    public void setCreated(Timestamp created) {
-        this.created = created;
-    }
-
-    public Timestamp getUpdated() {
-        return updated;
-    }
-
-    public void setUpdated(Timestamp updated) {
-        this.updated = updated;
-    }
 
     @Override
     public String toString() {
-        return "Ilan{" + "id=" + id + ", bakici_id=" + bakici_id + ", aciklama=" + aciklama + ", aktif=" + aktif + ", ucret=" + ucret + ",created= " + created + ",updated= " + updated+'}';
+        return "Ilan{" + "id=" + id + ", bakici_id=" + bakici_id + ", aciklama=" + aciklama + ", aktif=" + aktif + ", ucret=" + ucret + '}';
 
     }
 

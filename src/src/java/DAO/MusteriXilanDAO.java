@@ -19,9 +19,19 @@ public class MusteriXilanDAO extends DBConnection {
     public void create(MusteriXilan c) {
         try {
             Statement st = this.getDb().createStatement();
+            String values = "VALUES("
+                    + "'" + c.getId()
+                    + "'" + ", "
+                    + "'" + c.getIlan_id() + "'" + ", "
+                    + c.getMusteri_id() + "'" + ", "
+                    + c.isOdendi()
+                    + ");";
 
-            String query = "insert into musterixilan(created) values('" + c.getCreated() + "')";
+            String query = "insert into MUSTERIXILAN(id,ilan_id,musteri_id,odendi) " + values;
             int r = st.executeUpdate(query);
+            
+            System.out.println("DB INSERT returned with: " + r);
+            
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
@@ -47,7 +57,7 @@ public class MusteriXilanDAO extends DBConnection {
             ResultSet rs = st.executeQuery(query);
 
             while (rs.next()) {
-                musterixilanList.add(new MusteriXilan(rs.getInt("id"), rs.getInt("ilan_id"), rs.getInt("musteri_id"), rs.getBoolean("odendi"), rs.getTimestamp("created"), rs.getTimestamp("updated")));
+                musterixilanList.add(new MusteriXilan(rs.getInt("id"), rs.getInt("ilan_id"), rs.getInt("musteri_id"), rs.getBoolean("odendi")));
 
             }
         } catch (Exception ex) {
@@ -58,7 +68,7 @@ public class MusteriXilanDAO extends DBConnection {
 
     public Connection getDb() throws Exception {
         if (this.db == null) {
-            this.db = this.getConnection();
+            this.db = getConnection();
         }
         return db;
     }
