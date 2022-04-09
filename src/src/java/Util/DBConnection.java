@@ -11,17 +11,18 @@ public abstract class DBConnection {
     
     private static Connection c;
     
-    private static final String db_url = "jdbc:postgresql://127.0.0.1:5432/bakici_db";
+    private static final String db_url = "jdbc:postgresql://127.0.0.1:5432/bakicisitesi_db";
     private static final String db_username = "postgres";
     private static final String db_pass = "12345";
     
     private static Connection connect() {       
         // Connect to Database
         try {
-            Class.forName("org.postgres.Driver");
+            Class.forName("org.postgresql.Driver");
             DBConnection.c = DriverManager.getConnection(db_url, db_username, db_pass);
         } catch(Exception e) {
             System.out.println("Err: " + e.getMessage() );
+            e.printStackTrace();
         }
         return c; 
     }
