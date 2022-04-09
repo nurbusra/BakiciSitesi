@@ -23,7 +23,7 @@ public class UserDAO extends DBConnection {
                     "'" + c.getIsim() + "'" + ", " +
                     "'" + c.getEmail() + "'" + ", " +
                     "'" + c.getSifre() + "'" + ", " +
-                    c.getSinif() + 
+                          c.getSinif() + 
                     ");";
             
             String query = 

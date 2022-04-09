@@ -37,7 +37,7 @@ public class SuperuserDAO extends DBConnection {
     public void delete(Superuser c) {
         try {
             Statement st = this.getDb().createStatement();
-            String query = "delete from SUPERUSER where id=" + c.getUser_id();          
+            String query = "delete from SUPERUSER where su_id=" + c.getUser_id();          
             int r = st.executeUpdate(query);
             
             System.out.println("DB DELETE returned with: " + r);
