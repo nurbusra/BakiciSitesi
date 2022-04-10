@@ -47,6 +47,21 @@ public class MusteriXilanDAO extends DBConnection {
             System.out.println(ex.getMessage());
         }
     }
+    public void update(MusteriXilan c){
+        
+        try{
+            Statement st = this.getDb().createStatement();
+            String query;
+            query ="UPDATE MUSTERIXILAN " + "\n"
+                    + "SET " + "\n"+
+                    "odendi = " + c.isOdendi() + "\n" +
+                    "WHERE alisveris_id = " + c.getAlisveris_id() + ";";
+            
+        }catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    
+    }
 
     public List<MusteriXilan> getList() {
         List<MusteriXilan> musterixilanList = new ArrayList<>();
