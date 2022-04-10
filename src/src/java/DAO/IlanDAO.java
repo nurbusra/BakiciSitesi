@@ -42,8 +42,32 @@ public class IlanDAO extends DBConnection {
         try {
             Statement st = this.getDb().createStatement();
 
-            String query = "delete from ilan where id=" + c.getIlan_id();
+            String query = "delete from ILAN where ilan_id=" + c.getIlan_id();
             int r = st.executeUpdate(query);
+            
+            System.out.println("DB DELETE returned with: " + r);
+            
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    public void update(Ilan c) {
+        try {
+            Statement st = this.getDb().createStatement();
+
+            String query;
+            query = "UPDATE ILAN " + "\n" +
+                    "SET " + "\n" +
+                        "aciklama = " + "'" + c.getAciklama() + "'" + ",\n" +
+                        "ucret = " + c.getUcret() + ",\n" +
+                        "aktif = " + c.getAktif() + "\n" +
+                    "WHERE ilan_id = " + c.getIlan_id() + ";";
+                                   
+            int r = st.executeUpdate(query);
+            
+            System.out.println("DB UPDATE returned with: " + r);
+            
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
