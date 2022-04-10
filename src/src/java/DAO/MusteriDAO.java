@@ -19,20 +19,20 @@ public class MusteriDAO extends DBConnection {
     public void create(Musteri c) {
         try {
             Statement st = this.getDb().createStatement();
-            String values = "VALUES(" + 
-                    "'" + c.getIsim() + "'" + ", " +
-                    "'" + c.getEmail() + "'" + ", " +
-                    "'" + c.getSifre() + "'" + ", " +
-                          c.getSinif() + 
-                    ");";
-            
-            String query = 
-                    "insert into MUSTERI(isim, email, sifre, sinif) " + values;
-                            
+            String values = "VALUES("
+                    + "'" + c.getIsim() + "'" + ", "
+                    + "'" + c.getEmail() + "'" + ", "
+                    + "'" + c.getSifre() + "'" + ", "
+                    + c.getSinif()
+                    + ");";
+
+            String query
+                    = "insert into MUSTERI(isim, email, sifre, sinif) " + values;
+
             int r = st.executeUpdate(query);
-            
+
             System.out.println("DB INSERT returned with: " + r);
-            
+
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
@@ -41,11 +41,30 @@ public class MusteriDAO extends DBConnection {
     public void delete(Musteri c) {
         try {
             Statement st = this.getDb().createStatement();
-            String query = "delete from MUSTERI where musteri_id=" + c.getUser_id();          
+            String query = "delete from MUSTERI where musteri_id=" + c.getUser_id();
             int r = st.executeUpdate(query);
-            
+
             System.out.println("DB DELETE returned with: " + r);
-            
+
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    public void update(Musteri c) {
+        try {
+            Statement st = this.getDb().createStatement();
+
+            String query;
+            query = "UPDATE MUSTERİ " + "\n"
+                    + "SET " + "\n"
+                    + "isim = " + "'" + c.getIsim() + "'" + ",\n"
+                    + "email = " + "'" + c.getEmail() + "'" + ",\n"
+                    + "sifre = " + "'" + c.getSifre() + "'" + "\n"
+                    + "WHERE musteri_id = " + c.getMusteri_id() + ";";
+            int r = st.executeUpdate(query);
+
+            System.out.println("DB UPDATE returned with: " + r);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
@@ -60,18 +79,18 @@ public class MusteriDAO extends DBConnection {
             ResultSet rs = st.executeQuery(query);
 
             while (rs.next()) {
-                musteriList.add( new Musteri(
+                musteriList.add(new Musteri(
                         rs.getInt("user_id"),
                         rs.getString("isim"),
-                        rs.getString("email"), 
+                        rs.getString("email"),
                         rs.getString("sifre"),
                         rs.getInt("sinif"),
                         rs.getInt("musteri_id"),
                         rs.getInt("gecmis_alisveris")
-                    )
+                )
                 );
             }
-            
+
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
