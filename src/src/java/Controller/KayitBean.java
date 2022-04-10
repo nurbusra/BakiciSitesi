@@ -26,11 +26,11 @@ public class KayitBean implements Serializable {
     }
 
     public User_ getEntity() {
+        if(this.entity == null) this.entity = new User_();
         return entity;
     }
 
     public void setEntity(User_ entity) {
-        if(this.entity == null) this.entity = new User_();
         this.entity = entity;
     }
 
@@ -55,12 +55,22 @@ public class KayitBean implements Serializable {
     public String createEntity() {
         if(this.entity.getSinif() == 1) {
             // Musteri
-            Musteri o = (Musteri) this.entity;
+            Musteri o = new Musteri(
+                    this.entity.getIsim(),
+                    this.entity.getEmail(),
+                    this.entity.getSifre(),
+                    this.entity.getSinif()
+                    );
             this.getMusteriDao().create(o);
         }
         else if(this.entity.getSinif() == 2) {
             // Bakici
-            Bakici o = (Bakici) this.entity;
+            Bakici o = new Bakici(
+                    this.entity.getIsim(),
+                    this.entity.getEmail(),
+                    this.entity.getSifre(),
+                    this.entity.getSinif()
+                    );
             this.getBakiciDao().create(o);
         }
         this.entity = new User_();
