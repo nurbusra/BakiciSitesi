@@ -6,8 +6,6 @@ package Entity;
 
 import java.sql.Timestamp;
 
-
-
 public class LoginLog {
 
     private int login_id;
@@ -15,8 +13,12 @@ public class LoginLog {
     private Timestamp tarih;
     private int user_id;
 
-
     public LoginLog() {
+    }
+
+    public LoginLog(String ip_addr, Timestamp tarih) {
+        this.ip_addr = ip_addr;
+        this.tarih = tarih;
     }
 
     public LoginLog(int login_id, String ip_addr, Timestamp tarih, int user_id) {
@@ -58,11 +60,9 @@ public class LoginLog {
         this.user_id = user_id;
     }
 
-
-
     @Override
     public String toString() {
-        return "LoginLog{" + "login_id=" + login_id + ", ip_addr=" + ip_addr + ", tarih=" + tarih + ", user_id=" + user_id +'}';
+        return "LoginLog{" + "login_id=" + login_id +"user_id=" + user_id + '}';
 
     }
 
