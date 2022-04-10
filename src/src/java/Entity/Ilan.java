@@ -63,6 +63,10 @@ public class Ilan {
     public void setAktif(boolean aktif) {
         this.aktif = aktif;
     }
+    
+    public boolean getAktif() {
+        return this.aktif;
+    }
 
     public float getUcret() {
         return ucret;
