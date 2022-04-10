@@ -50,12 +50,18 @@ public class IlanBean implements Serializable {
     public String createEntity() {
         this.getDao().create(this.entity);
         this.entity = new Ilan();
-        return "/ilanlar.xhtml";
+        return "/ilanlar.xhtml?faces-redirect=true";
     }
     
     public String deleteEntity() {
         this.getDao().delete(entity);
         this.entity = new Ilan();
-        return "/ilanlar.xhtml";
+        return "/ilanlar.xhtml?faces-redirect=true";
+    }
+    
+    public String updateEntity() {
+        this.getDao().update(this.entity);
+        this.entity = new Ilan();
+        return "/ilanlar.xhtml?faces-redirect=true";
     }
 }
