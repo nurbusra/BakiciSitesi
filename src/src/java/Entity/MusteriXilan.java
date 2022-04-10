@@ -7,7 +7,7 @@ package Entity;
 
 public class MusteriXilan {
 
-    private int id;
+    private int alisveris_id;
     private int ilan_id;
     private int musteri_id;
     private boolean odendi;
@@ -15,19 +15,19 @@ public class MusteriXilan {
     public MusteriXilan() {
     }
 
-    public MusteriXilan(int id, int ilan_id, int musteri_id, boolean odendi) {
-        this.id = id;
+    public MusteriXilan(int alisveris_id, int ilan_id, int musteri_id, boolean odendi) {
+        this.alisveris_id = alisveris_id;
         this.ilan_id = ilan_id;
         this.musteri_id = musteri_id;
         this.odendi = odendi;
     }
 
-    public int getId() {
-        return id;
+    public int getAlisveris_id() {
+        return alisveris_id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setAlisveris_id(int alisveris_id) {
+        this.alisveris_id = alisveris_id;
     }
 
     public int getIlan_id() {
@@ -57,7 +57,7 @@ public class MusteriXilan {
 
     @Override
     public String toString() {
-        return "MusteriXilan{" + "id=" + id + ", ilan_id=" + ilan_id + ", musteri_id=" + musteri_id + ", odendi=" + odendi +'}';
+        return "MusteriXilan{" + "alisveris_id=" + alisveris_id + ", ilan_id=" + ilan_id + ", musteri_id=" + musteri_id + ", odendi=" + odendi +'}';
 
     }
 

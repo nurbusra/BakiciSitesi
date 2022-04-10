@@ -10,7 +10,7 @@ import java.sql.Timestamp;
 
 public class LoginLog {
 
-    private int id;
+    private int login_id;
     private String ip_addr;
     private Timestamp tarih;
     private int user_id;
@@ -19,19 +19,19 @@ public class LoginLog {
     public LoginLog() {
     }
 
-    public LoginLog(int id, String ip_addr, Timestamp tarih, int user_id) {
-        this.id = id;
+    public LoginLog(int login_id, String ip_addr, Timestamp tarih, int user_id) {
+        this.login_id = login_id;
         this.ip_addr = ip_addr;
         this.tarih = tarih;
         this.user_id = user_id;
     }
 
-    public int getId() {
-        return id;
+    public int getLogin_id() {
+        return login_id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setLogin_id(int login_id) {
+        this.login_id = login_id;
     }
 
     public String getIp_addr() {
@@ -62,7 +62,7 @@ public class LoginLog {
 
     @Override
     public String toString() {
-        return "LoginLog{" + "id=" + id + ", ip_addr=" + ip_addr + ", tarih=" + tarih + ", user_id=" + user_id +'}';
+        return "LoginLog{" + "login_id=" + login_id + ", ip_addr=" + ip_addr + ", tarih=" + tarih + ", user_id=" + user_id +'}';
 
     }
 

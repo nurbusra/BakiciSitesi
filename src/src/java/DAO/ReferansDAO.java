@@ -16,13 +16,13 @@ public class ReferansDAO extends DBConnection {
         try {
             Statement st = this.getDb().createStatement();
             String values = "VALUES("
-                    + "'" + c.getId()
-                    + "'" + ", "
-                    + "'" + c.getAlisveris_id() + "'" + ", "
+                    + c.getRef_id() +","
+                    + c.getAlisveris_id() + ","
                     + c.getDeger()
                     + ");";
 
-            String query = "insert into REFERANS(id,alisveris_id,deger) " + values;
+            String query = 
+                    "insert into REFERANS(ref_id,alisveris_id,deger) " + values;
             int r = st.executeUpdate(query);
 
             System.out.println("DB INSERT returned with: " + r);
@@ -36,7 +36,7 @@ public class ReferansDAO extends DBConnection {
         try {
             Statement st = this.getDb().createStatement();
 
-            String query = "delete from referans where id=" + c.getId();
+            String query = "delete from referans where id=" + c.getRef_id();
             int r = st.executeUpdate(query);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
@@ -52,7 +52,7 @@ public class ReferansDAO extends DBConnection {
             ResultSet rs = st.executeQuery(query);
 
             while (rs.next()) {
-                referansList.add(new Referans(rs.getInt("id"), rs.getInt("alisveris_id"), rs.getInt("deger")));
+                referansList.add(new Referans(rs.getInt("ref_id"), rs.getInt("alisveris_id"), rs.getInt("deger")));
 
             }
         } catch (Exception ex) {

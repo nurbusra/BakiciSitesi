@@ -3,25 +3,25 @@ package Entity;
 
 public class Referans {
 
-    private int id;
+    private int ref_id;
     private int alisveris_id;
     private int deger;
 
     public Referans() {
     }
 
-    public Referans(int id, int alisveris_id, int deger) {
-        this.id = id;
+    public Referans(int ref_id, int alisveris_id, int deger) {
+        this.ref_id = ref_id;
         this.alisveris_id = alisveris_id;
         this.deger = deger;
     }
 
-    public int getId() {
-        return id;
+    public int getRef_id() {
+        return ref_id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setRef_id(int ref_id) {
+        this.ref_id = ref_id;
     }
 
     public int getAlisveris_id() {
@@ -42,7 +42,7 @@ public class Referans {
 
     @Override
     public String toString() {
-        return "Referans{" + "id=" + id + ", alisveri_id=" + alisveris_id + ", deger=" + deger +'}';
+        return "Referans{" + "ref_id=" + ref_id + ", alisveri_id=" + alisveris_id + ", deger=" + deger +'}';
     }
 
 }

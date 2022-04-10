@@ -3,7 +3,7 @@ package Entity;
 
 public class Kazanc {
 
-    private int id;
+    private int kazanc_id;
     private int alisveris_id;
     private String config;
     private boolean referans;
@@ -11,21 +11,23 @@ public class Kazanc {
     public Kazanc() {
     }
 
-    public Kazanc(int id, int alisveris_id, String config, boolean referans) {
-        this.id = id;
+    public Kazanc(int kazanc_id, int alisveris_id, String config, boolean referans) {
+        this.kazanc_id = kazanc_id;
         this.alisveris_id = alisveris_id;
         this.config = config;
         this.referans = referans;
        
     }
 
-    public int getId() {
-        return id;
+    public int getKazanc_id() {
+        return kazanc_id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setKazanc_id(int kazanc_id) {
+        this.kazanc_id = kazanc_id;
     }
+
+    
 
     public int getAlisveris_id() {
         return alisveris_id;
@@ -54,7 +56,7 @@ public class Kazanc {
 
     @Override
     public String toString() {
-        return "Kazanc{" + "id=" + id + ", alisveri_id=" + alisveris_id + ", config=" + config + ", referans=" +referans+'}';
+        return "Kazanc{" + "kazanc_id=" + kazanc_id + ", alisveri_id=" + alisveris_id + ", config=" + config + ", referans=" +referans+'}';
     }
 
 }

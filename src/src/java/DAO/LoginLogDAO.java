@@ -24,13 +24,14 @@ public class LoginLogDAO extends DBConnection {
         try {
             Statement st = this.getDb().createStatement();
             String values = "VALUES("
-                    + "'" + c.getId() + "'" + ", "
+                          + c.getLogin_id() + ", "
                     + "'" + c.getIp_addr() + "'" + ", "
-                    + "'" + c.getTarih() + "'" + ", "
-                    + c.getUser_id()
+                          + c.getTarih() +"," 
+                          + c.getUser_id()
                     + ");";
 
-            String query = "insert into LOGINLOG(id,ip_addr, tarih ,user_id) " + values;
+            String query = 
+                    "insert into LOGINLOG(login_id,ip_addr, tarih ,user_id) " + values;
 
             int r = st.executeUpdate(query);
             
@@ -45,7 +46,7 @@ public class LoginLogDAO extends DBConnection {
         try {
             Statement st = this.getDb().createStatement();
 
-            String query = "delete from loginlog where id=" + c.getId();
+            String query = "delete from loginlog where id=" + c.getLogin_id();
             int r = st.executeUpdate(query);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
@@ -61,7 +62,11 @@ public class LoginLogDAO extends DBConnection {
             ResultSet rs = st.executeQuery(query);
 
             while (rs.next()) {
-                loginlogList.add(new LoginLog(rs.getInt("id"), rs.getString("ip_addr"), rs.getTimestamp("tarih"), rs.getInt("user_id")));
+                loginlogList.add(new LoginLog(
+                        rs.getInt("login_id"),
+                        rs.getString("ip_addr"),
+                        rs.getTimestamp("tarih"),
+                        rs.getInt("user_id")));
 
             }
         } catch (Exception ex) {

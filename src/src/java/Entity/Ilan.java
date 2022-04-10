@@ -4,10 +4,9 @@
  */
 package Entity;
 
+public class Ilan {
 
-public class Ilan{
-
-    private int id;
+    private int ilan_id;
     private int bakici_id;
     private String aciklama;
     private boolean aktif;
@@ -16,21 +15,21 @@ public class Ilan{
     public Ilan() {
     }
 
-    public Ilan(int id, int bakici_id, String aciklama, boolean aktif, float ucret) {
-        this.id = id;
+    public Ilan(int ilan_id, int bakici_id, String aciklama, boolean aktif, float ucret) {
+        this.ilan_id = ilan_id;
         this.bakici_id = bakici_id;
         this.aciklama = aciklama;
         this.aktif = aktif;
         this.ucret = ucret;
-        
+
     }
 
-    public int getId() {
-        return id;
+    public int getIlan_id() {
+        return ilan_id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIlan_id(int ilan_id) {
+        this.ilan_id = ilan_id;
     }
 
     public int getBakici_id() {
@@ -65,11 +64,9 @@ public class Ilan{
         this.ucret = ucret;
     }
 
-
-
     @Override
     public String toString() {
-        return "Ilan{" + "id=" + id + ", bakici_id=" + bakici_id + ", aciklama=" + aciklama + ", aktif=" + aktif + ", ucret=" + ucret + '}';
+        return "Ilan{" + "ilan_id=" + ilan_id + ", bakici_id=" + bakici_id + ", aciklama=" + aciklama + ", aktif=" + aktif + ", ucret=" + ucret + '}';
 
     }
 

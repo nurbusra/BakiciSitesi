@@ -20,18 +20,18 @@ public class MusteriXilanDAO extends DBConnection {
         try {
             Statement st = this.getDb().createStatement();
             String values = "VALUES("
-                    + "'" + c.getId()
-                    + "'" + ", "
-                    + "'" + c.getIlan_id() + "'" + ", "
-                    + c.getMusteri_id() + "'" + ", "
+                    + c.getAlisveris_id() + ", "
+                    + c.getIlan_id() + ", "
+                    + c.getMusteri_id() + ", "
                     + c.isOdendi()
                     + ");";
 
-            String query = "insert into MUSTERIXILAN(id,ilan_id,musteri_id,odendi) " + values;
+            String query
+                    = "insert into MUSTERIXILAN(alisveris_id,ilan_id,musteri_id,odendi) " + values;
             int r = st.executeUpdate(query);
-            
+
             System.out.println("DB INSERT returned with: " + r);
-            
+
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
@@ -41,7 +41,7 @@ public class MusteriXilanDAO extends DBConnection {
         try {
             Statement st = this.getDb().createStatement();
 
-            String query = "delete from musterixilan where id=" + c.getId();
+            String query = "delete from musterixilan where id=" + c.getAlisveris_id();
             int r = st.executeUpdate(query);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
@@ -57,7 +57,11 @@ public class MusteriXilanDAO extends DBConnection {
             ResultSet rs = st.executeQuery(query);
 
             while (rs.next()) {
-                musterixilanList.add(new MusteriXilan(rs.getInt("id"), rs.getInt("ilan_id"), rs.getInt("musteri_id"), rs.getBoolean("odendi")));
+                musterixilanList.add(new MusteriXilan(
+                        rs.getInt("alisveris_id"),
+                        rs.getInt("ilan_id"),
+                        rs.getInt("musteri_id"),
+                        rs.getBoolean("odendi")));
 
             }
         } catch (Exception ex) {

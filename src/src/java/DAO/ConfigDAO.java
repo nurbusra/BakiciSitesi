@@ -20,12 +20,12 @@ public class ConfigDAO extends DBConnection {
         try {
             Statement st = this.getDb().createStatement();
             String values = "VALUES("
-                    + "'" + c._getOption()
-                    + "'" + ", "
-                    + "'" + c._getValue() + "'" + ", "
+                    + "'" + c._getOption()+ "'" + ", "
+                    + "'" + c._getValue()+"'"
                     + ");";
 
-            String query = "insert into CONFIG(option,value) " + values;
+            String query =
+                    "insert into CONFIG(option,value) " + values;
             int r = st.executeUpdate(query);
 
             System.out.println("DB INSERT returned with: " + r);
