@@ -50,6 +50,26 @@ public class UserDAO extends DBConnection {
             System.out.println(ex.getMessage());
         }
     }
+    public void update(User_ c) {
+        try {
+            Statement st = this.getDb().createStatement();
+
+            String query;
+            query = "UPDATE USER_ " + "\n"
+                    + "SET " + "\n"
+                    + "isim = " + "'" + c.getIsim() + "'" + ",\n"
+                    + "email = " + "'" + c.getEmail() + "'" + ",\n"
+                    + "sifre = " + "'" + c.getSifre() + "'" + "\n"
+                    + "WHERE user_id = " + c.getUser_id() + ";";
+            int r = st.executeUpdate(query);
+
+            System.out.println("DB UPDATE returned with: " + r);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    
 
     public List<User_> getList() {
         List<User_> userList = new ArrayList<>();
