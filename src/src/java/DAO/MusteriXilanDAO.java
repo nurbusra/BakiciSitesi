@@ -56,6 +56,9 @@ public class MusteriXilanDAO extends DBConnection {
                     + "SET " + "\n"+
                     "odendi = " + c.isOdendi() + "\n" +
                     "WHERE alisveris_id = " + c.getAlisveris_id() + ";";
+            int r = st.executeUpdate(query);
+
+            System.out.println("DB UPDATE returned with: " + r);
             
         }catch (Exception ex) {
             System.out.println(ex.getMessage());

@@ -20,12 +20,12 @@ public class ConfigDAO extends DBConnection {
         try {
             Statement st = this.getDb().createStatement();
             String values = "VALUES("
-                    + "'" + c._getOption()+ "'" + ", "
-                    + "'" + c._getValue()+"'"
+                    + "'" + c._getOption() + "'" + ", "
+                    + "'" + c._getValue() + "'"
                     + ");";
 
-            String query =
-                    "insert into CONFIG(option,value) " + values;
+            String query
+                    = "insert into CONFIG(option,value) " + values;
             int r = st.executeUpdate(query);
 
             System.out.println("DB INSERT returned with: " + r);
@@ -39,6 +39,26 @@ public class ConfigDAO extends DBConnection {
             Statement st = this.getDb().createStatement();
             String query = "delete from config where option=" + c._getOption();
             int r = st.executeUpdate(query);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    public void update(Config c) {
+
+        try {
+            Statement st = this.getDb().createStatement();
+
+            String query;
+            query = "UPDATE CONFIG " + "\n"
+                    + "SET " + "\n"
+                    + "_value = " + "'" + c._getValue() + "'" + "\n"
+                    + "WHERE _option = " + c._getOption() + ";";
+
+            int r = st.executeUpdate(query);
+
+            System.out.println("DB UPDATE returned with: " + r);
+
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
