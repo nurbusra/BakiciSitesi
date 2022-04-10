@@ -9,22 +9,19 @@ import java.sql.Timestamp;
 public class LoginLog {
 
     private int login_id;
-    private String ip_addr;
     private Timestamp tarih;
     private int user_id;
 
     public LoginLog() {
     }
 
-    public LoginLog(String ip_addr, Timestamp tarih, int user_id) {
-        this.ip_addr = ip_addr;
+    public LoginLog(Timestamp tarih, int user_id) {
         this.tarih = tarih;
         this.user_id = user_id;
     }
 
-    public LoginLog(int login_id, String ip_addr, Timestamp tarih, int user_id) {
+    public LoginLog(int login_id, Timestamp tarih, int user_id) {
         this.login_id = login_id;
-        this.ip_addr = ip_addr;
         this.tarih = tarih;
         this.user_id = user_id;
     }
@@ -37,13 +34,6 @@ public class LoginLog {
         this.login_id = login_id;
     }
 
-    public String getIp_addr() {
-        return ip_addr;
-    }
-
-    public void setIp_addr(String ip_addr) {
-        this.ip_addr = ip_addr;
-    }
 
     public Timestamp getTarih() {
         return tarih;
