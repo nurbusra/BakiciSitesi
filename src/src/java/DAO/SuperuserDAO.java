@@ -37,11 +37,29 @@ public class SuperuserDAO extends DBConnection {
     public void delete(Superuser c) {
         try {
             Statement st = this.getDb().createStatement();
-            String query = "delete from SUPERUSER where su_id=" + c.getUser_id();          
+            String query = "delete from SUPERUSER where su_id=" + c.getSu_id();          
             int r = st.executeUpdate(query);
             
             System.out.println("DB DELETE returned with: " + r);
             
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    public void update(Superuser c) {
+        try {
+            Statement st = this.getDb().createStatement();
+
+            String query;
+            query = "UPDATE SUPERUSER" + "\n"
+                    + "SET " + "\n"
+                    + "isim = " + "'" + c.getIsim() + "'" + ",\n"
+                    + "email = " + "'" + c.getEmail() + "'" + ",\n"
+                    + "sifre = " + "'" + c.getSifre() + "'" + "\n"
+                    + "WHERE su_id = " + c.getSu_id() + ";";
+            int r = st.executeUpdate(query);
+
+            System.out.println("DB UPDATE returned with: " + r);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
