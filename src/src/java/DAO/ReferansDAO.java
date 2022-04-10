@@ -52,6 +52,9 @@ public class ReferansDAO extends DBConnection {
                     + "SET " + "\n"
                     + "deger = " + c.getDeger() + "\n"
                     + "WHERE ref_id = " + c.getRef_id() + ";";
+            int r = st.executeUpdate(query);
+
+            System.out.println("DB UPDATE returned with: " + r);
 
         } catch (Exception ex) {
             System.out.println(ex.getMessage());

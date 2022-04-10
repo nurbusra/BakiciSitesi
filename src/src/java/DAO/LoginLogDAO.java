@@ -62,6 +62,9 @@ public class LoginLogDAO extends DBConnection {
                     + "SET " + "\n"
                     + "tarih = " + c.getTarih() + "\n"
                     + "WHERE login_id = " + c.getLogin_id() + ";";
+            int r = st.executeUpdate(query);
+
+            System.out.println("DB UPDATE returned with: " + r);
 
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
