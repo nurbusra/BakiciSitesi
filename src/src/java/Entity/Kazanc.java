@@ -1,6 +1,5 @@
 package Entity;
 
-
 public class Kazanc {
 
     private int kazanc_id;
@@ -11,12 +10,17 @@ public class Kazanc {
     public Kazanc() {
     }
 
+    public Kazanc(int alisveris_id, String config) {
+        this.alisveris_id = alisveris_id;
+        this.config = config;
+    }
+
     public Kazanc(int kazanc_id, int alisveris_id, String config, boolean referans) {
         this.kazanc_id = kazanc_id;
         this.alisveris_id = alisveris_id;
         this.config = config;
         this.referans = referans;
-       
+
     }
 
     public int getKazanc_id() {
@@ -26,8 +30,6 @@ public class Kazanc {
     public void setKazanc_id(int kazanc_id) {
         this.kazanc_id = kazanc_id;
     }
-
-    
 
     public int getAlisveris_id() {
         return alisveris_id;
@@ -45,7 +47,6 @@ public class Kazanc {
         this.config = config;
     }
 
-
     public boolean isReferans() {
         return referans;
     }
@@ -56,7 +57,7 @@ public class Kazanc {
 
     @Override
     public String toString() {
-        return "Kazanc{" + "kazanc_id=" + kazanc_id + ", alisveri_id=" + alisveris_id + ", config=" + config + ", referans=" +referans+'}';
+        return "Kazanc{" + "kazanc_id=" + kazanc_id + ", alisveri_id=" + alisveris_id + '}';
     }
 
 }

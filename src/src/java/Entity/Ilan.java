@@ -11,16 +11,17 @@ public class Ilan {
     private String aciklama;
     private boolean aktif;
     private float ucret;
-    
+
     // Controller Sınıfının Kullanacağı Constructor
     public Ilan() {
     }
 
-    public Ilan(String aciklama, float ucret) {
+    public Ilan(int bakici_id, String aciklama, float ucret) {
+        this.bakici_id = bakici_id;
         this.aciklama = aciklama;
         this.ucret = ucret;
     }
-    
+
     // Veri Çekmek İçin Kullanılacak Constructor
     public Ilan(int ilan_id, int bakici_id, String aciklama, boolean aktif, float ucret) {
         this.ilan_id = ilan_id;
@@ -73,7 +74,7 @@ public class Ilan {
 
     @Override
     public String toString() {
-        return "Ilan{" + "ilan_id=" + ilan_id + ", bakici_id=" + bakici_id +'}';
+        return "Ilan{" + "ilan_id=" + ilan_id + ", bakici_id=" + bakici_id + '}';
 
     }
 

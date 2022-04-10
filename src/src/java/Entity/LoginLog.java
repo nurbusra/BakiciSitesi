@@ -16,9 +16,10 @@ public class LoginLog {
     public LoginLog() {
     }
 
-    public LoginLog(String ip_addr, Timestamp tarih) {
+    public LoginLog(String ip_addr, Timestamp tarih, int user_id) {
         this.ip_addr = ip_addr;
         this.tarih = tarih;
+        this.user_id = user_id;
     }
 
     public LoginLog(int login_id, String ip_addr, Timestamp tarih, int user_id) {
@@ -62,7 +63,7 @@ public class LoginLog {
 
     @Override
     public String toString() {
-        return "LoginLog{" + "login_id=" + login_id +"user_id=" + user_id + '}';
+        return "LoginLog{" + "login_id=" + login_id + "user_id=" + user_id + '}';
 
     }
 

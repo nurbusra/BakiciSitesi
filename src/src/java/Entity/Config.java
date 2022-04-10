@@ -1,10 +1,10 @@
 package Entity;
 
-
-public class Config{
+public class Config {
 
     private String _option;
     private String _value;
+
     // Controller Sınıfının Kullanacağı Constructor
     public Config() {
     }
@@ -13,8 +13,10 @@ public class Config{
         this._option = _option;
         this._value = _value;
     }
-    
 
+    public Config(String _value) {
+        this._value = _value;
+    }
 
     public String _getOption() {
         return _option;
@@ -32,11 +34,9 @@ public class Config{
         this._value = value;
     }
 
-
-
     @Override
     public String toString() {
-        return "Config{" + "_option=" + this._getOption() + "_value=" +this._getValue()+ '}';
+        return "Config{" + "_option=" + this._getOption() + "_value=" + this._getValue() + '}';
     }
 
 }

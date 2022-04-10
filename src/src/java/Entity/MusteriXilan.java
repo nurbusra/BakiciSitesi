@@ -4,7 +4,6 @@
  */
 package Entity;
 
-
 public class MusteriXilan {
 
     private int alisveris_id;
@@ -13,6 +12,11 @@ public class MusteriXilan {
     private boolean odendi;
 
     public MusteriXilan() {
+    }
+
+    public MusteriXilan(int ilan_id, int musteri_id) {
+        this.ilan_id = ilan_id;
+        this.musteri_id = musteri_id;
     }
 
     public MusteriXilan(int alisveris_id, int ilan_id, int musteri_id, boolean odendi) {
@@ -54,10 +58,9 @@ public class MusteriXilan {
         this.odendi = odendi;
     }
 
-
     @Override
     public String toString() {
-        return "MusteriXilan{" + "alisveris_id=" + alisveris_id + ", ilan_id=" + ilan_id + ", musteri_id=" + musteri_id + ", odendi=" + odendi +'}';
+        return "MusteriXilan{" + "alisveris_id=" + alisveris_id + ", ilan_id=" + ilan_id + ", musteri_id=" + musteri_id +'}';
 
     }
 
