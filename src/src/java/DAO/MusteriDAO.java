@@ -96,7 +96,36 @@ public class MusteriDAO extends DBConnection {
         }
         return musteriList;
     }
+    
+       public Musteri findById (int id){
+        try {
+        Statement st = this.getDb().createStatement();
 
+        String query = "select * from MUSTERI where musteri_id=";
+        query=query+String.valueOf(id);
+        ResultSet rs = st.executeQuery(query);
+        
+        while (rs.next()) {
+                return (new Musteri(
+                        rs.getInt("user_id"),
+                        rs.getString("isim"),
+                        rs.getString("email"),
+                        rs.getString("sifre"),
+                        rs.getInt("sinif"),
+                        rs.getInt("musteri_id"),
+                        rs.getInt("gecmis_alisveris")
+                )
+                );
+            }
+        
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+            
+        return null;
+    }
+    
     public Connection getDb() throws Exception {
         if (this.db == null) {
             this.db = getConnection();

@@ -94,7 +94,37 @@ public class BakiciDAO extends DBConnection {
         }
         return bakiciList;
     }
+    public Bakici findById (int id){
+        try {
+        Statement st = this.getDb().createStatement();
 
+        String query = "select * from BAKICI where bakici_id=";
+        query=query+String.valueOf(id);
+        ResultSet rs = st.executeQuery(query);
+        
+        while (rs.next()) {
+                return (new Bakici(
+                        rs.getInt("user_id"),
+                        rs.getString("isim"),
+                        rs.getString("email"),
+                        rs.getString("sifre"),
+                        rs.getInt("sinif"),
+                        rs.getInt("bakici_id"),
+                        rs.getInt("neg_referans"),
+                        rs.getInt("poz_referans"),
+                        rs.getInt("gecmis_alisveris")
+                )
+                );
+            }
+        
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+            
+        return null;
+    }
+    
     public Connection getDb() throws Exception {
         if (this.db == null) {
             this.db = getConnection();

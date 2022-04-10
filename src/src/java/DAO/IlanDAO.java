@@ -95,7 +95,34 @@ public class IlanDAO extends DBConnection {
         }
         return ilanList;
     }
+    
+       public Ilan findById (int id){
+        try {
+        Statement st = this.getDb().createStatement();
 
+        String query = "select * from ILAN where ilan_id=";
+        query=query+String.valueOf(id);
+        ResultSet rs = st.executeQuery(query);
+        
+        while (rs.next()) {
+                return (new Ilan(
+                        rs.getInt("ilan_id"),
+                        rs.getInt("bakici_id"),
+                        rs.getString("aciklama"),
+                        rs.getBoolean("aktif"),
+                        rs.getFloat("ucret")
+                )
+                );
+            }
+        
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+            
+        return null;
+    }
+       
     public Connection getDb() throws Exception {
         if (this.db == null) {
             this.db = getConnection();
