@@ -6,7 +6,31 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        Hello from Facelets #{userBean.list}
+        Hello from Facelets <br> </br > 
+        #{userBean.list} <br> </br > 
+        <h:form>
+            <h:commandButton value="home" action="index.xhtml?faces-redirect=true"/>
+            <h:commandButton value="ilanlar" action="ilanlar.xhtml?faces-redirect=true"/>
+            <h:commandButton value="bakıcılar" action="bakicilar.xhtml?faces-redirect=true"/>
+            <h:commandButton value="users" action="users.xhtml?faces-redirect=true"/>
+            <h:commandButton value="kayit" action="kayit.xhtml?faces-redirect=true"/>
+        </h:form>
     </h:body>
 </html>
 
+<!-- 
+<h:dataTable value="#{userBean.list}" var="i">
+    <h:column> 
+        <f:facet name="header">ID</f:facet>
+            #{i.user_id}
+    </h:column>
+    <h:column> 
+        <f:facet name="header">Ucret</f:facet>
+            #{i.isim}
+    </h:column>
+    <h:column> 
+        <f:facet name="header">Aktif</f:facet>
+            #{i.email}
+    </h:column>
+</h:dataTable>
+-->

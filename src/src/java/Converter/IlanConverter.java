@@ -14,7 +14,7 @@ import jakarta.faces.convert.FacesConverter;
 /**
  * Many-to-Many Converter 
  */
-@FacesConverter
+@FacesConverter("ilanConverter")
 public class IlanConverter implements Converter {
     private IlanDAO dao;
 

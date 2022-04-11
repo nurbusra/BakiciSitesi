@@ -14,7 +14,7 @@ import jakarta.faces.convert.FacesConverter;
 /**
  * Many-to-Many Converter 
  */
-@FacesConverter
+@FacesConverter("musteriConverter")
 public class MusteriConverter implements Converter {
     private MusteriDAO dao;
 

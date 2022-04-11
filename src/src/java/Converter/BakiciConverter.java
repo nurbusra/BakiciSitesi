@@ -14,7 +14,7 @@ import jakarta.faces.convert.FacesConverter;
 /**
  * One-to-Many Converter 
  */
-@FacesConverter
+@FacesConverter("bakiciConverter")
 public class BakiciConverter implements Converter {
     private BakiciDAO dao;
 

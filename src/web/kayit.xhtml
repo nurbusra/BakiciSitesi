@@ -18,21 +18,21 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
        <hr />
        
       
-       --#{kayitBean.name}--
-       --#{kayitBean.email}--
-       --#{kayitBean.sifre}--
-       --#{kayitBean.sinif}--
+       --#{kayitBean.entity.isim}--
+       --#{kayitBean.entity.email}--
+       --#{kayitBean.entity.sifre}--
+       --#{kayitBean.entitys.sinif}--
        
        <h:form>
            
         
-            name degeri : <h:inputText value="#{kayitBean.name}" /> <br />
+            name degeri : <h:inputText value="#{kayitBean.entity.isim}" /> <br />
           
-            e-mail degeri : <h:inputText value="#{kayitBean.email}" /> <br />
+            e-mail degeri : <h:inputText value="#{kayitBean.entity.email}" /> <br />
           
-            sifre degeri : <h:inputText value="#{kayitBean.sifre}" /> <br />
+            sifre degeri : <h:inputText value="#{kayitBean.entity.sifre}" /> <br />
          
-            sinif degeri : <h:inputText value="#{kayitBean.sinif}" /> <br />
+            sinif degeri : <h:inputText value="#{kayitBean.entity.sinif}" /> <br />
             
            <h:commandButton action="#{kayitBean.createEntity}" value="kaydet" />
            
