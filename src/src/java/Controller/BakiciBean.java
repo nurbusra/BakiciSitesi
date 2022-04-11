@@ -42,7 +42,7 @@ public class BakiciBean implements Serializable {
     }
 
     public List<Bakici> getList() {
-        return list;
+        return this.getDao().getList();
     }
 
     public void setList(List<Bakici> list) {
