@@ -112,6 +112,8 @@ CREATE TABLE Kazanc(
 	CONSTRAINT fk_alisveris_id
 		FOREIGN KEY(alisveris_id)
 			REFERENCES MusteriXilan(alisveris_id)
+				ON DELETE CASCADE
+				ON UPDATE CASCADE
 );
 
 /*

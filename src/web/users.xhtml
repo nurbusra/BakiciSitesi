@@ -33,7 +33,7 @@
                 </h:column>
                 <h:column>
                     <f:facet name="header">Action</f:facet>
-                    <h:commandButton value="GÃ¶ster" action="ilan.xhtml?faces-redirect=true">
+                    <h:commandButton value="Sil" action="#{userBean.deleteEntity}">
                         <f:actionListener binding="#{userBean.setEntity(i)}" />
                     </h:commandButton>
                 </h:column>
