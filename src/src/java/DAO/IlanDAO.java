@@ -15,13 +15,23 @@ import java.util.List;
 public class IlanDAO extends DBConnection {
 
     private Connection db;
+    private BakiciDAO bakiciDao;
+
+    public BakiciDAO getBakiciDao() {
+        if(this.bakiciDao == null) this.bakiciDao = new BakiciDAO();
+        return bakiciDao;
+    }
+
+    public void setBakiciDao(BakiciDAO bakiciDao) {
+        this.bakiciDao = bakiciDao;
+    }
 
     public void create(Ilan c) {
         try {
             Statement st = this.getDb().createStatement();
             String values = "VALUES("
                           + c.getIlan_id() + ", "
-                          + c.getBakici_id() + ", "
+                          + c.getBakici().getBakici_id() + ", "
                     + "'" + c.getAciklama() + "'" + ","
                           + c.isAktif() + ","
                           + c.getUcret()
@@ -84,7 +94,7 @@ public class IlanDAO extends DBConnection {
             while (rs.next()) {
                 ilanList.add(new Ilan(
                         rs.getInt("ilan_id"),
-                        rs.getInt("bakici_id"),
+                        this.bakiciDao.findById( rs.getInt("bakici_id")),
                         rs.getString("aciklama"),
                         rs.getBoolean("aktif"),
                         rs.getFloat("ucret")));
@@ -107,7 +117,7 @@ public class IlanDAO extends DBConnection {
         while (rs.next()) {
                 return (new Ilan(
                         rs.getInt("ilan_id"),
-                        rs.getInt("bakici_id"),
+                        this.bakiciDao.findById( rs.getInt("bakici_id")),
                         rs.getString("aciklama"),
                         rs.getBoolean("aktif"),
                         rs.getFloat("ucret")

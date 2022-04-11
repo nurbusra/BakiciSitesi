@@ -15,14 +15,34 @@ import java.util.List;
 public class MusteriXilanDAO extends DBConnection {
 
     private Connection db;
+    private IlanDAO ilanDao;
+    private MusteriDAO musteriDao;
+
+    public IlanDAO getIlanDao() {
+        if(this.ilanDao == null) this.ilanDao = new IlanDAO();
+        return ilanDao;
+    }
+
+    public void setIlanDao(IlanDAO ilanDao) {
+        this.ilanDao = ilanDao;
+    }
+
+    public MusteriDAO getMusteriDao() {
+        if(this.musteriDao == null) this.musteriDao = new MusteriDAO();
+        return musteriDao;
+    }
+
+    public void setMusteriDao(MusteriDAO musteriDao) {
+        this.musteriDao = musteriDao;
+    }
 
     public void create(MusteriXilan c) {
         try {
             Statement st = this.getDb().createStatement();
             String values = "VALUES("
-                    + c.getAlisveris_id() + ", "
-                    + c.getIlan_id() + ", "
-                    + c.getMusteri_id() + ", "
+                    // + c.getAlisveris_id() + ", "
+                    + c.getIlan().getIlan_id() + ", "
+                    + c.getMusteri().getMusteri_id() + ", "
                     + c.isOdendi()
                     + ");";
 
@@ -43,6 +63,8 @@ public class MusteriXilanDAO extends DBConnection {
 
             String query = "delete from musterixilan where id=" + c.getAlisveris_id();
             int r = st.executeUpdate(query);
+            
+            System.out.println("DB DELETE returned with: " + r);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
@@ -77,8 +99,8 @@ public class MusteriXilanDAO extends DBConnection {
             while (rs.next()) {
                 musterixilanList.add(new MusteriXilan(
                         rs.getInt("alisveris_id"),
-                        rs.getInt("ilan_id"),
-                        rs.getInt("musteri_id"),
+                        this.getIlanDao().findById( rs.getInt("ilan_id") ),
+                        this.getMusteriDao().findById( rs.getInt("musteri_id") ),
                         rs.getBoolean("odendi")));
 
             }
