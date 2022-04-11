@@ -11,6 +11,7 @@ public class Ilan {
     private String aciklama;
     private boolean aktif;
     private float ucret;
+    private int bakici_id;
 
     // Controller Sınıfının Kullanacağı Constructor
     public Ilan() {
@@ -26,6 +27,15 @@ public class Ilan {
     public Ilan(int ilan_id, Bakici bakici, String aciklama, boolean aktif, float ucret) {
         this.ilan_id = ilan_id;
         this.bakici = bakici;
+        this.aciklama = aciklama;
+        this.aktif = aktif;
+        this.ucret = ucret;
+
+    }
+
+    public Ilan(int ilan_id, int bakici_id, String aciklama, boolean aktif, float ucret) {
+        this.ilan_id = ilan_id;
+        this.bakici_id = bakici_id;
         this.aciklama = aciklama;
         this.aktif = aktif;
         this.ucret = ucret;
@@ -75,6 +85,15 @@ public class Ilan {
     public void setUcret(float ucret) {
         this.ucret = ucret;
     }
+
+    public int getBakici_id() {
+        return bakici_id;
+    }
+
+    public void setBakici_id(int bakici_id) {
+        this.bakici_id = bakici_id;
+    }
+
 
     @Override
     public String toString() {

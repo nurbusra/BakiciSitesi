@@ -94,7 +94,7 @@ public class IlanDAO extends DBConnection {
             while (rs.next()) {
                 ilanList.add(new Ilan(
                         rs.getInt("ilan_id"),
-                        this.bakiciDao.findById( rs.getInt("bakici_id")),
+                        rs.getInt("bakici_id"),
                         rs.getString("aciklama"),
                         rs.getBoolean("aktif"),
                         rs.getFloat("ucret")));
@@ -117,7 +117,7 @@ public class IlanDAO extends DBConnection {
         while (rs.next()) {
                 return (new Ilan(
                         rs.getInt("ilan_id"),
-                        this.bakiciDao.findById( rs.getInt("bakici_id")),
+                        rs.getInt("bakici_id"),
                         rs.getString("aciklama"),
                         rs.getBoolean("aktif"),
                         rs.getFloat("ucret")
