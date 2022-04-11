@@ -7,7 +7,7 @@ package Entity;
 public class Ilan {
 
     private int ilan_id;
-    private int bakici_id;
+    private Bakici bakici;
     private String aciklama;
     private boolean aktif;
     private float ucret;
@@ -16,16 +16,16 @@ public class Ilan {
     public Ilan() {
     }
 
-    public Ilan(int bakici_id, String aciklama, float ucret) {
-        this.bakici_id = bakici_id;
+    public Ilan(Bakici bakici, String aciklama, float ucret) {
+        this.bakici = bakici;
         this.aciklama = aciklama;
         this.ucret = ucret;
     }
 
     // Veri Çekmek İçin Kullanılacak Constructor
-    public Ilan(int ilan_id, int bakici_id, String aciklama, boolean aktif, float ucret) {
+    public Ilan(int ilan_id, Bakici bakici, String aciklama, boolean aktif, float ucret) {
         this.ilan_id = ilan_id;
-        this.bakici_id = bakici_id;
+        this.bakici = bakici;
         this.aciklama = aciklama;
         this.aktif = aktif;
         this.ucret = ucret;
@@ -40,12 +40,12 @@ public class Ilan {
         this.ilan_id = ilan_id;
     }
 
-    public int getBakici_id() {
-        return bakici_id;
+    public Bakici getBakici() {
+        return bakici;
     }
 
-    public void setBakici_id(int bakici_id) {
-        this.bakici_id = bakici_id;
+    public void setBakici(Bakici bakici) {
+        this.bakici = bakici;
     }
 
     public String getAciklama() {
@@ -78,7 +78,7 @@ public class Ilan {
 
     @Override
     public String toString() {
-        return "Ilan{" + "ilan_id=" + ilan_id + ", bakici_id=" + bakici_id + '}';
+        return "Ilan{" + "ilan_id=" + ilan_id + ", bakici_id=" + bakici + '}';
 
     }
 

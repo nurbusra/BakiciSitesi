@@ -7,22 +7,22 @@ package Entity;
 public class MusteriXilan {
 
     private int alisveris_id;
-    private int ilan_id;
-    private int musteri_id;
+    private Ilan ilan;
+    private Musteri musteri;
     private boolean odendi;
 
     public MusteriXilan() {
     }
 
-    public MusteriXilan(int ilan_id, int musteri_id) {
-        this.ilan_id = ilan_id;
-        this.musteri_id = musteri_id;
+    public MusteriXilan(Ilan ilan, Musteri musteri) {
+        this.ilan = ilan;
+        this.musteri = musteri;
     }
 
-    public MusteriXilan(int alisveris_id, int ilan_id, int musteri_id, boolean odendi) {
+    public MusteriXilan(int alisveris_id, Ilan ilan, Musteri musteri, boolean odendi) {
         this.alisveris_id = alisveris_id;
-        this.ilan_id = ilan_id;
-        this.musteri_id = musteri_id;
+        this.ilan = ilan;
+        this.musteri = musteri;
         this.odendi = odendi;
     }
 
@@ -34,20 +34,20 @@ public class MusteriXilan {
         this.alisveris_id = alisveris_id;
     }
 
-    public int getIlan_id() {
-        return ilan_id;
+    public Ilan getIlan() {
+        return ilan;
     }
 
-    public void setIlan_id(int ilan_id) {
-        this.ilan_id = ilan_id;
+    public void setIlan(Ilan ilan) {
+        this.ilan = ilan;
     }
 
-    public int getMusteri_id() {
-        return musteri_id;
+    public Musteri getMusteri() {
+        return musteri;
     }
 
-    public void setMusteri_id(int musteri_id) {
-        this.musteri_id = musteri_id;
+    public void setMusteri(Musteri musteri) {
+        this.musteri = musteri;
     }
 
     public boolean isOdendi() {
@@ -60,7 +60,7 @@ public class MusteriXilan {
 
     @Override
     public String toString() {
-        return "MusteriXilan{" + "alisveris_id=" + alisveris_id + ", ilan_id=" + ilan_id + ", musteri_id=" + musteri_id +'}';
+        return "MusteriXilan{" + "alisveris_id=" + alisveris_id + ", ilan_id=" + ilan + ", musteri_id=" + musteri +'}';
 
     }
 
