@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?> 
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      >
+    <body>
+		<ui:composition>
+			<div class="col-md-4">
+				<div class="panel panel-default">
+					<div class="panel-heading">CATEGORY</div>
+					<div class="panel-body">
+						Number of Category : #{dashboard.categoryCount} 
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="panel panel-default">
+					<div class="panel-heading">POST</div>
+					<div class="panel-body">
+						Number of Post : #{dashboard.postCount} 
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="panel panel-default">
+					<div class="panel-heading">USER</div>
+					<div class="panel-body">
+						Number of User : #{dashboard.userCount} 
+					</div>
+				</div>
+			</div>
+		</ui:composition>
+    </body>
+</html>

@@ -1,0 +1,39 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <body>
+
+        <ui:composition>
+            <nav class="navbar navbar-light bg-faded">
+                <a class="navbar-brand" immediate="true" href="/BakiciSitesi/faces/index.xhtml">
+                    Bakici Sitesi
+                </a>
+                
+                <c:if test="#{!kisiController.isLoggedin()}">
+                    <a class="navbar-right" immediate="true" href="/BakiciSitesi/faces/login.xhtml" >
+                        Login
+                    </a>
+                </c:if>
+                <c:if test="#{kisiController.type}">
+                    <a class="navbar-right">
+                        <h:commandLink immediate="true" action="#{kisiController.panel()}" value="Panel"/>
+
+                    </a>
+                </c:if>
+                <c:if test="#{kisiController.isLoggedin()}">
+                    
+                  
+                    <a class="navbar-right">
+                    #{session.getAttribute("userid")}
+                        <h:commandLink immediate="true" action="#{kisiController.logout()}" value="Logout"/>
+
+                    </a>
+                </c:if>
+            </nav>
+        </ui:composition>
+    </body>
+</html>
