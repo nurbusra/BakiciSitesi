@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/template.xhtml">
+
+    <ui:define name="content">
+        <h:form id="category-form">
+            <div class="mb-3">
+                <label class="form-label">Kazanc ID:</label>
+                <h:inputText styleClass="form-control" value="#{kazancBean.entity.kazanc_id}"/>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Alisveris ID:</label>
+                <h:inputText styleClass="form-control" value="#{kazancBean.entity.alisveris_id}"/>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Config:</label>
+                <h:inputText styleClass="form-control" value="#{kazancBean.entity.config}"/>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Referans:</label>
+                <h:inputText styleClass="form-control" value="#{kazancBean.entity.referans}"/>
+            </div>
+            <div class="mb-3">
+                <h:commandButton styleClass="btn btn-success" action="#{kazancBean.create}" value="Kaydet">
+                <f:ajax execute="category-form" render="category-table category-form" />
+                </h:commandButton>
+                <h:commandButton styleClass="btn btn-primary" action="#{kazancBean.update()}" value="Update" >
+                    <f:ajax execute="category-form" render="category-table category-form" />
+                </h:commandButton>
+                <h:commandButton styleClass="btn btn-secondary"  action="#{kazancBean.clear()}" value="Clear" >
+                    <f:ajax execute="category-form" render="category-form" />
+                </h:commandButton>
+            </div>
+        </h:form>
+
+        <hr />
+        <hr />
+
+        <h:form id="category-table">        
+            <h:dataTable styleClass="table table-striped table-hover" value="#{kazancBean.list}" var="c">
+                <h:column>
+                    <f:facet name="Header">Kazanc ID</f:facet>
+                        #{c.kazanc_id}
+                </h:column>
+                <h:column>
+                    <f:facet name="Header">Alisveris ID</f:facet>
+                        #{c.alisveris_id}
+                </h:column>
+                <h:column>
+                    <f:facet name="Header">Config</f:facet>
+                        #{c.config}
+                </h:column>
+                <h:column>
+                    <f:facet name="Header">Referans</f:facet>
+                        #{c.referans}
+                </h:column>
+                <h:column>
+                    <f:facet name="Header">CREATED</f:facet>
+                        #{c.created}
+                </h:column>
+                <h:column>
+                    <f:facet name="Header">UPDATED</f:facet>
+                        #{c.updated}
+                </h:column>
+                <h:column>
+                    <f:facet name="Header">Delete</f:facet>
+                    <h:commandButton styleClass="btn btn-danger btn-sm" action="#{kazancBean.delete(c)}" value="Sil">
+                        <f:ajax execute="category-table" render="category-table category-form" />
+                    </h:commandButton>
+                    <h:commandButton styleClass="btn btn-primary btn-sm" action="#{kazancBean.setEntity(c)}" value="Update" >
+                        <f:ajax execute="category-table" render="category-table category-form" />
+                    </h:commandButton>
+                </h:column>
+            </h:dataTable>
+        </h:form> 
+    </ui:define>
+</ui:composition>
