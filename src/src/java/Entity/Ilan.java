@@ -4,6 +4,8 @@
  */
 package Entity;
 
+import java.sql.Timestamp;
+
 public class Ilan {
 
     private int ilan_id;
@@ -12,6 +14,8 @@ public class Ilan {
     private boolean aktif;
     private float ucret;
     private int bakici_id;
+    private Timestamp created;
+    private Timestamp updated;
 
     // Controller Sınıfının Kullanacağı Constructor
     public Ilan() {
@@ -24,12 +28,14 @@ public class Ilan {
     }
 
     // Veri Çekmek İçin Kullanılacak Constructor
-    public Ilan(int ilan_id, Bakici bakici, String aciklama, boolean aktif, float ucret) {
+    public Ilan(int ilan_id, Bakici bakici, String aciklama, boolean aktif, float ucret,Timestamp created,Timestamp updated) {
         this.ilan_id = ilan_id;
         this.bakici = bakici;
         this.aciklama = aciklama;
         this.aktif = aktif;
         this.ucret = ucret;
+        this.created=created;
+        this.updated=updated;
 
     }
 
@@ -93,6 +99,23 @@ public class Ilan {
     public void setBakici_id(int bakici_id) {
         this.bakici_id = bakici_id;
     }
+
+    public Timestamp getCreated() {
+        return created;
+    }
+
+    public void setCreated(Timestamp created) {
+        this.created = created;
+    }
+
+    public Timestamp getUpdated() {
+        return updated;
+    }
+
+    public void setUpdated(Timestamp updated) {
+        this.updated = updated;
+    }
+    
 
 
     @Override

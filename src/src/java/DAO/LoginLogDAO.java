@@ -84,7 +84,9 @@ public class LoginLogDAO extends DBConnection {
                 loginlogList.add(new LoginLog(
                         rs.getInt("login_id"),
                         rs.getTimestamp("tarih"),
-                        rs.getInt("user_id")));
+                        rs.getInt("user_id"),
+                        rs.getTimestamp("created"),
+                        rs.getTimestamp("updated")));
 
             }
         } catch (Exception ex) {

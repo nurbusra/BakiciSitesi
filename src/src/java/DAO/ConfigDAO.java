@@ -73,7 +73,11 @@ public class ConfigDAO extends DBConnection {
             ResultSet rs = st.executeQuery(query);
 
             while (rs.next()) {
-                configList.add(new Config(rs.getString("_option"), rs.getString("_value")));
+                configList.add(new Config(
+                        rs.getString("_option"),
+                        rs.getString("_value"),
+                        rs.getTimestamp("created"),
+                        rs.getTimestamp("updated")));
 
             }
         } catch (Exception ex) {

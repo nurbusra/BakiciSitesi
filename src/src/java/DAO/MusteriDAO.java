@@ -86,7 +86,9 @@ public class MusteriDAO extends DBConnection {
                         rs.getString("sifre"),
                         rs.getInt("sinif"),
                         rs.getInt("musteri_id"),
-                        rs.getInt("gecmis_alisveris")
+                        rs.getInt("gecmis_alisveris"),
+                        rs.getTimestamp("created"),
+                        rs.getTimestamp("updated")
                 )
                 );
             }
@@ -113,7 +115,9 @@ public class MusteriDAO extends DBConnection {
                         rs.getString("sifre"),
                         rs.getInt("sinif"),
                         rs.getInt("musteri_id"),
-                        rs.getInt("gecmis_alisveris")
+                        rs.getInt("gecmis_alisveris"),
+                        rs.getTimestamp("created"),
+                        rs.getTimestamp("updated")
                 )
                 );
             }

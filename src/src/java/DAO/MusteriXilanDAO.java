@@ -101,7 +101,9 @@ public class MusteriXilanDAO extends DBConnection {
                         rs.getInt("alisveris_id"),
                         this.getIlanDao().findById( rs.getInt("ilan_id") ),
                         this.getMusteriDao().findById( rs.getInt("musteri_id") ),
-                        rs.getBoolean("odendi")));
+                        rs.getBoolean("odendi"),
+                        rs.getTimestamp("created"),
+                        rs.getTimestamp("updated")));
 
             }
         } catch (Exception ex) {

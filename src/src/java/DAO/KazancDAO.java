@@ -58,7 +58,13 @@ public class KazancDAO extends DBConnection {
             ResultSet rs = st.executeQuery(query);
 
             while (rs.next()) {
-                kazancList.add(new Kazanc(rs.getInt("kazanc_id"), rs.getInt("alisveris_id"), rs.getString("config"), rs.getBoolean("referans")));
+                kazancList.add(new Kazanc(
+                        rs.getInt("kazanc_id"),
+                        rs.getInt("alisveris_id"),
+                        rs.getString("config"),
+                        rs.getBoolean("referans"),
+                        rs.getTimestamp("created"),
+                        rs.getTimestamp("updated")));
 
             }
         } catch (Exception ex) {

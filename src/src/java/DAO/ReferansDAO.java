@@ -71,7 +71,12 @@ public class ReferansDAO extends DBConnection {
             ResultSet rs = st.executeQuery(query);
 
             while (rs.next()) {
-                referansList.add(new Referans(rs.getInt("ref_id"), rs.getInt("kazanc_id"), rs.getInt("deger")));
+                referansList.add(new Referans(
+                        rs.getInt("ref_id"),
+                        rs.getInt("kazanc_id"),
+                        rs.getInt("deger"),
+                        rs.getTimestamp("created"),
+                        rs.getTimestamp("updated")));
 
             }
         } catch (Exception ex) {

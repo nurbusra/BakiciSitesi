@@ -84,8 +84,10 @@ public class BakiciDAO extends DBConnection {
                         rs.getInt("bakici_id"),
                         rs.getInt("neg_referans"),
                         rs.getInt("poz_referans"),
-                        rs.getInt("gecmis_alisveris")
-                )
+                        rs.getInt("gecmis_alisveris"),
+                        rs.getTimestamp("created"),
+                        rs.getTimestamp("updated")
+                        )
                 );
             }
 
@@ -112,7 +114,9 @@ public class BakiciDAO extends DBConnection {
                         rs.getInt("bakici_id"),
                         rs.getInt("neg_referans"),
                         rs.getInt("poz_referans"),
-                        rs.getInt("gecmis_alisveris")
+                        rs.getInt("gecmis_alisveris"),
+                        rs.getTimestamp("created"),
+                        rs.getTimestamp("updated")
                 )
                 );
             }
