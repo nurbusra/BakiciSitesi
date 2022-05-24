@@ -12,15 +12,16 @@ import Entity.User_;
 import jakarta.inject.Named;
 import jakarta.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import jakarta.validation.constraints.NotBlank;
 
 
 @Named(value = "kayitBean")
 @SessionScoped
 public class KayitBean implements Serializable {
 
-    private User_ entity;
-    private BakiciDAO bakiciDao;
-    private MusteriDAO musteriDao;
+    @NotBlank private User_ entity;
+    @NotBlank private BakiciDAO bakiciDao;
+    @NotBlank private MusteriDAO musteriDao;
     
     public KayitBean() {
     }
@@ -51,6 +52,7 @@ public class KayitBean implements Serializable {
     public void setMusteriDao(MusteriDAO musteriDao) {
         this.musteriDao = musteriDao;
     }
+    
     
     public String createEntity() {
         if(this.entity.getSinif() == 1) {
