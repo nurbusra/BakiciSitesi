@@ -4,12 +4,9 @@
 <ui.composition xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      template="template.xhtml">
-    <head>
-        <title>Ilan ID: #{ilanBean.entity.ilan_id}</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
+      template="template.xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    
         
         <h:form>
             <h:commandButton rendered="#{ilanBean.entity.aktif}" value="Deactivate" action="#{ilanBean.updateEntity}">
@@ -30,5 +27,8 @@
         <br />
         <div>Aktif: #{ilanBean.entity.aktif}</div>
         <br />
-    </body>
+    
+        <ui:define name="ilan">
+            
+        </ui:define>
 </ui.composition
