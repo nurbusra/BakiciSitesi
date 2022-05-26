@@ -20,33 +20,34 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
     --#{kayitBean.entity.sifre}--
     --#{kayitBean.entity.sinif}--
 
-</h:form id="form">
-Email:
-<h:inputText id="email" value="#{kayitBean.email}" required="true" requiredMessage="Bu alan zorunludur!">
-    <f:validateLength minimum="15" maximum="25" />
-    <h:inputText> <br/>
-        <h:message for="email" style="color: red; font-size: 10pt;" /><br/>
+    <h:form id="form">
+        Email:
+        <h:inputText id="email" value="#{kayitBean.entity.email}" required="true" requiredMessage="Bu alan zorunludur!">
+            <f:validateLength minimum="15" maximum="25" />
+        </h:inputText> <br/>
+            <h:message for="email" style="color: red; font-size: 10pt;" /><br/>
+
         Sifre:
-        <h:inputText id="sifre" validator="#{kayitBean.validatesifre}" value="#{kayitBean.sifre}" /><br>
+        <h:inputText id="sifre" validator="#{kayitBean.validatesifre}" value="#{kayitBean.entity.sifre}" /><br/>
             <h:message for="sifre" style="color: red; font-size: 10pt;" /><br/>
-            <h:commandButton action="#{kayitBean.register}" value="REGISTER" />
-            <h:form>
+        
+        <h:commandButton action="#{kayitBean.register}" value="REGISTER" />
 
-                <h:form>
+    </h:form>
+    
+    
+    <!-- Eski form -->
+    <h:form>
+        name degeri : <h:inputText value="#{kayitBean.entity.isim}" /> <br />
 
+        e-mail degeri : <h:inputText value="#{kayitBean.entity.email}" /> <br />
 
-                    name degeri : <h:inputText value="#{kayitBean.entity.isim}" /> <br />
+        sifre degeri : <h:inputText value="#{kayitBean.entity.sifre}" /> <br />
 
-                    e-mail degeri : <h:inputText value="#{kayitBean.entity.email}" /> <br />
+        sinif degeri : <h:inputText value="#{kayitBean.entity.sinif}" /> <br />
 
-                    sifre degeri : <h:inputText value="#{kayitBean.entity.sifre}" /> <br />
-
-                    sinif degeri : <h:inputText value="#{kayitBean.entity.sinif}" /> <br />
-
-                    <h:commandButton action="#{kayitBean.createEntity}" value="kaydet" />
-
-
-                </h:form>
+        <h:commandButton action="#{kayitBean.createEntity}" value="kaydet" />
+    </h:form>
 
                 <ui:define name="kayit">
 
