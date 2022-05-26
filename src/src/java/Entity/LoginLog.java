@@ -7,18 +7,26 @@ public class LoginLog {
     private int login_id;
     private Timestamp tarih;
     private int user_id;
+//<<<<<<< Updated upstream
     private Timestamp created;
     private Timestamp updated;
+
+//>>>>>>> Stashed changes
 
     public LoginLog() {
     }
 
+//<<<<<<< Updated upstream
     public LoginLog(Timestamp tarih, int user_id) {
         this.tarih = tarih;
         this.user_id = user_id;
     }
 
-    public LoginLog(int login_id, Timestamp tarih, int user_id,Timestamp created,Timestamp updated) {
+    public LoginLog(int login_id, Timestamp tarih, int user_id,Timestamp created,Timestamp updated) {;
+    }
+
+    public LoginLog(int login_id, String ip_addr, Timestamp tarih, int user_id) {
+//>>>>>>> Stashed changes
         this.login_id = login_id;
         this.tarih = tarih;
         this.user_id = user_id;
@@ -51,6 +59,7 @@ public class LoginLog {
         this.user_id = user_id;
     }
 
+//<<<<<<< Updated upstream
     public Timestamp getCreated() {
         return created;
     }
@@ -68,6 +77,7 @@ public class LoginLog {
     }
     
 
+//>>>>>>> Stashed changes
     @Override
     public String toString() {
         return "LoginLog{" + "login_id=" + login_id + "user_id=" + user_id + '}';

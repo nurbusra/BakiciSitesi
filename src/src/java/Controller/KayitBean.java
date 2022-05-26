@@ -11,6 +11,10 @@ import Entity.Musteri;
 import Entity.User_;
 import jakarta.inject.Named;
 import jakarta.enterprise.context.SessionScoped;
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.validator.ValidatorException;
 import java.io.Serializable;
 import jakarta.validation.constraints.NotBlank;
 
@@ -22,9 +26,23 @@ public class KayitBean implements Serializable {
     @NotBlank private User_ entity;
     @NotBlank private BakiciDAO bakiciDao;
     @NotBlank private MusteriDAO musteriDao;
-    
     public KayitBean() {
     }
+    
+    public boolean validateEmail(FacesContext context , UIComponent cmp , Object value) throws ValidatorException{
+        String v= (String) value;
+        if(v.isEmpty()){
+            throw new ValidatorException(new FacesMessage("Şifre alanı boş bırakılamaz!"));
+        }else if(v.length() < 7 ){
+            throw new ValidatorException(new FacesMessage("Şifre alanı 8 karakterden az olamaz!"));
+        }
+        return true;
+    }
+    public void register(){
+        System.out.println("-------REGISTERED-----");
+    }
+
+    
 
     public User_ getEntity() {
         if(this.entity == null) this.entity = new User_();

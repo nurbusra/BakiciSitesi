@@ -5,39 +5,52 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
 -->
 <!DOCTYPE html>
 <ui.composition xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      template="template.xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-    
-       
-       <hr />
-       
-      
-       --#{kayitBean.entity.isim}--
-       --#{kayitBean.entity.email}--
-       --#{kayitBean.entity.sifre}--
-       --#{kayitBean.entity.sinif}--
-       
-       <h:form>
-           
-        
-            name degeri : <h:inputText value="#{kayitBean.entity.isim}" /> <br />
-          
-            e-mail degeri : <h:inputText value="#{kayitBean.entity.email}" /> <br />
-          
-            sifre degeri : <h:inputText value="#{kayitBean.entity.sifre}" /> <br />
-         
-            sinif degeri : <h:inputText value="#{kayitBean.entity.sinif}" /> <br />
-            
-           <h:commandButton action="#{kayitBean.createEntity}" value="kaydet" />
-           
-           
-       </h:form>
-        
-       <ui:define name="kayit">
-           
-       </ui:define>
-        
-   
-</ui.composition>
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="template.xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+
+    <hr />
+    <h:body>
+
+
+    --#{kayitBean.entity.isim}--
+    --#{kayitBean.entity.email}--
+    --#{kayitBean.entity.sifre}--
+    --#{kayitBean.entity.sinif}--
+
+</h:form id="form">
+Email:
+<h:inputText id="email" value="#{kayitBean.email}" required="true" requiredMessage="Bu alan zorunludur!">
+    <f:validateLength minimum="15" maximum="25" />
+    <h:inputText> <br/>
+        <h:message for="email" style="color: red; font-size: 10pt;" /><br/>
+        Sifre:
+        <h:inputText id="sifre" validator="#{kayitBean.validatesifre}" value="#{kayitBean.sifre}" /><br>
+            <h:message for="sifre" style="color: red; font-size: 10pt;" /><br/>
+            <h:commandButton action="#{kayitBean.register}" value="REGISTER" />
+            <h:form>
+
+                <h:form>
+
+
+                    name degeri : <h:inputText value="#{kayitBean.entity.isim}" /> <br />
+
+                    e-mail degeri : <h:inputText value="#{kayitBean.entity.email}" /> <br />
+
+                    sifre degeri : <h:inputText value="#{kayitBean.entity.sifre}" /> <br />
+
+                    sinif degeri : <h:inputText value="#{kayitBean.entity.sinif}" /> <br />
+
+                    <h:commandButton action="#{kayitBean.createEntity}" value="kaydet" />
+
+
+                </h:form>
+
+                <ui:define name="kayit">
+
+                </ui:define>
+
+                </h:body>
+                </ui.composition>
