@@ -29,7 +29,7 @@ public class KayitBean implements Serializable {
     public KayitBean() {
     }
     
-    public boolean validateEmail(FacesContext context , UIComponent cmp , Object value) throws ValidatorException{
+    public boolean validateSifre(FacesContext context , UIComponent cmp , Object value) throws ValidatorException{
         String v= (String) value;
         if(v.isEmpty()){
             throw new ValidatorException(new FacesMessage("Şifre alanı boş bırakılamaz!"));
