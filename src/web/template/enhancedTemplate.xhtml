@@ -6,19 +6,27 @@
     <h:head>
         <title>Bakici Sitesi</title>
         <h:outputStylesheet library="css" name="bootstrap.min.css"/>
+        <h:outputStylesheet library="css" name="custom.css" />
 
     </h:head>
     <h:body>
         <div class="container mt-5">
 
-            <ui:insert name="index">
-                <ui:include src="/index.xhtml" />
+            <ui:insert name="header">
+                <!-- Include footer.xhtml here -->
+                <ui:include src="/template/header.xhtml"  />
             </ui:insert>
 
-            <ui:insert name="content">
-
+            <div class="container ml-5">
+                <ui:insert name="content">
+                    <!-- custom content will be included here -->
+                </ui:insert>
+            </div>
+            
+            <ui:insert name="footer">
+                <!-- Include footer.xhtml here -->
             </ui:insert>
+
         </div>
     </h:body>
 </html>
-
