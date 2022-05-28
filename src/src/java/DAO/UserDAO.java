@@ -106,12 +106,16 @@ public class UserDAO extends DBConnection {
     }
     
     public User_ getUserByEmail(String email) {
-        String query = "SELECT sifre, sinif FROM User_ WHERE email = " + email;
+        String query = 
+            "SELECT sifre, sinif FROM User_ WHERE email = " + "'" + email + "'";
         
         try {
             Statement st = this.getDb().createStatement();
             ResultSet rs = st.executeQuery(query);
             
+            rs.next();
+            
+            System.out.println(rs.getString("sifre") + " " + rs.getInt("sinif"));
             return new User_( rs.getString("sifre"), rs.getInt("sinif") );
             
         } catch(Exception ex) {
