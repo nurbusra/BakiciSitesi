@@ -35,7 +35,7 @@ public class SessionFilter implements Filter {
         }
         
         if(u == null) {
-            if(url.contains("admin") || url.contains("ilanlar")) {
+            if(url.contains("admin") || url.contains("ilanlar") || url.contains("hesabim")) {
                 resp.sendRedirect(req.getContextPath() + "/giris.xhtml");
             }
             else {

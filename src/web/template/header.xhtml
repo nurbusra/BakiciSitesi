@@ -15,10 +15,20 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
-                        <h:commandLink styleClass="nav-link active" action="/ilanlar.xhtml?faces-redirect=true" value="Ilanlar"/>
-                        <h:commandLink styleClass="nav-link active" action="/kayit.xhtml?faces-redirect=true" value="Kayit"/>
-                        <h:commandLink styleClass="nav-link active" action="/giris.xhtml?faces-redirect=true" value="Giris"/>
-                        <a class="nav-link disabled">Disabled</a>
+                        <h:commandLink styleClass="nav-link active" action="/ilanlar.xhtml?faces-redirect=true" value="İlanlar"/>
+                        <h:link class="nav-link disabled" rendered="#{sessionBean.authorized}" >Kayıt</h:link>
+                        <h:link class="nav-link disabled" rendered="#{sessionBean.authorized}" >Giriş</h:link>
+                        <h:commandLink styleClass="nav-link active" rendered="#{!sessionBean.authorized}" action="/kayit.xhtml?faces-redirect=true" value="Kayıt"/>
+                        <h:commandLink styleClass="nav-link active" rendered="#{!sessionBean.authorized}" action="/giris.xhtml?faces-redirect=true" value="Giriş"/>
+                        <div class="container ml-2 mt-1"> <h:commandButton styleClass="button btn-sm btn-warning" 
+                                         action="/hesabim.xhtml?faces-redirect=true" 
+                                         rendered="#{sessionBean.authorized}" 
+                                         value="Hesabım"/> </div>
+                        
+                        <div class="container mt-1"> <h:commandButton styleClass="button btn-sm btn-danger" 
+                                         action="#{sessionBean.logout()}" 
+                                         rendered="#{sessionBean.authorized}" 
+                                         value="Çıkış"/> </div>
                     </div>
                 </div>
             </div>

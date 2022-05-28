@@ -6,25 +6,7 @@
                 template='/template/enhancedTemplate.xhtml'>
 
     <ui:define name="content">
-        Index <br> </br > 
-        #{userBean.list} <br> </br > 
+        <h2>Hoşgeldiniz</h2> <br/><br/> 
     </ui:define>
     
 </ui:composition>
-
-<!-- 
-<h:dataTable value="#{userBean.list}" var="i">
-    <h:column> 
-        <f:facet name="header">ID</f:facet>
-            #{i.user_id}
-    </h:column>
-    <h:column> 
-        <f:facet name="header">Ucret</f:facet>
-            #{i.isim}
-    </h:column>
-    <h:column> 
-        <f:facet name="header">Aktif</f:facet>
-            #{i.email}
-    </h:column>
-</h:dataTable>
--->

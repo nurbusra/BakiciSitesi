@@ -18,8 +18,17 @@ public class SessionBean implements Serializable {
 
     private UserDAO dao;
     private User_ entity;
+    private boolean authorized = false;
 
     public SessionBean() {
+    }
+    
+    public boolean isAuthorized() {
+        return authorized;
+    }
+
+    public void setAuthorized(boolean authorized) {
+        this.authorized = authorized;
     }
 
     public UserDAO getDao() {
@@ -51,6 +60,7 @@ public class SessionBean implements Serializable {
         if (entity == null || target == null) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("E-posta ya da şifre hatalı."));
             System.out.println("Failed login attempt by: " + this.entity.getEmail());
+            this.entity = new User_();
             return "";
         }
 
@@ -58,6 +68,7 @@ public class SessionBean implements Serializable {
             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("validUser", target);
             System.out.println("Successful login by: " + this.entity.getEmail());
             this.entity = target;
+            authorized = true;
             target = null;
 
             return "/index.xhtml";
@@ -65,6 +76,7 @@ public class SessionBean implements Serializable {
         else {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("E-posta ya da şifre hatalı."));
             System.out.println("Failed login attempt by: " + this.entity.getEmail());
+            this.entity = new User_();
             return ""; 
         }
     }
@@ -72,6 +84,7 @@ public class SessionBean implements Serializable {
     public String logout() {
         FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("validUser", entity);
         entity = new User_();
+        authorized = false;
         return "/index.xhtml";
     }
     
