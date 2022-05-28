@@ -51,6 +51,14 @@ public class UserDAO extends DBConnection {
         }
     }
     public void update(User_ c) {
+        /*
+            UPDATE Komutu Sadece "email" sütunuyla işlem yapabilir
+            dolayısıyla email sütunu hiçbir zaman güncellenemez.
+            Her kullanıcının farklı bir email'i olduğu için ID kullanmamıza
+            gerek yok. Diğer tablolarda update işlemleri için benzersiz bir
+            değer yoksa ID sütununu (yine güncellenemeyecek şekilde)
+            kullanabilirsiniz.
+        */
         try {
             Statement st = this.getDb().createStatement();
 
@@ -58,9 +66,10 @@ public class UserDAO extends DBConnection {
             query = "UPDATE USER_ " + "\n"
                     + "SET " + "\n"
                     + "isim = " + "'" + c.getIsim() + "'" + ",\n"
-                    + "email = " + "'" + c.getEmail() + "'" + ",\n"
-                    + "sifre = " + "'" + c.getSifre() + "'" + "\n"
-                    + "WHERE user_id = " + c.getUser_id() + ";";
+                    + "sifre = " + "'" + c.getSifre() + "'" + ",\n"
+                    + "sinif = " + c.getSinif() + "\n"
+                    + "WHERE email = " + "'" + c.getEmail() + "'" + ";";
+            
             int r = st.executeUpdate(query);
 
             System.out.println("DB UPDATE returned with: " + r);

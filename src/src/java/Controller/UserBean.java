@@ -97,6 +97,21 @@ public class UserBean implements Serializable {
         return "";
     }
     
+    public String updateEntity() {
+        this.getDao().update(entity);
+        this.entity = new User_();
+        return "";
+    }
+    
+    public String refresh() {
+        return "";
+    }
+    
+    public String clean() {
+        this.entity = new User_();
+        return "";
+    }
+    
     public void inheritingHandler() {
         switch( this.entity.getSinif() ) {
             case 0:
