@@ -94,6 +94,6 @@ public class KayitBean implements Serializable {
             this.getBakiciDao().create(o);
         }
         this.entity = new User_();
-        return "users.xhtml?faces-redirect=true";
+        return "/admin/users.xhtml?faces-redirect=true";
     }
 }

@@ -12,39 +12,72 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
 
     <ui:define name="content">
 
-        --#{kayitBean.entity.isim}--
-        --#{kayitBean.entity.email}--
-        --#{kayitBean.entity.sifre}--
-        --#{kayitBean.entity.sinif}--
-
         <h:form id="form">
             Email:
-            <h:inputText id="email" value="#{kayitBean.entity.email}" required="true" requiredMessage="Bu alan zorunludur!">
+            <h:inputText styleClass="form-control" id="email" value="#{kayitBean.entity.email}" required="true" requiredMessage="Bu alan zorunludur!">
                 <f:validateLength minimum="15" maximum="25" />
-            </h:inputText> <br/>
+            </h:inputText>
             <h:message for="email" style="color: red; font-size: 10pt;" /><br/>
 
-        Sifre:
-        <h:inputText id="sifre" validator="#{kayitBean.validateSifre}" value="#{kayitBean.entity.sifre}" /><br/>
+            Şifre:
+            <h:inputText styleClass="form-control" id="sifre" validator="#{kayitBean.validateSifre}" value="#{kayitBean.entity.sifre}" />
             <h:message for="sifre" style="color: red; font-size: 10pt;" /><br/>
 
-            <h:commandButton action="#{kayitBean.register}" value="REGISTER" />
+            İsim:
+            <h:inputText styleClass="form-control" id="isim" value="#{kayitBean.entity.isim}" required="true" requiredMessage="Bu alan zorunludur!"/><br/>
+
+            Sınıf:
+            <h:inputText styleClass="form-control" id="sinif" value="#{kayitBean.entity.sinif}" required="true" requiredMessage="Bu alan zorunludur!"/><br/>
+
+            <h:commandButton styleClass="btn btn-primary" action="#{kayitBean.createEntity}" value="Kaydol" />
 
         </h:form>
+        
+        <!-- Some Cool CSS
+        <form>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">E-posta adresi</label>
+                <h:inputText styleClass="form-control" id="email" value="#//{kayitBean.entity.email}" required="true" requiredMessage="Bu alan zorunludur!">
+                    <f:validateLength minimum="15" maximum="25" />
+                </h:inputText>
+                <h:message for="email" style="color: red; font-size: 10pt;" />                
+            </div>
 
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Şifre</label>
+                <h:inputText styleClass="form-control" id="sifre" validator="#//{kayitBean.validateSifre}" value="#//{kayitBean.entity.sifre}" />
+                <h:message for="sifre" style="color: red; font-size: 10pt;" />
+                <div id="passHelp" class="form-text"></div>
+            </div>
 
-        <!-- Eski form -->
+            <div class="mb-3">
+                <label for="kayitIsim" class="form-label">İsim</label>
+                <h:inputText styleClass="form-control" id="isim" value="#//{kayitBean.entity.isim}" required="true" requiredMessage="Bu alan zorunludur!"/>
+            </div>
+
+            <div class="mb-3">
+                <label for="kayitSinif" class="form-label">Sınıf</label>
+                <h:inputText styleClass="form-control" id="sinif" value="#//{kayitBean.entity.sinif}" required="true" requiredMessage="Bu alan zorunludur!"/>
+                <div id="sinifHelp" class="form-text">Bakıcı: 1, Müşteri: 2, SU: 0</div>
+            </div>
+
+            <h:commandButton type="submit" styleClass="btn btn-primary" action="#//{kayitBean.createEntity}" value="Kaydol"/>
+        </form> -->
+
+        <!-- Eski Form -->
+
+        <!-- Ondan da eski form 
         <h:form>
-            name degeri : <h:inputText value="#{kayitBean.entity.isim}" /> <br />
+            name degeri : <h:inputText value="#//{kayitBean.entity.isim}" /> <br />
 
-            e-mail degeri : <h:inputText value="#{kayitBean.entity.email}" /> <br />
+            e-mail degeri : <h:inputText value="#//{kayitBean.entity.email}" /> <br />
 
-            sifre degeri : <h:inputText value="#{kayitBean.entity.sifre}" /> <br />
+            sifre degeri : <h:inputText value="#//{kayitBean.entity.sifre}" /> <br />
 
-            sinif degeri : <h:inputText value="#{kayitBean.entity.sinif}" /> <br />
+            sinif degeri : <h:inputText value="#//{kayitBean.entity.sinif}" /> <br />
 
-            <h:commandButton action="#{kayitBean.createEntity}" value="kaydet" />
-        </h:form>
+            <h:commandButton action="#//{kayitBean.createEntity}" value="kaydet" />
+        </h:form> -->
 
     </ui:define>
 </ui:composition>

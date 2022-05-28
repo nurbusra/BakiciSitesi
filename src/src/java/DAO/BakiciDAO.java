@@ -31,6 +31,7 @@ public class BakiciDAO extends DBConnection {
 
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
+            ex.printStackTrace();
         }
     }
 
