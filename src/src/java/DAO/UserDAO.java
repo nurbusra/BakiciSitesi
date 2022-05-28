@@ -95,6 +95,21 @@ public class UserDAO extends DBConnection {
         }
         return userList;
     }
+    
+    public User_ getUserByEmail(String email) {
+        String query = "SELECT sifre, sinif FROM User_ WHERE email = " + email;
+        
+        try {
+            Statement st = this.getDb().createStatement();
+            ResultSet rs = st.executeQuery(query);
+            
+            return new User_( rs.getString("sifre"), rs.getInt("sinif") );
+            
+        } catch(Exception ex) {
+            ex.printStackTrace();
+            return null;
+        }  
+    }
 
     public Connection getDb() throws Exception {
         if (this.db == null) {

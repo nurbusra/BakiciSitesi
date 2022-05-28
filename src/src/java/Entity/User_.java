@@ -14,8 +14,8 @@ public class User_ {
     }
 
     // Constructor for login action
-    public User_(String email, String sifre) {
-        this.email = email;
+    public User_(String sifre, int sinif) {
+        this.sinif = sinif;
         this.sifre = sifre;
     }
 
