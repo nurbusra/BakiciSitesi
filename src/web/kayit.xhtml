@@ -27,7 +27,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
             <h:inputText styleClass="form-control" id="isim" value="#{kayitBean.entity.isim}" required="true" requiredMessage="Bu alan zorunludur!"/><br/>
 
             Sınıf:
-            <h:inputText styleClass="form-control" id="sinif" value="#{kayitBean.entity.sinif}" required="true" requiredMessage="Bu alan zorunludur!"/><br/>
+            <h:inputText styleClass="form-control" id="sinif" value="#{kayitBean.entity.sinif}" required="true" requiredMessage="Bu alan zorunludur!"/>
+            <div id="sinifHelp" class="form-text">Bakıcı: 1, Müşteri: 2, SU: 0</div><br/>
 
             <h:commandButton styleClass="btn btn-primary" action="#{kayitBean.createEntity}" value="Kaydol" />
 
