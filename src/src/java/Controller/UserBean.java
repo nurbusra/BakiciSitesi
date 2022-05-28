@@ -8,7 +8,6 @@ import DAO.UserDAO;
 import Entity.User_;
 import jakarta.inject.Named;
 import jakarta.enterprise.context.SessionScoped;
-import jakarta.faces.context.FacesContext;
 import java.io.Serializable;
 import java.util.List;
 
@@ -19,36 +18,6 @@ public class UserBean implements Serializable {
     private UserDAO dao;
     private User_ entity;
     private List<User_> list;
-    
-    public boolean login() {
-        if( entity == null ) return false;
-        User_ target = this.getDao().getUserByEmail( this.entity.getEmail() );
-        
-        if( target.getSifre() == this.entity.getSifre() ) {
-            switch(target.getSinif()) {
-                case 0:
-                    //Superuser
-                    FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("validUser", entity);
-                    break;
-                case 1:
-                    //Musteri
-                    break;
-                case 2:
-                    //Bakici
-                    break;
-                default:
-                    this.entity = null;
-                    target = null;
-                    return false;
-            }
-            
-            this.entity = null;
-            target = null;
-            
-            return true;
-        }
-        return false;
-    }
 
     public List<User_> getList() {
         this.list = this.getDao().getList();
