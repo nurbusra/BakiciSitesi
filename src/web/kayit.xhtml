@@ -4,54 +4,47 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to c
 Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit this template
 -->
 <!DOCTYPE html>
-<ui.composition xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
-                template="template.xhtml"
+                template="template/enhancedTemplate.xhtml"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
+    <ui:define name="content">
 
-    <hr />
-    <h:body>
+        --#{kayitBean.entity.isim}--
+        --#{kayitBean.entity.email}--
+        --#{kayitBean.entity.sifre}--
+        --#{kayitBean.entity.sinif}--
 
-
-    --#{kayitBean.entity.isim}--
-    --#{kayitBean.entity.email}--
-    --#{kayitBean.entity.sifre}--
-    --#{kayitBean.entity.sinif}--
-
-    <h:form id="form">
-        Email:
-        <h:inputText id="email" value="#{kayitBean.entity.email}" required="true" requiredMessage="Bu alan zorunludur!">
-            <f:validateLength minimum="15" maximum="25" />
-        </h:inputText> <br/>
+        <h:form id="form">
+            Email:
+            <h:inputText id="email" value="#{kayitBean.entity.email}" required="true" requiredMessage="Bu alan zorunludur!">
+                <f:validateLength minimum="15" maximum="25" />
+            </h:inputText> <br/>
             <h:message for="email" style="color: red; font-size: 10pt;" /><br/>
 
-        Sifre:
-        <h:inputText id="sifre" validator="#{kayitBean.validatesifre}" value="#{kayitBean.entity.sifre}" /><br/>
+            Sifre:
+            <h:inputText id="sifre" validator="#{kayitBean.validatesifre}" value="#{kayitBean.entity.sifre}" /><br/>
             <h:message for="sifre" style="color: red; font-size: 10pt;" /><br/>
-        
-        <h:commandButton action="#{kayitBean.register}" value="REGISTER" />
 
-    </h:form>
-    
-    
-    <!-- Eski form -->
-    <h:form>
-        name degeri : <h:inputText value="#{kayitBean.entity.isim}" /> <br />
+            <h:commandButton action="#{kayitBean.register}" value="REGISTER" />
 
-        e-mail degeri : <h:inputText value="#{kayitBean.entity.email}" /> <br />
+        </h:form>
 
-        sifre degeri : <h:inputText value="#{kayitBean.entity.sifre}" /> <br />
 
-        sinif degeri : <h:inputText value="#{kayitBean.entity.sinif}" /> <br />
+        <!-- Eski form -->
+        <h:form>
+            name degeri : <h:inputText value="#{kayitBean.entity.isim}" /> <br />
 
-        <h:commandButton action="#{kayitBean.createEntity}" value="kaydet" />
-    </h:form>
+            e-mail degeri : <h:inputText value="#{kayitBean.entity.email}" /> <br />
 
-                <ui:define name="kayit">
+            sifre degeri : <h:inputText value="#{kayitBean.entity.sifre}" /> <br />
 
-                </ui:define>
+            sinif degeri : <h:inputText value="#{kayitBean.entity.sinif}" /> <br />
 
-                </h:body>
-                </ui.composition>
+            <h:commandButton action="#{kayitBean.createEntity}" value="kaydet" />
+        </h:form>
+
+    </ui:define>
+</ui:composition>

@@ -26,7 +26,7 @@
             </div>
             <div class="mb-3">
                 <h:commandButton styleClass="btn btn-success" action="#{kazancBean.create}" value="Kaydet">
-                <f:ajax execute="category-form" render="category-table category-form" />
+                    <f:ajax execute="category-form" render="category-table category-form" />
                 </h:commandButton>
                 <h:commandButton styleClass="btn btn-primary" action="#{kazancBean.update()}" value="Update" >
                     <f:ajax execute="category-form" render="category-table category-form" />
