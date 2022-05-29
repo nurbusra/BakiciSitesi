@@ -101,7 +101,7 @@ public class BakiciDAO extends DBConnection {
         try {
         Statement st = this.getDb().createStatement();
 
-        String query = "select * from BAKICI where bakici_id=";
+        String query = "select * from BAKICI where user_id=";
         query=query+String.valueOf(id);
         ResultSet rs = st.executeQuery(query);
         

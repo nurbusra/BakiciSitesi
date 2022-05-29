@@ -4,7 +4,13 @@
  */
 package Controller;
 
+import DAO.MusteriDAO;
+import DAO.BakiciDAO;
+import DAO.SuperuserDAO;
 import DAO.UserDAO;
+import Entity.Bakici;
+import Entity.Musteri;
+import Entity.Superuser;
 import Entity.User_;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.application.FacesMessage;
@@ -16,30 +22,70 @@ import java.io.Serializable;
 @SessionScoped
 public class SessionBean implements Serializable {
 
-    private UserDAO dao;
-    private User_ entity;
+    private UserDAO userDao;
+    private SuperuserDAO suDao;
+    private BakiciDAO bakiciDao;
+    private MusteriDAO musteriDao;
+    
+    private User_ entity, child;
     private boolean authorized = false;
 
     public SessionBean() {
+    }
+
+    public User_ getChild() {
+        if(child == null) child = new User_();
+        return child;
+    }
+
+    public void setChild(User_ child) {
+        this.child = child;
     }
     
     public boolean isAuthorized() {
         return authorized;
     }
 
+    public SuperuserDAO getSuDao() {
+        if(suDao == null) suDao = new SuperuserDAO();
+        return suDao;
+    }
+
+    public void setSuDao(SuperuserDAO suDao) {
+        this.suDao = suDao;
+    }
+
+    public BakiciDAO getBakiciDao() {
+        if(bakiciDao == null) bakiciDao = new BakiciDAO();
+        return bakiciDao;
+    }
+
+    public void setBakiciDao(BakiciDAO bakiciDao) {
+        this.bakiciDao = bakiciDao;
+    }
+
+    public MusteriDAO getMusteriDao() {
+        if(musteriDao == null) musteriDao = new MusteriDAO();
+        return musteriDao;
+    }
+
+    public void setMusteriDao(MusteriDAO musteriDao) {
+        this.musteriDao = musteriDao;
+    }
+
     public void setAuthorized(boolean authorized) {
         this.authorized = authorized;
     }
 
-    public UserDAO getDao() {
-        if (dao == null) {
-            dao = new UserDAO();
+    public UserDAO getUserDao() {
+        if (userDao == null) {
+            userDao = new UserDAO();
         }
-        return dao;
+        return userDao;
     }
 
-    public void setDao(UserDAO dao) {
-        this.dao = dao;
+    public void setUserDao(UserDAO userDao) {
+        this.userDao = userDao;
     }
 
     public User_ getEntity() {
@@ -55,7 +101,7 @@ public class SessionBean implements Serializable {
 
     public String login() {
         System.out.println("login() called");
-        User_ target = this.getDao().getUserByEmail(this.entity.getEmail());
+        User_ target = this.getUserDao().getUserByEmail(this.entity.getEmail());
         
         if (entity == null || target == null) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("E-posta ya da şifre hatalı."));
@@ -70,9 +116,12 @@ public class SessionBean implements Serializable {
             this.entity = target;
             authorized = true;
             target = null;
-
+            
+            this.castUserType();
+            
             return "/index.xhtml";
         }
+        
         else {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("E-posta ya da şifre hatalı."));
             System.out.println("Failed login attempt by: " + this.entity.getEmail());
@@ -83,14 +132,30 @@ public class SessionBean implements Serializable {
 
     public String logout() {
         FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("validUser", entity);
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
         entity = new User_();
+        child = new User_();
         authorized = false;
         return "/index.xhtml";
     }
     
+    public void castUserType() {
+        switch( this.entity.getSinif() ) {
+            case 0:
+                this.child = (Superuser) this.entity;
+                break;
+            case 1:
+                this.child = (Bakici) this.getBakiciDao().findById( this.entity.getUser_id() );
+                break;
+            case 2:
+                this.child = (Musteri) this.getMusteriDao().findById( this.entity.getUser_id() );
+                break;
+        }
+    }
+    
     public String createSu() {
         User_ tmp = new User_("su", "su@su.com", "su", 0);
-        this.getDao().create(tmp);
+        this.getUserDao().create(tmp);
         return "";
     }
 }

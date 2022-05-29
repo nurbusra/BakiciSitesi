@@ -90,6 +90,34 @@ public class SuperuserDAO extends DBConnection {
         }
         return superuserList;
     }
+    
+    public Superuser findById (int id){
+        try {
+        Statement st = this.getDb().createStatement();
+
+        String query = "select * from SUPERUSER where user_id=";
+        query=query+String.valueOf(id);
+        ResultSet rs = st.executeQuery(query);
+        
+        while (rs.next()) {
+                return (new Superuser(
+                        rs.getInt("user_id"),
+                        rs.getString("isim"),
+                        rs.getString("email"),
+                        rs.getString("sifre"),
+                        rs.getInt("sinif"),
+                        rs.getInt("su_id")
+                )
+                );
+            }
+        
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+            
+        return null;
+    }
 
     public Connection getDb() throws Exception {
         if (this.db == null) {

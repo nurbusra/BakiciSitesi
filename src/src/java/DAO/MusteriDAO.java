@@ -103,7 +103,7 @@ public class MusteriDAO extends DBConnection {
         try {
         Statement st = this.getDb().createStatement();
 
-        String query = "select * from MUSTERI where musteri_id=";
+        String query = "select * from MUSTERI where user_id=";
         query=query+String.valueOf(id);
         ResultSet rs = st.executeQuery(query);
         

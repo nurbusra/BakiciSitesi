@@ -19,6 +19,7 @@ public class IlanConverter implements Converter {
     private IlanDAO dao;
 
     public IlanDAO getDao() {
+        if(dao == null) dao = new IlanDAO();
         return dao;
     }
 

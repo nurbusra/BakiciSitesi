@@ -64,4 +64,8 @@ public class IlanBean implements Serializable {
         this.entity = new Ilan();
         return "/ilanlar.xhtml?faces-redirect=true";
     }
+    
+    public String redirectToIlanlar() {
+        return "/ilanlar.xhtml";
+    }
 }
