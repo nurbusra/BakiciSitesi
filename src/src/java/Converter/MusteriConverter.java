@@ -19,6 +19,7 @@ public class MusteriConverter implements Converter {
     private MusteriDAO dao;
 
     public MusteriDAO getDao() {
+        if(dao == null) dao = new MusteriDAO();
         return dao;
     }
 
