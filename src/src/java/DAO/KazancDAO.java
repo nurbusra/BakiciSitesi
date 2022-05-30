@@ -20,14 +20,14 @@ public class KazancDAO extends DBConnection {
         try {
             Statement st = this.getDb().createStatement();
             String values = "VALUES("
-                        + c.getKazanc_id() +","
-                        + c.getAlisveris_id() + ", "+
-                    "'" + c.getConfig() + "'" + ","
-                        + c.isReferans() +
-                    ");";
+                    + c.getKazanc_id() + ","
+                    + c.getAlisveris_id() + ", "
+                    + "'" + c.getConfig() + "'" + ","
+                    + c.isReferans()
+                    + ");";
 
-            String query =
-                    "insert into KAZANC(kazanc_id,alisveris_id,config,referans) " + values;
+            String query
+                    = "insert into KAZANC(kazanc_id,alisveris_id,config,referans) " + values;
 
             int r = st.executeUpdate(query);
 
@@ -71,6 +71,33 @@ public class KazancDAO extends DBConnection {
             System.out.println(ex.getMessage());
         }
         return kazancList;
+    }
+
+    public Kazanc findById(int id) {
+        try {
+            Statement st = this.getDb().createStatement();
+
+            String query = "select * from KAZANC where kazanc_id=";
+            query = query + String.valueOf(id);
+            ResultSet rs = st.executeQuery(query);
+
+            while (rs.next()) {
+                return (new Kazanc(
+                        rs.getInt("kazanc_id"),
+                        rs.getInt("alisveris_id"),
+                        rs.getString("config"),
+                        rs.getBoolean("referans"),
+                        rs.getTimestamp("created"),
+                        rs.getTimestamp("updated")));
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
+        return null;
     }
 
     public Connection getDb() throws Exception {
