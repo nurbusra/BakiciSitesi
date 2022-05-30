@@ -142,13 +142,13 @@ public class SessionBean implements Serializable {
     public void castUserType() {
         switch( this.entity.getSinif() ) {
             case 0:
-                this.child = (Superuser) this.getSuDao().findById( this.entity.getUser_id() );
+                this.child = (Superuser) this.getSuDao().findByUser_id( this.entity.getUser_id() );
                 break;
             case 1:
-                this.child = (Bakici) this.getBakiciDao().findById( this.entity.getUser_id() );
+                this.child = (Bakici) this.getBakiciDao().findByUser_id( this.entity.getUser_id() );
                 break;
             case 2:
-                this.child = (Musteri) this.getMusteriDao().findById( this.entity.getUser_id() );
+                this.child = (Musteri) this.getMusteriDao().findByUser_id( this.entity.getUser_id() );
                 break;
         }
     }
