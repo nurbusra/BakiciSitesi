@@ -85,6 +85,32 @@ public class ReferansDAO extends DBConnection {
         return referansList;
     }
 
+    public Referans findById(int id) {
+        try {
+            Statement st = this.getDb().createStatement();
+
+            String query = "select * from Referans where ref_id=";
+            query = query + String.valueOf(id);
+            ResultSet rs = st.executeQuery(query);
+
+            while (rs.next()) {
+                return (new Referans(
+                        rs.getInt("ref_id"),
+                        rs.getInt("kazanc_id"),
+                        rs.getInt("deger"),
+                        rs.getTimestamp("created"),
+                        rs.getTimestamp("updated")));
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
+        return null;
+    }
+
     public Connection getDb() throws Exception {
         if (this.db == null) {
             this.db = getConnection();
