@@ -19,7 +19,9 @@ public class MusteriXilanDAO extends DBConnection {
     private MusteriDAO musteriDao;
 
     public IlanDAO getIlanDao() {
-        if(this.ilanDao == null) this.ilanDao = new IlanDAO();
+        if (this.ilanDao == null) {
+            this.ilanDao = new IlanDAO();
+        }
         return ilanDao;
     }
 
@@ -28,7 +30,9 @@ public class MusteriXilanDAO extends DBConnection {
     }
 
     public MusteriDAO getMusteriDao() {
-        if(this.musteriDao == null) this.musteriDao = new MusteriDAO();
+        if (this.musteriDao == null) {
+            this.musteriDao = new MusteriDAO();
+        }
         return musteriDao;
     }
 
@@ -63,34 +67,35 @@ public class MusteriXilanDAO extends DBConnection {
 
             String query = "delete from musterixilan where alisveris_id=" + c.getAlisveris_id();
             int r = st.executeUpdate(query);
-            
+
             System.out.println("DB DELETE returned with: " + r);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
             ex.printStackTrace();
         }
     }
-    public void update(MusteriXilan c){
-        
-        try{
+
+    public void update(MusteriXilan c) {
+
+        try {
             Statement st = this.getDb().createStatement();
             String query;
-            query ="UPDATE MUSTERIXILAN " + "\n" +
-                    "SET " + "\n"+
-                    "ilan_id = " + c.getIlan().getIlan_id() + "," + "\n" +
-                    "musteri_id = " + c.getMusteri().getMusteri_id() + "," + "\n" +
-                    "odendi = " + c.isOdendi() + "\n" +
-                    "WHERE alisveris_id = " + c.getAlisveris_id() + ";";
+            query = "UPDATE MUSTERIXILAN " + "\n"
+                    + "SET " + "\n"
+                    + "ilan_id = " + c.getIlan().getIlan_id() + "," + "\n"
+                    + "musteri_id = " + c.getMusteri().getMusteri_id() + "," + "\n"
+                    + "odendi = " + c.isOdendi() + "\n"
+                    + "WHERE alisveris_id = " + c.getAlisveris_id() + ";";
 
             int r = st.executeUpdate(query);
 
             System.out.println("DB UPDATE returned with: " + r);
-            
-        }catch (Exception ex) {
+
+        } catch (Exception ex) {
             System.out.println(ex.getMessage());
             ex.printStackTrace();
         }
-    
+
     }
 
     public List<MusteriXilan> getList() {
@@ -104,10 +109,10 @@ public class MusteriXilanDAO extends DBConnection {
             while (rs.next()) {
                 musterixilanList.add(new MusteriXilan(
                         rs.getInt("alisveris_id"),
-                        this.getIlanDao().findById( rs.getInt("ilan_id") ),
-                        this.getMusteriDao().findById( rs.getInt("musteri_id") ),
+                        this.getIlanDao().findById(rs.getInt("ilan_id")),
+                        this.getMusteriDao().findById(rs.getInt("musteri_id")),
                         rs.getBoolean("odendi")
-                    )
+                )
                 );
             }
         } catch (Exception ex) {
@@ -116,7 +121,32 @@ public class MusteriXilanDAO extends DBConnection {
         }
         return musterixilanList;
     }
-    
+
+    public MusteriXilan findById(int id) {
+        try {
+            Statement st = this.getDb().createStatement();
+
+            String query = "select * from MusteriXilan where alisveris_id=";
+            query = query + String.valueOf(id);
+            ResultSet rs = st.executeQuery(query);
+
+            while (rs.next()) {
+                return (new MusteriXilan(
+                        rs.getInt("alisveris_id"),
+                        this.getIlanDao().findById(rs.getInt("ilan_id")),
+                        this.getMusteriDao().findById(rs.getInt("musteri_id")),
+                        rs.getBoolean("odendi")
+                ));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
+        return null;
+    }
+
     public List<MusteriXilan> getByMusteriId(int musteri_id) {
         List<MusteriXilan> musterixilanList = new ArrayList<>();
         try {
@@ -127,14 +157,14 @@ public class MusteriXilanDAO extends DBConnection {
 
             while (rs.next()) {
                 musterixilanList.add(new MusteriXilan(
-                    rs.getInt("alisveris_id"),
-                    this.getIlanDao().findById( rs.getInt("ilan_id") ),
-                    this.getMusteriDao().findById( rs.getInt("musteri_id") ),
-                    rs.getBoolean("odendi")
-                    )
+                        rs.getInt("alisveris_id"),
+                        this.getIlanDao().findById(rs.getInt("ilan_id")),
+                        this.getMusteriDao().findById(rs.getInt("musteri_id")),
+                        rs.getBoolean("odendi")
+                )
                 );
             }
-         
+
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
