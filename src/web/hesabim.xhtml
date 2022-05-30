@@ -25,5 +25,9 @@
                          action="#{sessionBean.logout()}" 
                          rendered="#{sessionBean.entity.sinif == 2}" 
                          value="Başvurularım"/>
+        
+        <!-- Conditionally rendered <div>. See: 
+        https://stackoverflow.com/questions/8816212/how-to-conditionally-render-plain-html-elements-like-divs
+        -->
     </ui:define>    
 </ui:composition>
