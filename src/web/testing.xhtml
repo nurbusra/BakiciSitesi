@@ -3,11 +3,21 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template='/template/enhancedTemplate.xhtml'>
+                template='/template/enhancedTemplate.xhtml'
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="content">
         Test Content
         #{loginBean.createSu()}
+        
+        
+        <h:form id="form">
+            <h:inputText label="İlan ID:" value="#{musteriBean.entity}" converter="musteriConverter"/>
+            <h:commandButton type="submit" value="Getir" action="/testing.xhtml?faces-redirect=true"/>
+        </h:form> <br/>
+
+        #{musteriBean.entity.isim} <br/>          
+
     </ui:define>
     
 </ui:composition>
