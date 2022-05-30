@@ -1,98 +1,62 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
-    <h:head>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/template/enhancedTemplate.xhtml">
 
-        <h:outputStylesheet library="css" name="bootstrap.css"/>
-        <h:outputScript library="js" name="bootstrap.js" />
-        <title>Referans</title>
-    </h:head>
-    <h:body >
+    <ui:define name="content">
+        <h:form id="form">  
+            <div class="mb-3">
+                <label class="form-label">Kazanc:</label>
+                <h:inputText styleClass="form-control" value="#{referansBean.entity.kazanc}" converter="referansConverter"/>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Deger:</label>
+                <h:inputText styleClass="form-control" value="#{referansBean.entity.deger}"/>
+            </div>
+            <div class="mb-3">
+                <h:commandButton styleClass="btn btn-success" action="#{referansBean.createEntity()}" value="Kaydet">
+                    <f:ajax execute="form" render="table form" />
+                </h:commandButton>
+                <h:commandButton styleClass="btn btn-primary" action="#{referansBean.updateEntity()}" value="Update" >
+                    <f:ajax execute="form" render="table form" />
+                </h:commandButton>
+                <h:commandButton styleClass="btn btn-secondary"  action="#{referansBean.clear()}" value="Clear" >
+                    <f:ajax execute="form" render="form" />
+                </h:commandButton>
+            </div>
+        </h:form>
 
-        <ui:composition template="/template/layout.xhtml">
-            <ui:define name="content">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <h:form id="ajax-table">
+        <hr />
+        <hr />
 
-                                <div id="search-panel">
-                                    <h:inputText autocomplete="off" value="#{referansController.searchField}">
-                                        <f:passThroughAttribute name="placeHolder" value="Search ..."/>
-                                        <f:ajax event="keyup" listener="#{referansController.getcList()}" execute="@this" render="template-form:ajax-table:data-table" />
-                                    </h:inputText>
-
-                                    <h:commandButton action="#{referansController.previous}" value="Previous" styleClass="btn btn-outline-dark">
-                                        <f:ajax execute="@this" render="template-form"/>
-                                    </h:commandButton>
-                                    <h:outputLabel  value="#{referansController.page} of #{referansController.pageCount}" styleClass="text textArea"/>
-                                    <h:commandButton action="#{referansController.next}" value="Next" styleClass="btn btn-outline-dark">
-                                        <f:ajax execute="@this" render="template-form"/>
-                                    </h:commandButton>
-                                </div>
-                                <h:dataTable  id="data-table" value="#{referansController.getcList()}" var="cReferans" styleClass="table table-stripped">
-                                    <h:column>
-                                        <f:facet name="header">ID</f:facet>
-                                            #{cReferans.ref_id}
-                                    </h:column>
-                                    <h:column>
-                                        <f:facet name="header">Kazanc_id</f:facet>
-                                        <h:commandLink action="#{referansController.updateForm(cReferans)}" value="#{cReferans.kazanc_id}" >
-                                            <f:ajax execute="@this" render="template-form:ajax-form"/>
-                                        </h:commandLink>
-
-                                    </h:column>
-                                    <h:column>
-                                        <f:facet name="header">Deger</f:facet>
-                                            #{cReferans.deger}
-                                    </h:column>
-                                    <h:column>
-                                        <f:facet name="header">DELETE</f:facet>
-
-                                        <h:commandButton styleClass="btn btn-danger" action="#{referansController.delete(iReferans)}" value="Delete" >
-                                        </h:commandButton>
-                                    </h:column>
-                                </h:dataTable>
-                            </h:form>
-                        </div>
-
-
-                        <div class="col-md-6" >
-                            <h:form id="ajax-form">
-                                <div class="form-group">
-                                    <h:inputHidden value="#{referansController.referans.id}"/>
-                                    <label for="inputName">Kazanc_id</label>
-                                    <h:inputText styleClass="form-control" value="#{referansController.referans.kazanc_id}"/> <br/>
-                                    <label for="inputName">Deger</label>
-                                    <h:inputText styleClass="form-control" value="#{referansController.referans.deger}"/> <br/>
-
-                                </div>
-                                <div class="form-group">
-                                    <h:commandButton styleClass="btn btn-primary" rendered="#{referansController.referans.id!=0}" value="Update" action="#{referansController.update}">
-                                        <f:ajax execute="ajax-form" render="template-form"/>
-                                    </h:commandButton>
-
-                                    <h:commandButton styleClass="btn btn-primary" rendered="#{referansController.referans.id==0}" value="Create" action="#{referansController.create}">  
-                                        <f:ajax execute="ajax-form" render="template-form"/>
-                                    </h:commandButton>
-
-                                    <h:commandButton styleClass="btn btn-secondary" rendered="#{referansController.referans.id!=0}" value="Clear" action="#{referansController.clearForm}">  
-                                        <f:ajax execute="ajax-form" render="template-form"/>
-                                    </h:commandButton>
-                                </div>
-                            </h:form>
-                        </div>
-
-                    </div>
-                </div>
-            </ui:define>
-        </ui:composition>
-    </h:body>
-
-</html>
-
+        <h:form id="table">        
+            <h:dataTable styleClass="table table-striped table-hover" value="#{referansBean.list}" var="c">
+                <h:column>
+                    <f:facet name="header">ID</f:facet>
+                        #{c.ref_id}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Kazanc</f:facet>
+                        #{c.kazanc_id}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Deger</f:facet>
+                        #{c.deger}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Delete</f:facet>
+                    <h:commandButton styleClass="btn btn-danger btn-sm" action="#{referansBean.deleteEntity()}" value="Sil">
+                        <f:actionListener binding="#{referansBean.setEntity(c)}" />
+                        <f:ajax execute="table" render="table" />
+                    </h:commandButton>
+                    <h:commandButton styleClass="btn btn-primary btn-sm" action="#{referansBean.setEntity(c)}" value="Update" >
+                        <f:ajax execute="table" render="form" />
+                    </h:commandButton>
+                </h:column>
+            </h:dataTable>
+        </h:form> 
+    </ui:define>
+</ui:composition>
