@@ -28,13 +28,19 @@
             <h:inputText styleClass="form-control" id="sinif" value="#{userBean.entity.sinif}" required="true" requiredMessage="Bu alan zorunludur!"/>
             <div id="sinifHelp" class="form-text">Bakıcı: 1, Müşteri: 2, SU: 0</div><br/>
 
-            <h:commandButton styleClass="btn btn-primary" rendered="#{userBean.entity.email==null}" action="#{userBean.createEntity}" value="Ekle" />
-            <h:commandButton styleClass="btn btn-warning" rendered="#{userBean.entity.email!=null}" action="#{userBean.updateEntity}" value="Güncelle" />
-            <h:commandButton styleClass="btn btn-info" rendered="#{userBean.entity.email!=null}" action="#{userBean.clean}" value="Temizle" />
+            <h:commandButton styleClass="btn btn-primary" rendered="#{userBean.entity.email==null}" action="#{userBean.createEntity}" value="Ekle" >
+                <f:ajax execute="form" render="table form"/>
+            </h:commandButton>
+            <h:commandButton styleClass="btn btn-warning" rendered="#{userBean.entity.email!=null}" action="#{userBean.updateEntity}" value="Güncelle">
+                <f:ajax execute="form" render="table form"/>
+            </h:commandButton>
+            <h:commandButton styleClass="btn btn-info" rendered="#{userBean.entity.email!=null}" action="#{userBean.clean}" value="Temizle">
+                <f:ajax execute="form" render="form"/>
+            </h:commandButton>
 
         </h:form> <br/>
         
-        <h:form>       
+        <h:form id="table">       
             <h:dataTable styleClass="table table-striped" value="#{userBean.list}" var="i">
                 
                 <h:column> 
@@ -53,10 +59,11 @@
                     <f:facet name="header">Action</f:facet>
                     <h:commandButton styleClass="btn btn-danger" value="Sil" action="#{userBean.deleteEntity}">
                         <f:actionListener binding="#{userBean.setEntity(i)}" />
+                        <f:ajax execute="table" render="table"/>
                     </h:commandButton>
                    
-                    <h:commandButton styleClass="btn btn-warning" value="Düzenle" action="#{userBean.refresh}">
-                        <f:actionListener binding="#{userBean.setEntity(i)}" />
+                    <h:commandButton styleClass="btn btn-warning" value="Düzenle" action="#{userBean.setEntity(i)}">
+                        <f:ajax execute="table" render="form"/>
                     </h:commandButton>
                 </h:column>
                 

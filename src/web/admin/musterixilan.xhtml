@@ -4,35 +4,37 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="/template.xhtml">
+                template="/template/enhancedTemplate.xhtml">
 
+    <!-- 
+    Müşteri ve İlan ID'lerini çekerken Entity sınıfı
+    metodlarını kullandığımız için (entity.musteri.musteri_id private attribute)
+    get/set metodunu manuel olarak çağırmak zorundayız (Bkz: Satır 19 ve 23)
+    -->
+    
     <ui:define name="content">
-        <h:form id="category-form">  
+        <h:form id="form">  
             <div class="mb-3">
-                <label class="form-label">alisveris_id</label>
-                <h:inputText styleClass="form-control" value="#{musterixilanBean.entity.alisveris_id}"/>
+                <label class="form-label">İlan:</label>
+                <h:inputText styleClass="form-control" value="#{musterixilanBean.entity.ilan}" converter="ilanConverter"/>
             </div>
             <div class="mb-3">
-                <label class="form-label">ilan:</label>
-                <h:inputText styleClass="form-control" value="#{musterixilanBean.entity.ilan}"/>
+                <label class="form-label">Müşteri:</label>
+                <h:inputText styleClass="form-control" value="#{musterixilanBean.entity.musteri}" converter="musteriConverter"/>
             </div>
             <div class="mb-3">
-                <label class="form-label">musteri:</label>
-                <h:inputText styleClass="form-control" value="#{musterixilanBean.entity.musteri}"/>
-            </div>
-                        <div class="mb-3">
-                <label class="form-label">odendi:</label>
+                <label class="form-label">Ödendi:</label>
                 <h:inputText styleClass="form-control" value="#{musterixilanBean.entity.odendi}"/>
             </div>
             <div class="mb-3">
-                <h:commandButton styleClass="btn btn-success" action="#{musterixilanBean.create}" value="Kaydet">
-                <f:ajax execute="category-form" render="category-table category-form" />
+                <h:commandButton styleClass="btn btn-success" action="#{musterixilanBean.createEntity()}" value="Kaydet">
+                    <f:ajax execute="form" render="table form" />
                 </h:commandButton>
-                <h:commandButton styleClass="btn btn-primary" action="#{musterixilanBean.update()}" value="Update" >
-                    <f:ajax execute="category-form" render="category-table category-form" />
+                <h:commandButton styleClass="btn btn-primary" action="#{musterixilanBean.updateEntity()}" value="Update" >
+                    <f:ajax execute="form" render="table form" />
                 </h:commandButton>
                 <h:commandButton styleClass="btn btn-secondary"  action="#{musterixilanBean.clear()}" value="Clear" >
-                    <f:ajax execute="category-form" render="category-form" />
+                    <f:ajax execute="form" render="table" />
                 </h:commandButton>
             </div>
         </h:form>
@@ -40,39 +42,32 @@
         <hr />
         <hr />
 
-        <h:form id="category-table">        
+        <h:form id="table">        
             <h:dataTable styleClass="table table-striped table-hover" value="#{musterixilanBean.list}" var="c">
                 <h:column>
-                    <f:facet name="Header">ID</f:facet>
+                    <f:facet name="header">ID</f:facet>
                         #{c.alisveris_id}
                 </h:column>
                 <h:column>
-                    <f:facet name="Header">Ilan</f:facet>
-                        #{c.ilan}
+                    <f:facet name="header">Ilan</f:facet>
+                        #{c.ilan.ilan_id}
                 </h:column>
                 <h:column>
-                    <f:facet name="Header">Musteri</f:facet>
-                        #{c.musteri}
+                    <f:facet name="header">Musteri</f:facet>
+                        #{c.musteri.musteri_id}
                 </h:column>
                 <h:column>
-                    <f:facet name="Header">Odendi</f:facet>
+                    <f:facet name="header">Odendi</f:facet>
                         #{c.odendi}
                 </h:column>
                 <h:column>
-                    <f:facet name="Header">CREATED</f:facet>
-                        #{c.created}
-                </h:column>
-                <h:column>
-                    <f:facet name="Header">UPDATED</f:facet>
-                        #{c.updated}
-                </h:column>
-                <h:column>
-                    <f:facet name="Header">Delette</f:facet>
-                    <h:commandButton styleClass="btn btn-danger btn-sm" action="#{musterixilanBean.delete(c)}" value="Sil">
-                        <f:ajax execute="category-table" render="category-table category-form" />
+                    <f:facet name="header">Delete</f:facet>
+                    <h:commandButton styleClass="btn btn-danger btn-sm" action="#{musterixilanBean.deleteEntity()}" value="Sil">
+                        <f:actionListener binding="#{musterixilanBean.setEntity(c)}" />
+                        <f:ajax execute="table" render="table" />
                     </h:commandButton>
                     <h:commandButton styleClass="btn btn-primary btn-sm" action="#{musterixilanBean.setEntity(c)}" value="Update" >
-                        <f:ajax execute="category-table" render="category-table category-form" />
+                        <f:ajax execute="table" render="form" />
                     </h:commandButton>
                 </h:column>
             </h:dataTable>

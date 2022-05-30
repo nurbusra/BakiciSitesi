@@ -61,7 +61,7 @@ public class MusteriXilanDAO extends DBConnection {
         try {
             Statement st = this.getDb().createStatement();
 
-            String query = "delete from musterixilan where id=" + c.getAlisveris_id();
+            String query = "delete from musterixilan where alisveris_id=" + c.getAlisveris_id();
             int r = st.executeUpdate(query);
             
             System.out.println("DB DELETE returned with: " + r);
@@ -81,8 +81,7 @@ public class MusteriXilanDAO extends DBConnection {
                     "musteri_id = " + c.getMusteri().getMusteri_id() + "," + "\n" +
                     "odendi = " + c.isOdendi() + "\n" +
                     "WHERE alisveris_id = " + c.getAlisveris_id() + ";";
-           
-            System.out.println(query);
+
             int r = st.executeUpdate(query);
 
             System.out.println("DB UPDATE returned with: " + r);
