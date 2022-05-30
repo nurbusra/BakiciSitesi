@@ -77,18 +77,16 @@ public class BakiciDAO extends DBConnection {
 
             while (rs.next()) {
                 bakiciList.add(new Bakici(
-                        rs.getInt("user_id"),
-                        rs.getString("isim"),
-                        rs.getString("email"),
-                        rs.getString("sifre"),
-                        rs.getInt("sinif"),
-                        rs.getInt("bakici_id"),
-                        rs.getInt("neg_referans"),
-                        rs.getInt("poz_referans"),
-                        rs.getInt("gecmis_alisveris"),
-                        rs.getTimestamp("created"),
-                        rs.getTimestamp("updated")
-                        )
+                    rs.getInt("user_id"),
+                    rs.getString("isim"),
+                    rs.getString("email"),
+                    rs.getString("sifre"),
+                    rs.getInt("sinif"),
+                    rs.getInt("bakici_id"),
+                    rs.getInt("neg_referans"),
+                    rs.getInt("poz_referans"),
+                    rs.getInt("gecmis_alisveris")
+                    )
                 );
             }
 
@@ -101,24 +99,53 @@ public class BakiciDAO extends DBConnection {
         try {
         Statement st = this.getDb().createStatement();
 
+        String query = "select * from BAKICI where bakici_id=";
+        query=query+String.valueOf(id);
+        ResultSet rs = st.executeQuery(query);
+        
+        while (rs.next()) {
+                return (new Bakici(
+                    rs.getInt("user_id"),
+                    rs.getString("isim"),
+                    rs.getString("email"),
+                    rs.getString("sifre"),
+                    rs.getInt("sinif"),
+                    rs.getInt("bakici_id"),
+                    rs.getInt("neg_referans"),
+                    rs.getInt("poz_referans"),
+                    rs.getInt("gecmis_alisveris")
+                    )
+                );
+            }
+        
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+            
+        return null;
+    }
+    
+    public Bakici findByUser_id (int id){
+        try {
+        Statement st = this.getDb().createStatement();
+
         String query = "select * from BAKICI where user_id=";
         query=query+String.valueOf(id);
         ResultSet rs = st.executeQuery(query);
         
         while (rs.next()) {
                 return (new Bakici(
-                        rs.getInt("user_id"),
-                        rs.getString("isim"),
-                        rs.getString("email"),
-                        rs.getString("sifre"),
-                        rs.getInt("sinif"),
-                        rs.getInt("bakici_id"),
-                        rs.getInt("neg_referans"),
-                        rs.getInt("poz_referans"),
-                        rs.getInt("gecmis_alisveris"),
-                        rs.getTimestamp("created"),
-                        rs.getTimestamp("updated")
-                )
+                    rs.getInt("user_id"),
+                    rs.getString("isim"),
+                    rs.getString("email"),
+                    rs.getString("sifre"),
+                    rs.getInt("sinif"),
+                    rs.getInt("bakici_id"),
+                    rs.getInt("neg_referans"),
+                    rs.getInt("poz_referans"),
+                    rs.getInt("gecmis_alisveris")
+                    )
                 );
             }
         

@@ -4,7 +4,9 @@
  */
 package DAO;
 
+import Entity.Ilan;
 import Entity.Musteri;
+import Entity.MusteriXilan;
 import Util.DBConnection;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -15,6 +17,8 @@ import java.util.List;
 public class MusteriDAO extends DBConnection {
 
     private Connection db;
+    private MusteriXilanDAO miDao;
+    private IlanDAO ilanDao;
 
     public void create(Musteri c) {
         try {
@@ -86,10 +90,8 @@ public class MusteriDAO extends DBConnection {
                         rs.getString("sifre"),
                         rs.getInt("sinif"),
                         rs.getInt("musteri_id"),
-                        rs.getInt("gecmis_alisveris"),
-                        rs.getTimestamp("created"),
-                        rs.getTimestamp("updated")
-                )
+                        rs.getInt("gecmis_alisveris")
+                    )
                 );
             }
 
@@ -99,26 +101,25 @@ public class MusteriDAO extends DBConnection {
         return musteriList;
     }
     
-       public Musteri findById (int id){
+    public Musteri findById (int id){
         try {
-        Statement st = this.getDb().createStatement();
+            Statement st = this.getDb().createStatement();
 
-        String query = "select * from MUSTERI where user_id=";
-        query=query+String.valueOf(id);
-        ResultSet rs = st.executeQuery(query);
-        
-        while (rs.next()) {
+            String query = "select * from MUSTERI where musteri_id=";
+            query=query+String.valueOf(id);
+            
+            ResultSet rs = st.executeQuery(query);
+
+            while (rs.next()) {
                 return (new Musteri(
-                        rs.getInt("user_id"),
-                        rs.getString("isim"),
-                        rs.getString("email"),
-                        rs.getString("sifre"),
-                        rs.getInt("sinif"),
-                        rs.getInt("musteri_id"),
-                        rs.getInt("gecmis_alisveris"),
-                        rs.getTimestamp("created"),
-                        rs.getTimestamp("updated")
-                )
+                    rs.getInt("user_id"),
+                    rs.getString("isim"),
+                    rs.getString("email"),
+                    rs.getString("sifre"),
+                    rs.getInt("sinif"),
+                    rs.getInt("musteri_id"),
+                    rs.getInt("gecmis_alisveris")
+                    )
                 );
             }
         
@@ -130,6 +131,48 @@ public class MusteriDAO extends DBConnection {
         return null;
     }
     
+    public Musteri findByUser_id (int id){
+        try {
+            Statement st = this.getDb().createStatement();
+
+            String query = "select * from MUSTERI where user_id=";
+            query=query+String.valueOf(id);
+            ResultSet rs = st.executeQuery(query);
+
+            while (rs.next()) {
+                return (new Musteri(
+                    rs.getInt("user_id"),
+                    rs.getString("isim"),
+                    rs.getString("email"),
+                    rs.getString("sifre"),
+                    rs.getInt("sinif"),
+                    rs.getInt("musteri_id"),
+                    rs.getInt("gecmis_alisveris")
+                    )
+                );
+            }
+        
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+            
+        return null;
+    }
+       
+    private void retBasvuruList(Musteri entity) {
+        List<MusteriXilan> temp = this.getMiDao().getByMusteriId(entity.getMusteri_id());
+        
+        entity.getBasvuruList().clear();
+        
+        for(MusteriXilan i: temp) {
+            i = (MusteriXilan) i;
+            // Detaylı görünümü ilan tablosundan çek
+            Ilan il = this.getIlanDao().findById(i.getIlan().getIlan_id());
+            entity.getBasvuruList().add(il);
+        }
+    }   
+    
     public Connection getDb() throws Exception {
         if (this.db == null) {
             this.db = getConnection();
@@ -139,5 +182,23 @@ public class MusteriDAO extends DBConnection {
 
     public void setDb(Connection db) {
         this.db = db;
+    }
+    
+    public MusteriXilanDAO getMiDao() {
+        if(miDao == null) miDao = new MusteriXilanDAO();
+        return miDao;
+    }
+
+    public void setMiDao(MusteriXilanDAO miDao) {
+        this.miDao = miDao;
+    }
+    
+    public IlanDAO getIlanDao() {
+        if(ilanDao == null) ilanDao = new IlanDAO();
+        return ilanDao;
+    }
+
+    public void setIlanDao(IlanDAO ilanDao) {
+        this.ilanDao = ilanDao;
     }
 }

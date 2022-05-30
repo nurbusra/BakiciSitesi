@@ -106,22 +106,23 @@ public class IlanDAO extends DBConnection {
         return ilanList;
     }
     
-       public Ilan findById (int id){
+    public Ilan findById (int id){
         try {
-        Statement st = this.getDb().createStatement();
+            Statement st = this.getDb().createStatement();
 
-        String query = "select * from ILAN where ilan_id=";
-        query=query+String.valueOf(id);
-        ResultSet rs = st.executeQuery(query);
-        
-        while (rs.next()) {
+            String query = "select * from ILAN where ilan_id=";
+            query=query+String.valueOf(id);
+            ResultSet rs = st.executeQuery(query);
+
+            while (rs.next()) {
+                //System.out.println("Found Ilan By ID: " + rs.getInt("ilan_id") + "\nAciklama: " + rs.getString("aciklama"));
                 return (new Ilan(
-                        rs.getInt("ilan_id"),
-                        rs.getInt("bakici_id"),
-                        rs.getString("aciklama"),
-                        rs.getBoolean("aktif"),
-                        rs.getFloat("ucret")
-                )
+                    rs.getInt("ilan_id"),
+                    rs.getInt("bakici_id"),
+                    rs.getString("aciklama"),
+                    rs.getBoolean("aktif"),
+                    rs.getFloat("ucret")
+                    )
                 );
             }
         
