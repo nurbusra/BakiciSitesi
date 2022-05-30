@@ -4,7 +4,6 @@
  */
 package Entity;
 
-import java.sql.Timestamp;
 
 public class MusteriXilan {
 
@@ -12,8 +11,6 @@ public class MusteriXilan {
     private Ilan ilan;
     private Musteri musteri;
     private boolean odendi;
-    private Timestamp created;
-    private Timestamp updated;
 
     public MusteriXilan() {
     }
@@ -23,13 +20,11 @@ public class MusteriXilan {
         this.musteri = musteri;
     }
 
-    public MusteriXilan(int alisveris_id, Ilan ilan, Musteri musteri, boolean odendi,Timestamp created,Timestamp updated) {
+    public MusteriXilan(int alisveris_id, Ilan ilan, Musteri musteri, boolean odendi) {
         this.alisveris_id = alisveris_id;
         this.ilan = ilan;
         this.musteri = musteri;
         this.odendi = odendi;
-        this.created=created;
-        this.updated=updated;
     }
 
     public int getAlisveris_id() {
@@ -63,23 +58,6 @@ public class MusteriXilan {
     public void setOdendi(boolean odendi) {
         this.odendi = odendi;
     }
-
-    public Timestamp getCreated() {
-        return created;
-    }
-
-    public void setCreated(Timestamp created) {
-        this.created = created;
-    }
-
-    public Timestamp getUpdated() {
-        return updated;
-    }
-
-    public void setUpdated(Timestamp updated) {
-        this.updated = updated;
-    }
-    
 
     @Override
     public String toString() {

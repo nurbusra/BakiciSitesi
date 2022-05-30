@@ -14,8 +14,6 @@ public class Ilan {
     private boolean aktif;
     private float ucret;
     private int bakici_id;
-    private Timestamp created;
-    private Timestamp updated;
 
     // Controller Sınıfının Kullanacağı Constructor
     public Ilan() {
@@ -28,15 +26,12 @@ public class Ilan {
     }
 
     // Veri Çekmek İçin Kullanılacak Constructor
-    public Ilan(int ilan_id, Bakici bakici, String aciklama, boolean aktif, float ucret,Timestamp created,Timestamp updated) {
+    public Ilan(int ilan_id, Bakici bakici, String aciklama, boolean aktif, float ucret) {
         this.ilan_id = ilan_id;
         this.bakici = bakici;
         this.aciklama = aciklama;
         this.aktif = aktif;
         this.ucret = ucret;
-        this.created=created;
-        this.updated=updated;
-
     }
 
     public Ilan(int ilan_id, int bakici_id, String aciklama, boolean aktif, float ucret) {
@@ -99,24 +94,6 @@ public class Ilan {
     public void setBakici_id(int bakici_id) {
         this.bakici_id = bakici_id;
     }
-
-    public Timestamp getCreated() {
-        return created;
-    }
-
-    public void setCreated(Timestamp created) {
-        this.created = created;
-    }
-
-    public Timestamp getUpdated() {
-        return updated;
-    }
-
-    public void setUpdated(Timestamp updated) {
-        this.updated = updated;
-    }
-    
-
 
     @Override
     public String toString() {

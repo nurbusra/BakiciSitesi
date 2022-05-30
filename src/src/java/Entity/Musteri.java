@@ -1,13 +1,15 @@
 package Entity;
 
-import java.sql.Timestamp;
+import java.util.List;
 
 
 public class Musteri extends User_ {
 
     private int musteri_id, gecmis_alisveris;
-    private Timestamp created;
-    private Timestamp updated;
+    
+    //-------- To be set later
+    private List<Ilan> basvuruList;
+    //--------
 
     // Constructor for controller class
     public Musteri() {
@@ -15,14 +17,12 @@ public class Musteri extends User_ {
     
     // Constructor for retrieving
     public Musteri(int user_id, String isim, String email, String sifre,
-                    int sinif, int musteri_id, int gecmis_alisveris,Timestamp created,Timestamp updated) {
+                    int sinif, int musteri_id, int gecmis_alisveris) {
         
         super(user_id, isim, email, sifre, sinif);
         
         this.musteri_id = musteri_id;
         this.gecmis_alisveris = gecmis_alisveris;
-        this.created=created;
-        this.updated=updated;
     }
     
     // Constructor for creating
@@ -46,22 +46,13 @@ public class Musteri extends User_ {
         this.gecmis_alisveris = gecmis_alisveris;
     }
 
-    public Timestamp getCreated() {
-        return created;
+    public List<Ilan> getBasvuruList() {
+        return basvuruList;
     }
 
-    public void setCreated(Timestamp created) {
-        this.created = created;
+    public void setBasvuruList(List<Ilan> basvuruList) {
+        this.basvuruList = basvuruList;
     }
-
-    public Timestamp getUpdated() {
-        return updated;
-    }
-
-    public void setUpdated(Timestamp updated) {
-        this.updated = updated;
-    }
-    
 
     @Override
     public String toString() {
