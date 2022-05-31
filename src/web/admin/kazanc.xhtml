@@ -10,11 +10,11 @@
         <h:form id="form">
             <div class="mb-3">
                 <label class="form-label">Config:</label>
-                <h:inputText styleClass="form-control" value="#{configBean.entity.config}"/>
+                <h:inputText styleClass="form-control" value="#{kazancBean.entity.config}"/>
             </div>
             <div class="mb-3">
                 <label class="form-label">Referans:</label>
-                <h:inputText styleClass="form-control" value="#{referansBean.entity.referans}"/>
+                <h:inputText styleClass="form-control" value="#{kazancBean.entity.referans}"/>
             </div>
             <div class="mb-3">
                 <h:commandButton styleClass="btn btn-success" action="#{kazancBean.createEntity()}" value="Kaydet">
@@ -33,30 +33,32 @@
         <hr />
 
         <h:form id="table">        
-            <h:dataTable styleClass="table table-striped table-hover" value="#{kazancBean.list}" var="c">
+            <h:dataTable styleClass="table table-striped table-hover" value="#{kazancBean.list}" var="i">
                 <h:column>
                     <f:facet name="Header">ID</f:facet>
-                        #{c.bakici_id}
+                        #{i.bakici_id}
                 </h:column>
                 <h:column>
                     <f:facet name="Header">Alisveris</f:facet>
-                        #{c.alisveris_id}
+                        #{i.alisveris_id}
                 </h:column>
                 <h:column>
                     <f:facet name="Header">Config</f:facet>
-                        #{c.config.config}
+                        #{i.config.config}
                 </h:column>
                 <h:column>
                     <f:facet name="Header">Referans</f:facet>
-                        #{c.referans.referans}
+                        #{i.referans.referans}
                 </h:column>
                 <h:column>
-                    <f:facet name="Header">Delete</f:facet>
-                    <h:commandButton styleClass="btn btn-danger btn-sm" action="#{kazancBean.deleteEntity()}" value="Sil">
-                        <f:ajax execute="category-table" render="category-table category-form" />
+                    <f:facet name="header">Action</f:facet>
+                    <h:commandButton styleClass="btn btn-danger" value="Sil" action="#{kazancBean.deleteEntity}">
+                        <f:actionListener binding="#{kazancBean.setEntity(i)}" />
+                        <f:ajax execute="table" render="table"/>
                     </h:commandButton>
-                    <h:commandButton styleClass="btn btn-primary btn-sm" action="#{kazancBean.setEntity(c)}" value="Update" >
-                        <f:ajax execute="table" render="table form" />
+                   
+                    <h:commandButton styleClass="btn btn-warning" value="Düzenle" action="#{kazancBean.setEntity(i)}">
+                        <f:ajax execute="table" render="form"/>
                     </h:commandButton>
                 </h:column>
             </h:dataTable>
