@@ -115,7 +115,6 @@ public class IlanDAO extends DBConnection {
             ResultSet rs = st.executeQuery(query);
 
             while (rs.next()) {
-                //System.out.println("Found Ilan By ID: " + rs.getInt("ilan_id") + "\nAciklama: " + rs.getString("aciklama"));
                 return (new Ilan(
                     rs.getInt("ilan_id"),
                     rs.getInt("bakici_id"),
@@ -132,6 +131,35 @@ public class IlanDAO extends DBConnection {
         }
             
         return null;
+    }
+   
+    public List<Ilan> retByBakiciId(int id){
+        try {
+            Statement st = this.getDb().createStatement();
+
+            String query = "select * from ILAN where bakici_id=";
+            query=query+String.valueOf(id);
+            ResultSet rs = st.executeQuery(query);
+            
+            List<Ilan> out = new ArrayList<Ilan>();
+
+            while (rs.next()) {
+                out.add(new Ilan(
+                    rs.getInt("ilan_id"),
+                    rs.getInt("bakici_id"),
+                    rs.getString("aciklama"),
+                    rs.getBoolean("aktif"),
+                    rs.getFloat("ucret")
+                    )
+                );
+            }
+            
+            return out;
+        
+        } catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
     }
        
     public Connection getDb() throws Exception {

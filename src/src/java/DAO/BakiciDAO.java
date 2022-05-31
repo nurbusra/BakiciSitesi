@@ -11,6 +11,7 @@ import java.util.List;
 public class BakiciDAO extends DBConnection {
 
     private Connection db;
+    private IlanDAO ilanDao = new IlanDAO();
 
     public void create(Bakici c) {
         try {
@@ -95,16 +96,17 @@ public class BakiciDAO extends DBConnection {
         }
         return bakiciList;
     }
+    
     public Bakici findById (int id){
         try {
-        Statement st = this.getDb().createStatement();
+            Statement st = this.getDb().createStatement();
 
-        String query = "select * from BAKICI where bakici_id=";
-        query=query+String.valueOf(id);
-        ResultSet rs = st.executeQuery(query);
-        
-        while (rs.next()) {
-                return (new Bakici(
+            String query = "select * from BAKICI where bakici_id=";
+            query=query+String.valueOf(id);
+            ResultSet rs = st.executeQuery(query);
+
+            while (rs.next()) {
+                Bakici out = (new Bakici(
                     rs.getInt("user_id"),
                     rs.getString("isim"),
                     rs.getString("email"),
@@ -116,6 +118,9 @@ public class BakiciDAO extends DBConnection {
                     rs.getInt("gecmis_alisveris")
                     )
                 );
+                // Açılan İlanları Getir
+                out.setIlanlarList( ilanDao.retByBakiciId(out.getBakici_id()) );
+                return out;
             }
         
         }catch (Exception e){
@@ -128,14 +133,14 @@ public class BakiciDAO extends DBConnection {
     
     public Bakici findByUser_id (int id){
         try {
-        Statement st = this.getDb().createStatement();
+            Statement st = this.getDb().createStatement();
 
-        String query = "select * from BAKICI where user_id=";
-        query=query+String.valueOf(id);
-        ResultSet rs = st.executeQuery(query);
-        
-        while (rs.next()) {
-                return (new Bakici(
+            String query = "select * from BAKICI where user_id=";
+            query=query+String.valueOf(id);
+            ResultSet rs = st.executeQuery(query);
+
+            while (rs.next()) {
+                Bakici out = (new Bakici(
                     rs.getInt("user_id"),
                     rs.getString("isim"),
                     rs.getString("email"),
@@ -147,6 +152,11 @@ public class BakiciDAO extends DBConnection {
                     rs.getInt("gecmis_alisveris")
                     )
                 );
+                
+                System.out.println("lol");
+                // Açılan İlanları Getir
+                out.setIlanlarList( ilanDao.retByBakiciId(out.getBakici_id()) );
+                return out;
             }
         
         }catch (Exception e){

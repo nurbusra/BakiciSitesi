@@ -4,8 +4,6 @@
  */
 package Entity;
 
-import java.sql.Timestamp;
-
 public class Ilan {
 
     private int ilan_id;

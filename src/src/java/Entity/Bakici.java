@@ -1,11 +1,15 @@
 package Entity;
 
+import java.util.List;
+
 public class Bakici extends User_ {
 
     private int bakici_id;
     private int neg_referans;
     private int poz_referans;
     private int gecmis_alisveris;
+    
+    private List<Ilan> ilanlarList;
 
     // Controller Sınıfının Kullanacağı Constructor
     public Bakici() {
@@ -58,6 +62,14 @@ public class Bakici extends User_ {
 
     public void setGecmis_alisveris(int gecmis_alisveris) {
         this.gecmis_alisveris = gecmis_alisveris;
+    }
+
+    public List<Ilan> getIlanlarList() {
+        return ilanlarList;
+    }
+
+    public void setIlanlarList(List<Ilan> ilanlarList) {
+        this.ilanlarList = ilanlarList;
     }
 
     @Override
