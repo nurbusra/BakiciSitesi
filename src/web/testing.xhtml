@@ -8,7 +8,9 @@
 
     <ui:define name="content">
         Test Content
-        #{loginBean.createSu()}
+        <h:form id="form-1">
+            <h:commandButton type="submit" value="SU Oluştur" action="#{sessionBean.createSu()}"/>
+        </h:form> <br/>
         
         
         <h:form id="form">
