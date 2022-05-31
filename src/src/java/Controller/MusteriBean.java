@@ -41,11 +41,25 @@ public class MusteriBean implements Serializable {
     }
 
     public List<Musteri> getList() {
-        return list;
+        return this.getDao().getList();
     }
 
     public void setList(List<Musteri> list) {
         this.list = list;
     }
     
+    public void createEntity() {
+        this.getDao().create(this.entity);
+        this.entity = new Musteri();
+    }
+    
+    public void deleteEntity() {
+        this.getDao().delete(entity);
+        this.entity = new Musteri();
+    }
+    
+    public void updateEntity() {
+        this.getDao().update(this.entity);
+        this.entity = new Musteri();
+    }
 }
