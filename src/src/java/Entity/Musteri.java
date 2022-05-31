@@ -1,5 +1,6 @@
 package Entity;
 
+import DAO.MusteriXilanDAO;
 import java.util.List;
 
 
@@ -8,8 +9,10 @@ public class Musteri extends User_ {
     private int musteri_id, gecmis_alisveris;
     
     //-------- To be set later
-    private List<Ilan> basvuruList;
+    private List<MusteriXilan> basvuruList;
     //--------
+    
+    private MusteriXilanDAO miDao;
 
     // Constructor for controller class
     public Musteri() {
@@ -34,7 +37,7 @@ public class Musteri extends User_ {
         return musteri_id;
     }
 
-    public void setMusetri_id(int id) {
+    public void setMusteri_id(int id) {
         this.musteri_id = id;
     }
 
@@ -46,12 +49,30 @@ public class Musteri extends User_ {
         this.gecmis_alisveris = gecmis_alisveris;
     }
 
-    public List<Ilan> getBasvuruList() {
+    public List<MusteriXilan> getBasvuruList() {
         return basvuruList;
     }
 
-    public void setBasvuruList(List<Ilan> basvuruList) {
+    public void setBasvuruList(List<MusteriXilan> basvuruList) {
         this.basvuruList = basvuruList;
+    }
+    
+    public void updateBasvuruList(int id) {
+        this.setBasvuruList( this.getMiDao().getByMusteriId(musteri_id) );
+    }
+
+    public MusteriXilanDAO getMiDao() {
+        if(miDao == null) miDao = new MusteriXilanDAO();
+        return miDao;
+    }
+
+    public void setMiDao(MusteriXilanDAO miDao) {
+        if(miDao == null) miDao = new MusteriXilanDAO();
+        this.miDao = miDao;
+    }
+    
+    public boolean checkBasvuru(int musteri_id, int ilan_id) {
+        return this.getMiDao().checkBasvuru(musteri_id, ilan_id);
     }
 
     @Override

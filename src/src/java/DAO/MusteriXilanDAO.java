@@ -67,7 +67,7 @@ public class MusteriXilanDAO extends DBConnection {
 
             String query = "delete from musterixilan where alisveris_id=" + c.getAlisveris_id();
             int r = st.executeUpdate(query);
-
+            
             System.out.println("DB DELETE returned with: " + r);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
@@ -169,6 +169,22 @@ public class MusteriXilanDAO extends DBConnection {
             System.out.println(ex.getMessage());
         }
         return musterixilanList;
+    }
+    
+    public boolean checkBasvuru(int musteri_id, int ilan_id) {
+        try {
+            Statement st = this.getDb().createStatement();
+
+            String query = "select * from musterixilan WHERE musteri_id = " + musteri_id;
+            query = query + "\nAND ilan_id = " + ilan_id;
+            ResultSet rs = st.executeQuery(query);
+
+            return rs.next(); 
+        
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return false;
     }
 
     public Connection getDb() throws Exception {

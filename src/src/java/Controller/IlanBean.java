@@ -53,10 +53,10 @@ public class IlanBean implements Serializable {
         return "/ilanlar.xhtml?faces-redirect=true";
     }
     
-    public String deleteEntity() {
+    public void deleteEntity() {
         this.getDao().delete(entity);
         this.entity = new Ilan();
-        return "/ilanlar.xhtml?faces-redirect=true";
+        //return "/ilanlar.xhtml?faces-redirect=true";
     }
     
     public String updateEntity() {

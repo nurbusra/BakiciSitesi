@@ -36,6 +36,7 @@ public class MusteriXilan {
     }
 
     public Ilan getIlan() {
+        if(ilan == null) ilan = new Ilan();
         return ilan;
     }
 
@@ -44,6 +45,7 @@ public class MusteriXilan {
     }
 
     public Musteri getMusteri() {
+        if(musteri == null) musteri = new Musteri();
         return musteri;
     }
 

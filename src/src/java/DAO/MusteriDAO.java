@@ -111,7 +111,7 @@ public class MusteriDAO extends DBConnection {
             ResultSet rs = st.executeQuery(query);
 
             while (rs.next()) {
-                return (new Musteri(
+                Musteri out = (new Musteri(
                     rs.getInt("user_id"),
                     rs.getString("isim"),
                     rs.getString("email"),
@@ -121,6 +121,8 @@ public class MusteriDAO extends DBConnection {
                     rs.getInt("gecmis_alisveris")
                     )
                 );
+                //out.setBasvuruList( this.getMiDao().getByMusteriId(out.getMusteri_id()) ); causes cyclic call
+                return out;
             }
         
         }catch (Exception e){
@@ -140,7 +142,7 @@ public class MusteriDAO extends DBConnection {
             ResultSet rs = st.executeQuery(query);
 
             while (rs.next()) {
-                return (new Musteri(
+                Musteri out = (new Musteri(
                     rs.getInt("user_id"),
                     rs.getString("isim"),
                     rs.getString("email"),
@@ -150,6 +152,8 @@ public class MusteriDAO extends DBConnection {
                     rs.getInt("gecmis_alisveris")
                     )
                 );
+                out.setBasvuruList( this.getMiDao().getByMusteriId(out.getMusteri_id()) );
+                return out;
             }
         
         }catch (Exception e){
@@ -160,18 +164,19 @@ public class MusteriDAO extends DBConnection {
         return null;
     }
        
-    private void retBasvuruList(Musteri entity) {
+ /*   private List<Ilan> retBasvuruList(Musteri entity) {
         List<MusteriXilan> temp = this.getMiDao().getByMusteriId(entity.getMusteri_id());
         
         entity.getBasvuruList().clear();
-        
+        List<Ilan> out = new ArrayList<Ilan>();
         for(MusteriXilan i: temp) {
             i = (MusteriXilan) i;
             // Detaylı görünümü ilan tablosundan çek
             Ilan il = this.getIlanDao().findById(i.getIlan().getIlan_id());
-            entity.getBasvuruList().add(il);
+            out.add(il);
         }
-    }   
+        return out;
+    }   */
     
     public Connection getDb() throws Exception {
         if (this.db == null) {

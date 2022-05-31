@@ -4,6 +4,7 @@
  */
 package Controller;
 
+import DAO.IlanDAO;
 import DAO.MusteriXilanDAO;
 import Entity.MusteriXilan;
 import jakarta.inject.Named;
@@ -19,6 +20,8 @@ public class MusteriXilanBean implements Serializable {
     private MusteriXilanDAO dao;
     private MusteriXilan entity;
     private List<MusteriXilan> list;
+    
+    private IlanDAO ilanDao;
     
     public MusteriXilanBean() {
     }
@@ -49,7 +52,16 @@ public class MusteriXilanBean implements Serializable {
     public void setList(List<MusteriXilan> list) {
         this.list = list;
     }
-    
+
+    public IlanDAO getIlanDao() {
+        if(ilanDao == null) ilanDao = new IlanDAO();
+        return ilanDao;
+    }
+
+    public void setIlanDao(IlanDAO ilanDao) {
+        this.ilanDao = ilanDao;
+    }
+
     public void createEntity() {
         System.out.println("Musteri ID: " + entity.getMusteri().getMusteri_id());
         System.out.println("Ilan ID: " + entity.getIlan().getIlan_id());
@@ -71,4 +83,14 @@ public class MusteriXilanBean implements Serializable {
         this.entity = new MusteriXilan();
     }
     
+    public void basvur(int musteri_id, int ilan_id) {
+        this.setEntity(new MusteriXilan());
+        
+        this.getEntity().getIlan().setIlan_id(ilan_id);
+        this.getEntity().getMusteri().setMusteri_id(musteri_id);
+        this.getEntity().setOdendi(false);
+
+        this.getDao().create(entity);
+        this.setEntity(new MusteriXilan());
+    }
 }
