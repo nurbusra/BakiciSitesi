@@ -73,7 +73,7 @@ public class KayitBean implements Serializable {
     
     
     public String createEntity() {
-        if(this.entity.getSinif() == 1) {
+        if(this.entity.getSinif() == 2) {
             // Musteri
             Musteri o = new Musteri(
                     this.entity.getIsim(),
@@ -83,7 +83,7 @@ public class KayitBean implements Serializable {
                     );
             this.getMusteriDao().create(o);
         }
-        else if(this.entity.getSinif() == 2) {
+        else if(this.entity.getSinif() == 1) {
             // Bakici
             Bakici o = new Bakici(
                     this.entity.getIsim(),
