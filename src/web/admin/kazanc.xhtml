@@ -33,22 +33,22 @@
         <hr />
 
         <h:form id="table">        
-            <h:dataTable styleClass="table table-striped table-hover" value="#{kazancBean.list}" var="i">
+            <h:dataTable styleClass="table table-striped " value="#{kazancBean.list}" var="i">
                 <h:column>
-                    <f:facet name="Header">ID</f:facet>
+                    <f:facet name="header">ID</f:facet>
                         #{i.bakici_id}
                 </h:column>
                 <h:column>
-                    <f:facet name="Header">Alisveris</f:facet>
+                    <f:facet name="header">Alisveris</f:facet>
                         #{i.alisveris_id}
                 </h:column>
                 <h:column>
-                    <f:facet name="Header">Config</f:facet>
-                        #{i.config.config}
+                    <f:facet name="header">Config</f:facet>
+                        #{i.config}
                 </h:column>
                 <h:column>
-                    <f:facet name="Header">Referans</f:facet>
-                        #{i.referans.referans}
+                    <f:facet name="header">Referans</f:facet>
+                        #{i.referans}
                 </h:column>
                 <h:column>
                     <f:facet name="header">Action</f:facet>
