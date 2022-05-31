@@ -14,19 +14,19 @@
             </div>
             <div class="mb-3">
                 <label class="form-label">ISIM:</label>
-                <h:inputText styleClass="form-control" value="#{userBean.entity.isim}"/>
+                <h:inputText styleClass="form-control" value="#{musteriBean.entity.isim}"/>
             </div>
             <div class="mb-3">
                 <label class="form-label">EMAIL:</label>
-                <h:inputText styleClass="form-control" value="#{userBean.entity.email}"/>
+                <h:inputText styleClass="form-control" value="#{musteriBean.entity.email}"/>
             </div>
             <div class="mb-3">
                 <label class="form-label">SIFRE:</label>
-                <h:inputText styleClass="form-control" value="#{userBean.entity.sifre}"/>
+                <h:inputText styleClass="form-control" value="#{musteriBean.entity.sifre}"/>
             </div>
             <div class="mb-3">
                 <label class="form-label">SINIF:</label>
-                <h:inputText styleClass="form-control" value="#{userBean.entity.sinif}"/>
+                <h:inputText styleClass="form-control" value="#{musteriBean.entity.sinif}"/>
             </div>
             <div class="mb-3">
                 <h:commandButton styleClass="btn btn-success" action="#{musteriBean.createEntity()}" value="Kaydet">
@@ -45,7 +45,7 @@
         <hr />
 
         <h:form id="table">        
-            <h:dataTable styleClass="table table-striped table-hover" value="#{musteriBean.list}" var="c">
+            <h:dataTable styleClass="table table-striped " value="#{musteriBean.list}" var="c">
                 <h:column>
                     <f:facet name="header">ID</f:facet>
                         #{c.musteri_id}
