@@ -27,19 +27,40 @@ public class SessionBean implements Serializable {
     private BakiciDAO bakiciDao;
     private MusteriDAO musteriDao;
     
-    private User_ entity, child;
+    private User_ entity;
+    private Superuser childSu;
+    private Bakici childBakici;
+    private Musteri childMusteri;
     private boolean authorized = false;
 
     public SessionBean() {
     }
 
-    public User_ getChild() {
-        if(child == null) child = new User_();
-        return child;
+    public Superuser getChildSu() {
+        if(childSu == null) childSu = new Superuser();
+        return childSu;
     }
 
-    public void setChild(User_ child) {
-        this.child = child;
+    public void setChildSu(Superuser childSu) {
+        this.childSu = childSu;
+    }
+
+    public Bakici getChildBakici() {
+        if(childBakici == null) childBakici = new Bakici();
+        return childBakici;
+    }
+
+    public void setChildBakici(Bakici childBakici) {
+        this.childBakici = childBakici;
+    }
+
+    public Musteri getChildMusteri() {
+        if(childMusteri == null) childMusteri = new Musteri();
+        return childMusteri;
+    }
+
+    public void setChildMusteri(Musteri childMusteri) {
+        this.childMusteri = childMusteri;
     }
     
     public boolean isAuthorized() {
@@ -133,8 +154,9 @@ public class SessionBean implements Serializable {
     public String logout() {
         FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("validUser", entity);
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-        entity = new User_();
-        child = new User_();
+        
+        this.clearEntities();
+        
         authorized = false;
         return "/index.xhtml";
     }
@@ -142,20 +164,27 @@ public class SessionBean implements Serializable {
     public void castUserType() {
         switch( this.entity.getSinif() ) {
             case 0:
-                this.child = (Superuser) this.getSuDao().findByUser_id( this.entity.getUser_id() );
+                this.childSu = (Superuser) this.getSuDao().findByUser_id( this.entity.getUser_id() );
                 break;
             case 1:
-                this.child = (Bakici) this.getBakiciDao().findByUser_id( this.entity.getUser_id() );
+                this.childBakici = (Bakici) this.getBakiciDao().findByUser_id( this.entity.getUser_id() );
                 break;
             case 2:
-                this.child = (Musteri) this.getMusteriDao().findByUser_id( this.entity.getUser_id() );
+                this.childMusteri = (Musteri) this.getMusteriDao().findByUser_id( this.entity.getUser_id() );
                 break;
         }
     }
     
     public String createSu() {
-        User_ tmp = new User_("su", "su@su.com", "su", 0);
-        this.getUserDao().create(tmp);
+        Superuser tmp = new Superuser("su", "su@su.com", "su", 0);
+        this.getSuDao().create(tmp);
         return "";
+    }
+    
+    private void clearEntities() {
+        this.entity = new User_();
+        this.childSu = new Superuser();
+        this.childBakici = new Bakici();
+        this.childMusteri = new Musteri();
     }
 }
