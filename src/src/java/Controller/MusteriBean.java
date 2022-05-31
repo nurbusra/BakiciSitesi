@@ -5,7 +5,6 @@
 package Controller;
 
 import DAO.MusteriDAO;
-import Entity.Ilan;
 import Entity.Musteri;
 import jakarta.inject.Named;
 import jakarta.enterprise.context.SessionScoped;
@@ -18,7 +17,7 @@ public class MusteriBean implements Serializable {
     
     private Musteri entity;
     private MusteriDAO dao;
-    private List<Ilan> basvuruList;
+    private List<Musteri> list;
     
     public MusteriBean() {
     }
@@ -41,12 +40,12 @@ public class MusteriBean implements Serializable {
         this.dao = dao;
     }
 
-    public List<Ilan> getBasvuruList() {
-        return basvuruList;
+    public List<Musteri> getList() {
+        return list;
     }
 
-    public void setBasvuruList(List<Ilan> basvuruList) {
-        this.basvuruList = basvuruList;
+    public void setList(List<Musteri> list) {
+        this.list = list;
     }
     
 }
