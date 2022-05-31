@@ -4,78 +4,70 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="/template/enhancedTemplate.xhtml"> 
-    <ui:define name="content" >
+                template="/template/enhancedTemplate.xhtml">
 
-            <hr />
-            <h:form id="category-m">
-                <div class="mb-3">
-                    <label class="form-label">Bakici ID:</label>
-                    <h:inputText styleClass="form-control" value="#{bakiciBean.entity.bakici_id}" converter="BakiciConverter"/>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Negatif Referans:</label>
-                    <h:inputText styleClass="form-control" value="#{bakiciBean.entity.neg_referans}"/>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Pozitif Referans:</label>
-                    <h:inputText styleClass="form-control" value="#{bakiciBean.entity.poz_referans}"/>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Gecmis Alisveris:</label>
-                    <h:inputText styleClass="form-control" value="#{bakiciBean.entity.gecmis_alisveris}"/>
-                </div>
-
-                <h:commandButton styleClass="btn btn-success"   rendered="#{bakiciBean.create()}" value="Kaydet" >
-                    <f:ajax execute="category-m" render="category-mm category-m" />
+    <ui:define name="content">
+        <h:form id="form">
+            <div class="mb-3">
+                <label class="form-label">Bakici ID:</label>
+                <h:inputText styleClass="form-control" value="#{bakiciBean.entity.bakici_id}"/>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Negatif Referans:</label>
+                <h:inputText styleClass="form-control" value="#{bakiciBean.entity.neg_referans}"/>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Pozitif Referans:</label>
+                <h:inputText styleClass="form-control" value="#{bakiciBean.entity.poz_referans}"/>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Gecmis Alisveris:</label>
+                <h:inputText styleClass="form-control" value="#{bakiciBean.entity.gecmis_alisveris}"/>
+            </div>
+            <div class="mb-3">
+                <h:commandButton styleClass="btn btn-success" action="#{bakiciBean.createEntity()}" value="Kaydet">
+                    <f:ajax execute="form" render="table form" />
                 </h:commandButton>
-                <h:commandButton styleClass="btn btn-primary" rendered="#{bakiciBean.entity.bakici_id!=0}" action="#{bakiciBean.update()}" value="Update" >
-                    <f:ajax execute="category-m" render="category-mm category-m" />
+                <h:commandButton styleClass="btn btn-primary" action="#{bakiciBean.updateEntity()}" value="Update" >
+                    <f:ajax execute="form" render="table form" />
                 </h:commandButton>
-                <h:commandButton styleClass="btn btn-secondary" rendered="#{bakiciBean.entity.bakici_id!=0}" action="#{bakiciBean.clear()}" value="Clear" >
-                    <f:ajax execute="category-m" render="category-m" />
+                <h:commandButton styleClass="btn btn-secondary"  action="#{bakiciBean.clearEntity()}" value="Clear" >
+                    <f:ajax execute="form" render="form" />
                 </h:commandButton>
-            </h:form>
-    
-    <h:head>
-        <title>Bakıcılar</title>
-    </h:head>
-        <h2>Bakıcılar</h2> 
-        <br> </br > 
-
-        <h:form>
-            <h:commandButton value="home" action="index.xhtml?faces-redirect=true"/>
+            </div>
         </h:form>
-        <br> </br>
-        
-        <h:form>
-            
-            <h:dataTable value="#{bakiciBean.list}" var="c">
-                
-                <h:column> 
-                    <f:facet name="header">ID</f:facet>
+
+        <hr />
+        <hr />
+
+        <h:form id="table">        
+            <h:dataTable styleClass="table table-striped table-hover" value="#{bakiciBean.list}" var="c">
+                <h:column>
+                    <f:facet name="Header">ID</f:facet>
                         #{c.bakici_id}
                 </h:column>
-                <h:column> 
-                    <f:facet name="header">İsim</f:facet>
-                        #{c.isim}
+                <h:column>
+                    <f:facet name="Header">Negatif Referans</f:facet>
+                        #{c.neg_referans}
                 </h:column>
-                <h:column> 
-                    <f:facet name="header">Geçmiş Alışveriş</f:facet>
+                <h:column>
+                    <f:facet name="Header">Pozitif Referans</f:facet>
+                        #{c.poz_referans}
+                </h:column>
+                <h:column>
+                    <f:facet name="Header">Gecmis Alisveris</f:facet>
                         #{c.gecmis_alisveris}
                 </h:column>
                 <h:column>
-                    <f:facet name="header">Action</f:facet>
-
-                    <h:commandButton value="Göster" action="bakici.xhtml?faces-redirect=true">
-                        <f:actionListener binding="#{bakiciBean.setEntity(c)}" />
+                    <f:facet name="Header">Delete</f:facet>
+                    <h:commandButton styleClass="btn btn-danger btn-sm" action="#{bakiciBean.deleteEntity()}" value="Sil">
+                        <f:ajax execute="category-table" render="category-table category-form" />
                     </h:commandButton>
-                
+                    <h:commandButton styleClass="btn btn-primary btn-sm" action="#{bakiciBean.setEntity(c)}" value="Update" >
+                        <f:ajax execute="table" render="table form" />
+                    </h:commandButton>
                 </h:column>
-            
             </h:dataTable>
-            
-        </h:form>
-        
-            </ui:define>
+        </h:form> 
+    </ui:define>
 </ui:composition>
