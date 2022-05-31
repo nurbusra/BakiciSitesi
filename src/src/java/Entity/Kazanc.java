@@ -6,26 +6,22 @@ public class Kazanc {
 
     private int kazanc_id;
     private int alisveris_id;
-    private String config;
+    private int config;
     private boolean referans;
-    private Timestamp created;
-    private Timestamp updated;
 
     public Kazanc() {
     }
 
-    public Kazanc(int alisveris_id, String config) {
+    public Kazanc(int alisveris_id, int config) {
         this.alisveris_id = alisveris_id;
         this.config = config;
     }
 
-    public Kazanc(int kazanc_id, int alisveris_id, String config, boolean referans,Timestamp created,Timestamp updated) {
+    public Kazanc(int kazanc_id, int alisveris_id, int config, boolean referans) {
         this.kazanc_id = kazanc_id;
         this.alisveris_id = alisveris_id;
         this.config = config;
         this.referans = referans;
-        this.created=created;
-        this.updated=updated;
 
     }
 
@@ -45,11 +41,11 @@ public class Kazanc {
         this.alisveris_id = alisveris_id;
     }
 
-    public String getConfig() {
+    public int getConfig() {
         return config;
     }
 
-    public void setConfig(String config) {
+    public void setConfig(int config) {
         this.config = config;
     }
 
@@ -60,23 +56,6 @@ public class Kazanc {
     public void setReferans(boolean referans) {
         this.referans = referans;
     }
-
-    public Timestamp getCreated() {
-        return created;
-    }
-
-    public void setCreated(Timestamp created) {
-        this.created = created;
-    }
-
-    public Timestamp getUpdated() {
-        return updated;
-    }
-
-    public void setUpdated(Timestamp updated) {
-        this.updated = updated;
-    }
-    
 
     @Override
     public String toString() {

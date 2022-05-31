@@ -171,6 +171,31 @@ public class MusteriXilanDAO extends DBConnection {
         return musterixilanList;
     }
     
+    public List<MusteriXilan> getByIlanId(int ilan_id) {
+        List<MusteriXilan> musterixilanList = new ArrayList<>();
+        try {
+            Statement st = this.getDb().createStatement();
+
+            String query = "select * from musterixilan WHERE ilan_id = " + ilan_id;
+            ResultSet rs = st.executeQuery(query);
+
+            while (rs.next()) {
+                musterixilanList.add(new MusteriXilan(
+                    rs.getInt("alisveris_id"),
+                    this.getIlanDao().findById(rs.getInt("ilan_id")),
+                    this.getMusteriDao().findById(rs.getInt("musteri_id")),
+                    rs.getBoolean("odendi")
+                    )
+                );
+            }
+
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            ex.printStackTrace();
+        }
+        return musterixilanList;
+    }
+    
     public boolean checkBasvuru(int musteri_id, int ilan_id) {
         try {
             Statement st = this.getDb().createStatement();

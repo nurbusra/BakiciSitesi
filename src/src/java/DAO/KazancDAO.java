@@ -20,14 +20,12 @@ public class KazancDAO extends DBConnection {
         try {
             Statement st = this.getDb().createStatement();
             String values = "VALUES("
-                    + c.getKazanc_id() + ","
                     + c.getAlisveris_id() + ", "
-                    + "'" + c.getConfig() + "'" + ","
-                    + c.isReferans()
+                    + "'" + c.getConfig() + "'"
                     + ");";
 
             String query
-                    = "insert into KAZANC(kazanc_id,alisveris_id,config,referans) " + values;
+                    = "insert into KAZANC(alisveris_id,config) " + values;
 
             int r = st.executeUpdate(query);
 
@@ -42,7 +40,7 @@ public class KazancDAO extends DBConnection {
         try {
             Statement st = this.getDb().createStatement();
 
-            String query = "delete from kazanc where id=" + c.getKazanc_id();
+            String query = "delete from kazanc where kazanc_id=" + c.getKazanc_id();
             int r = st.executeUpdate(query);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
@@ -61,12 +59,12 @@ public class KazancDAO extends DBConnection {
                 kazancList.add(new Kazanc(
                         rs.getInt("kazanc_id"),
                         rs.getInt("alisveris_id"),
-                        rs.getString("config"),
-                        rs.getBoolean("referans"),
-                        rs.getTimestamp("created"),
-                        rs.getTimestamp("updated")));
-
+                        rs.getInt("config"),
+                        rs.getBoolean("referans")
+                    )
+                );
             }
+            
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
@@ -85,11 +83,10 @@ public class KazancDAO extends DBConnection {
                 return (new Kazanc(
                         rs.getInt("kazanc_id"),
                         rs.getInt("alisveris_id"),
-                        rs.getString("config"),
-                        rs.getBoolean("referans"),
-                        rs.getTimestamp("created"),
-                        rs.getTimestamp("updated")));
-
+                        rs.getInt("config"),
+                        rs.getBoolean("referans")
+                    )
+                );
             }
 
         } catch (Exception e) {

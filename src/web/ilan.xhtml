@@ -12,19 +12,53 @@
         
         <h:form id="bakici_control" 
                 rendered="#{
-                    (sessionBean.entity.sinif == 0) or sessionBean.entity.sinif == 1 and 
-                    sessionBean.childBakici.bakici_id == ilanBean.entity.bakici.bakici_id
+                    sessionBean.entity.sinif == 0 or (sessionBean.entity.sinif == 1 and 
+                    sessionBean.childBakici.bakici_id == ilanBean.entity.bakici.bakici_id)
                             }"> <!-- Ziyaretçi SU ise ya da İlanın sahibi ise form görüntülenir. -->
-            
+                        
             <h:commandButton rendered="#{ilanBean.entity.aktif}" value="Deactivate" action="#{ilanBean.updateEntity}">
                 <f:actionListener binding="#{ilanBean.entity.setAktif(false)}"/>
             </h:commandButton>
             <h:commandButton rendered="#{! ilanBean.entity.aktif}" value="Activate" action="#{ilanBean.updateEntity}">
                 <f:actionListener binding="#{ilanBean.entity.setAktif(true)}"/>
             </h:commandButton>
-            
         </h:form>
         
+        <h:form>
+            <h:dataTable styleClass="table table-striped"
+                         value="#{sessionBean.childBakici.getBasvurular(ilanBean.entity)}" 
+                         var="i">
+
+                <h:column> 
+                    <f:facet name="header">ID</f:facet>
+                        #{i.alisveris_id}
+                </h:column>
+                <h:column> 
+                    <f:facet name="header">Ilan ID</f:facet>
+                        #{i.ilan.ilan_id}
+                </h:column>
+                <h:column> 
+                    <f:facet name="header">Müşteri ID</f:facet>
+                        #{i.musteri.musteri_id}
+                </h:column>
+                <h:column> 
+                    <f:facet name="header">Tamamlandı</f:facet>
+                        #{i.odendi}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Action</f:facet>
+                    <h:commandButton rendered="#{i.odendi==false and ilanBean.entity.aktif==true}"
+                                     styleClass="btn btn-danger" value="Tamamla"
+                                     action="/hesabim.xhtml?faces-redirect=true"
+                                     >
+                        <f:actionListener binding="##{kazancBean.createEntity(i)}" />
+                    </h:commandButton>
+                    <h:link class="nav-link disabled" rendered="#{i.odendi==true or ilanBean.entity.aktif==false}" >Tamamla</h:link>
+                </h:column>
+
+            </h:dataTable>
+        </h:form>
+
         <h:form id="musteri_control" 
                 rendered="#{
                     sessionBean.entity.sinif == 0 or (

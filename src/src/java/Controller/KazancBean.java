@@ -1,11 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSF/JSFManagedBean.java to edit this template
- */
+
 package Controller;
 
+import DAO.ConfigDAO;
+import DAO.IlanDAO;
 import DAO.KazancDAO;
+import DAO.MusteriXilanDAO;
 import Entity.Kazanc;
+import Entity.MusteriXilan;
 import jakarta.inject.Named;
 import jakarta.enterprise.context.SessionScoped;
 import java.io.Serializable;
@@ -17,6 +18,8 @@ import java.util.List;
 public class KazancBean implements Serializable {
 
     private KazancDAO dao;
+    private ConfigDAO configDao;
+    private MusteriXilanDAO miDao;
     private Kazanc entity;
     private List<Kazanc> list;
     
@@ -49,11 +52,41 @@ public class KazancBean implements Serializable {
     public void setList(List<Kazanc> list) {
         this.list = list;
     }
+
+    public ConfigDAO getConfigDao() {
+        if(configDao == null) configDao = new ConfigDAO();
+        return configDao;
+    }
+
+    public void setConfigDao(ConfigDAO configDao) {
+        this.configDao = configDao;
+    }
+
+    public MusteriXilanDAO getMiDao() {
+        if (miDao == null) miDao = new MusteriXilanDAO();
+        return miDao;
+    }
+
+    public void setMiDao(MusteriXilanDAO miDao) {
+        this.miDao = miDao;
+    }
     
-    public String createEntity() {
-        this.getDao().create(this.entity);
+    public void createEntity(MusteriXilan m) {
+        int komisyon = Integer.parseInt( this.getConfigDao().selectConfig("komisyon") );
+        this.getEntity().setConfig(komisyon);
+        this.getEntity().setAlisveris_id(m.getAlisveris_id());
+        
+        this.getDao().create(this.getEntity());
         this.entity = new Kazanc();
-        return "";
+              
+        //Update Alisveris
+        m.setOdendi(true);
+        this.getMiDao().update(m);
+        
+        //Update Ilan
+        m.getIlan().setAktif(false);
+        IlanDAO ilanDao = new IlanDAO();
+        ilanDao.update(m.getIlan());
     }
     
     public String deleteEntity() {

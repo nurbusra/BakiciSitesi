@@ -92,9 +92,26 @@ public class ConfigDAO extends DBConnection {
         }
         return db;
     }
-
+    
     public void setDb(Connection db) {
         this.db = db;
+    }
+    
+    public String selectConfig(String option) {
+        try {
+            Statement st = this.getDb().createStatement();
+
+            String query = "SELECT value FROM CONFIG WHERE _option =" + option;
+            ResultSet rs = st.executeQuery(query);
+
+            rs.next();
+            return rs.getString(option);
+     
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            ex.printStackTrace();
+        }
+        return "";
     }
 
 }
