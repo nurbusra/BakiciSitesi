@@ -12,8 +12,8 @@
         
         <h:form id="bakici_control" 
                 rendered="#{
-                    sessionBean.entity.sinif == 0 || 
-                    sessionBean.entity.sinif == ilanBean.entity.bakici.bakici_id
+                    (sessionBean.entity.sinif == 0) or sessionBean.entity.sinif == 1 and 
+                    sessionBean.childBakici.bakici_id == ilanBean.entity.bakici.bakici_id
                             }"> <!-- Ziyaretçi SU ise ya da İlanın sahibi ise form görüntülenir. -->
             
             <h:commandButton rendered="#{ilanBean.entity.aktif}" value="Deactivate" action="#{ilanBean.updateEntity}">
@@ -27,14 +27,21 @@
         
         <h:form id="musteri_control" 
                 rendered="#{
-                    sessionBean.entity.sinif == 0 || 
-                    sessionBean.entity.sinif == 2
+                    sessionBean.entity.sinif == 0 or (
+                    sessionBean.entity.sinif == 2 and
+                    sessionBean.
+                        childMusteri.
+                            checkBasvuru(
+                                sessionBean.childMusteri.musteri_id, ilanBean.entity.ilan_id
+                            ) 
+                            == false )
                             }"> <!-- Ziyaretçi SU ise ya da Müşteri ise form görüntülenir. -->
             
             <h:commandButton styleClass="btn btn-success" rendered="#{ilanBean.entity.aktif}" 
                              value="Başvur" 
-                             action="#{ilanBean.updateEntity}">
-                <f:actionListener binding="#{ilanBean.entity.setAktif(false)}"/>
+                             action="/ilan.xhtml">
+                <f:actionListener binding="#{musterixilanBean.basvur(sessionBean.childMusteri.musteri_id, ilanBean.entity.ilan_id)}"/>
+                <f:actionListener binding="#{sessionBean.childMusteri.updateBasvuruList(sessionBean.childMusteri.musteri_id)}"/>
             </h:commandButton>
             
         </h:form>
