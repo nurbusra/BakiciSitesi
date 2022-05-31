@@ -1,8 +1,8 @@
 /*
 	SINIF:
 		0: Superuser
-		1: Musteri
-		2: Bakici
+		1: Bakici
+		2: Musteri
 */
 
 /* User_ TABLE AND INHERITING TABLES */
@@ -171,8 +171,8 @@ CREATE OR REPLACE TRIGGER kazanc_guncelle_trigger
 	---- TEST ----
 */
 
-INSERT INTO Musteri(isim, email, sifre, sinif) VALUES('Hasan', 'hasan@mail.com', '12345', 1);
-INSERT INTO Bakici(isim, email, sifre, sinif) VALUES('Ece', 'ece@mail.com', '12345', 2);
+INSERT INTO Bakici(isim, email, sifre, sinif) VALUES('Ece', 'ece@mail.com', '12345', 1);
+INSERT INTO Musteri(isim, email, sifre, sinif) VALUES('Hasan', 'hasan@mail.com', '12345', 2);
 INSERT INTO Ilan(bakici_id, ucret, aciklama) VALUES(1, 120.99, 'asfasfdfaasf');
 INSERT INTO MusteriXilan(ilan_id, musteri_id) VALUES(1, 1);
 INSERT INTO MusteriXilan(ilan_id, musteri_id) VALUES(1, 1);
