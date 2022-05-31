@@ -17,14 +17,16 @@
         <div jsf:rendered="#{sessionBean.entity.sinif == 1}">bakici_id: #{sessionBean.childBakici.bakici_id}</div><br/>
         <div jsf:rendered="#{sessionBean.entity.sinif == 2}">musteri_id: #{sessionBean.childMusteri.musteri_id}</div><br/>
         
-        <h:commandButton styleClass="button btn-sm btn-danger" 
-                         action="#{sessionBean.logout()}" 
-                         rendered="#{sessionBean.entity.sinif == 1}" 
-                         value="İlan Oluştur"/>
-        <h:commandButton styleClass="button btn-sm btn-danger" 
-                         action="#{sessionBean.logout()}" 
-                         rendered="#{sessionBean.entity.sinif == 2}" 
-                         value="Başvurularım"/> <br/><br/>
+        <h:form id="buttons">
+            <h:commandButton styleClass="button btn-sm btn-danger" 
+                             action="/ilanolustur.xhtml?faces-redirect=true" 
+                             rendered="#{sessionBean.entity.sinif == 1}" 
+                             value="İlan Oluştur"/>
+            <h:commandButton styleClass="button btn-sm btn-danger" 
+                             action="#{sessionBean.logout()}" 
+                             rendered="#{sessionBean.entity.sinif == 2}" 
+                             value="Başvurularım"/> <br/><br/>
+        </h:form>
         
         <!-- Conditionally rendered <div>. See: 
         https://stackoverflow.com/questions/8816212/how-to-conditionally-render-plain-html-elements-like-divs

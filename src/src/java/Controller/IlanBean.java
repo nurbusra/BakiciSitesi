@@ -47,10 +47,9 @@ public class IlanBean implements Serializable {
         this.list = list;
     }
     
-    public String createEntity() {
+    public void createEntity() {
         this.getDao().create(this.entity);
         this.entity = new Ilan();
-        return "/ilanlar.xhtml?faces-redirect=true";
     }
     
     public void deleteEntity() {
@@ -59,10 +58,9 @@ public class IlanBean implements Serializable {
         //return "/ilanlar.xhtml?faces-redirect=true";
     }
     
-    public String updateEntity() {
+    public void updateEntity() {
         this.getDao().update(this.entity);
         this.entity = new Ilan();
-        return "/ilanlar.xhtml?faces-redirect=true";
     }
     
     public String redirectToIlanlar() {

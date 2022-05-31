@@ -30,21 +30,21 @@ public class IlanDAO extends DBConnection {
         try {
             Statement st = this.getDb().createStatement();
             String values = "VALUES("
-                          + c.getIlan_id() + ", "
                           + c.getBakici().getBakici_id() + ", "
                     + "'" + c.getAciklama() + "'" + ","
-                          + c.isAktif() + ","
                           + c.getUcret()
                     + ");";
 
             String query
-                    = "insert into ILAN(ilan_id,bakici_id,aciklama,aktif,ucret) " + values;
+                    = "insert into ILAN(bakici_id,aciklama,ucret) " + values;
+            System.out.println(query);
             int r = st.executeUpdate(query);
 
             System.out.println("DB INSERT returned with: " + r);
 
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
+            ex.printStackTrace();
         }
     }
 

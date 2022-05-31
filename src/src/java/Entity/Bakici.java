@@ -1,5 +1,6 @@
 package Entity;
 
+import DAO.IlanDAO;
 import java.util.List;
 
 public class Bakici extends User_ {
@@ -10,6 +11,8 @@ public class Bakici extends User_ {
     private int gecmis_alisveris;
     
     private List<Ilan> ilanlarList;
+    
+    private IlanDAO ilanDao;
 
     // Controller Sınıfının Kullanacağı Constructor
     public Bakici() {
@@ -72,6 +75,19 @@ public class Bakici extends User_ {
         this.ilanlarList = ilanlarList;
     }
 
+    public IlanDAO getIlanDao() {
+        if(ilanDao == null) ilanDao = new IlanDAO();
+        return ilanDao;
+    }
+
+    public void setIlanDao(IlanDAO ilanDao) {
+        this.ilanDao = ilanDao;
+    }
+    
+    public void ilanGuncelle() {
+        this.setIlanlarList(this.getIlanDao().retByBakiciId(this.getBakici_id()));
+    }
+    
     @Override
     public String toString() {
         return "Bakici{" + "user_id= " + this.getUser_id() + 
