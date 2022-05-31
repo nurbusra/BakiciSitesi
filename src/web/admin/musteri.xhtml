@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/template/enhancedTemplate.xhtml">
+
+    <ui:define name="content">
+        <h:form id="form">  
+            <div class="mb-3">
+                <label class="form-label">GECMIS_ALISVERIS:</label>
+                <h:inputText styleClass="form-control" value="#{musteriBean.entity.gecmis_alisveris}"/>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">ISIM:</label>
+                <h:inputText styleClass="form-control" value="#{userBean.entity.isim}"/>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">EMAIL:</label>
+                <h:inputText styleClass="form-control" value="#{userBean.entity.email}"/>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">SIFRE:</label>
+                <h:inputText styleClass="form-control" value="#{userBean.entity.sifre}"/>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">SINIF:</label>
+                <h:inputText styleClass="form-control" value="#{userBean.entity.sinif}"/>
+            </div>
+            <div class="mb-3">
+                <h:commandButton styleClass="btn btn-success" action="#{musteriBean.createEntity()}" value="Kaydet">
+                    <f:ajax execute="form" render="table form" />
+                </h:commandButton>
+                <h:commandButton styleClass="btn btn-primary" action="#{musteriBean.updateEntity()}" value="Update" >
+                    <f:ajax execute="form" render="table form" />
+                </h:commandButton>
+                <h:commandButton styleClass="btn btn-secondary"  action="#{musteriBean.clear()}" value="Clear" >
+                    <f:ajax execute="form" render="form" />
+                </h:commandButton>
+            </div>
+        </h:form>
+
+        <hr />
+        <hr />
+
+        <h:form id="table">        
+            <h:dataTable styleClass="table table-striped table-hover" value="#{musteriBean.list}" var="c">
+                <h:column>
+                    <f:facet name="header">ID</f:facet>
+                        #{c.musteri_id}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Gecmis_alisveris</f:facet>
+                        #{c.gecmis_alisveris}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">User</f:facet>
+                        #{c.user.user_id}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">ISIM</f:facet>
+                        #{c.user.isim}
+                </h:column> 
+
+                <h:column>
+                    <f:facet name="header">EMAIL</f:facet>
+                        #{c.user.email}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">SIFRE</f:facet>
+                        #{c.user.sifre}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">SINIF</f:facet>
+                        #{c.user.sinif}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Delete</f:facet>
+                    <h:commandButton styleClass="btn btn-danger btn-sm" action="#{musteriBean.deleteEntity()}" value="Sil">
+                        <f:actionListener binding="#{musteriBean.setEntity(c)}" />
+                        <f:ajax execute="table" render="table" />
+                    </h:commandButton>
+                    <h:commandButton styleClass="btn btn-primary btn-sm" action="#{musteriBean.setEntity(c)}" value="Update" >
+                        <f:ajax execute="table" render="form" />
+                    </h:commandButton>
+                </h:column>
+            </h:dataTable>
+        </h:form> 
+    </ui:define>
+</ui:composition>
