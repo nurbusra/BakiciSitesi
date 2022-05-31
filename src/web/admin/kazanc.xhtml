@@ -9,20 +9,12 @@
     <ui:define name="content">
         <h:form id="form">
             <div class="mb-3">
-                <label class="form-label">Kazanc ID:</label>
-                <h:inputText styleClass="form-control" value="#{kazancBean.entity.kazanc_id}"/>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Alisveris ID:</label>
-                <h:inputText styleClass="form-control" value="#{kazancBean.entity.alisveris_id}"/>
-            </div>
-            <div class="mb-3">
                 <label class="form-label">Config:</label>
-                <h:inputText styleClass="form-control" value="#{kazancBean.entity.config}"/>
+                <h:inputText styleClass="form-control" value="#{configBean.entity.config}"/>
             </div>
             <div class="mb-3">
                 <label class="form-label">Referans:</label>
-                <h:inputText styleClass="form-control" value="#{kazancBean.entity.referans}"/>
+                <h:inputText styleClass="form-control" value="#{referansBean.entity.referans}"/>
             </div>
             <div class="mb-3">
                 <h:commandButton styleClass="btn btn-success" action="#{kazancBean.createEntity()}" value="Kaydet">
