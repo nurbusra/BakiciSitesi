@@ -14,19 +14,19 @@
             </div>
             <div class="mb-3">
                 <label class="form-label">ISIM:</label>
-                <h:inputText styleClass="form-control" value="#{userBean.entity.isim}"/>
+                <h:inputText styleClass="form-control" value="#{musteriBean.entity.isim}"/>
             </div>
             <div class="mb-3">
                 <label class="form-label">EMAIL:</label>
-                <h:inputText styleClass="form-control" value="#{userBean.entity.email}"/>
+                <h:inputText styleClass="form-control" value="#{musteriBean.entity.email}"/>
             </div>
             <div class="mb-3">
                 <label class="form-label">SIFRE:</label>
-                <h:inputText styleClass="form-control" value="#{userBean.entity.sifre}"/>
+                <h:inputText styleClass="form-control" value="#{musteriBean.entity.sifre}"/>
             </div>
             <div class="mb-3">
                 <label class="form-label">SINIF:</label>
-                <h:inputText styleClass="form-control" value="#{userBean.entity.sinif}"/>
+                <h:inputText styleClass="form-control" value="#{musteriBean.entity.sinif}"/>
             </div>
             <div class="mb-3">
                 <h:commandButton styleClass="btn btn-success" action="#{musteriBean.createEntity()}" value="Kaydet">
@@ -45,7 +45,7 @@
         <hr />
 
         <h:form id="table">        
-            <h:dataTable styleClass="table table-striped table-hover" value="#{musteriBean.list}" var="c">
+            <h:dataTable styleClass="table table-striped " value="#{musteriBean.list}" var="c">
                 <h:column>
                     <f:facet name="header">ID</f:facet>
                         #{c.musteri_id}
@@ -56,33 +56,34 @@
                 </h:column>
                 <h:column>
                     <f:facet name="header">User</f:facet>
-                        #{c.user.user_id}
+                        #{c.user_id}
                 </h:column>
                 <h:column>
                     <f:facet name="header">ISIM</f:facet>
-                        #{c.user.isim}
+                        #{c.isim}
                 </h:column> 
 
                 <h:column>
                     <f:facet name="header">EMAIL</f:facet>
-                        #{c.user.email}
+                        #{c.email}
                 </h:column>
                 <h:column>
                     <f:facet name="header">SIFRE</f:facet>
-                        #{c.user.sifre}
+                        #{c.sifre}
                 </h:column>
                 <h:column>
                     <f:facet name="header">SINIF</f:facet>
-                        #{c.user.sinif}
+                        #{c.sinif}
                 </h:column>
                 <h:column>
-                    <f:facet name="header">Delete</f:facet>
-                    <h:commandButton styleClass="btn btn-danger btn-sm" action="#{musteriBean.deleteEntity()}" value="Sil">
+                    <f:facet name="header">Action</f:facet>
+                    <h:commandButton styleClass="btn btn-danger" value="Sil" action="#{musteriBean.deleteEntity}">
                         <f:actionListener binding="#{musteriBean.setEntity(c)}" />
-                        <f:ajax execute="table" render="table" />
+                        <f:ajax execute="table" render="table"/>
                     </h:commandButton>
-                    <h:commandButton styleClass="btn btn-primary btn-sm" action="#{musteriBean.setEntity(c)}" value="Update" >
-                        <f:ajax execute="table" render="form" />
+                   
+                    <h:commandButton styleClass="btn btn-warning" value="Düzenle" action="#{musteriBean.setEntity(c)}">
+                        <f:ajax execute="table" render="form"/>
                     </h:commandButton>
                 </h:column>
             </h:dataTable>
