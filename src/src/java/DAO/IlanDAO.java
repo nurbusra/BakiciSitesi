@@ -152,6 +152,7 @@ public class IlanDAO extends DBConnection {
                     rs.getFloat("ucret")
                     )
                 );
+                System.out.println("ILANDAO FETCH Bakici ID:" + rs.getInt("bakici_id"));
             }
             
             return out;

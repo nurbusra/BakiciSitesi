@@ -21,11 +21,7 @@
             <h:commandButton styleClass="button btn-sm btn-danger" 
                              action="/ilanolustur.xhtml?faces-redirect=true" 
                              rendered="#{sessionBean.entity.sinif == 1}" 
-                             value="İlan Oluştur"/>
-            <h:commandButton styleClass="button btn-sm btn-danger" 
-                             action="#{sessionBean.logout()}" 
-                             rendered="#{sessionBean.entity.sinif == 2}" 
-                             value="Başvurularım"/> <br/><br/>
+                             value="İlan Oluştur"/> <br/><br/>
         </h:form>
         
         <!-- Conditionally rendered <div>. See: 
@@ -53,6 +49,10 @@
                         <h:column> 
                             <f:facet name="header">Aktiflik</f:facet>
                                 #{i.aktif}
+                        </h:column>
+                        <h:column> 
+                            <f:facet name="header">Bakıcı ID</f:facet>
+                                #{i.bakici_id}
                         </h:column>
                         <h:column>
                             <f:facet name="header">Action</f:facet>

@@ -98,14 +98,15 @@ public class ConfigDAO extends DBConnection {
     }
     
     public String selectConfig(String option) {
-        try {
+        try {            
             Statement st = this.getDb().createStatement();
 
-            String query = "SELECT value FROM CONFIG WHERE _option =" + option;
+            String query = "SELECT _value FROM CONFIG WHERE _option = " + "'" + option + "'";
+            System.out.println(query);
             ResultSet rs = st.executeQuery(query);
 
             rs.next();
-            return rs.getString(option);
+            return rs.getString("_value");
      
         } catch (Exception ex) {
             System.out.println(ex.getMessage());

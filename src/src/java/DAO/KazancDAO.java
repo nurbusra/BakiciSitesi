@@ -25,7 +25,7 @@ public class KazancDAO extends DBConnection {
                     + ");";
 
             String query
-                    = "insert into KAZANC(alisveris_id,config) " + values;
+                    = "insert into KAZANC(alisveris_id,komisyon) " + values;
 
             int r = st.executeUpdate(query);
 
@@ -59,7 +59,7 @@ public class KazancDAO extends DBConnection {
                 kazancList.add(new Kazanc(
                         rs.getInt("kazanc_id"),
                         rs.getInt("alisveris_id"),
-                        rs.getInt("config"),
+                        rs.getInt("komisyon"),
                         rs.getBoolean("referans")
                     )
                 );
@@ -83,7 +83,7 @@ public class KazancDAO extends DBConnection {
                 return (new Kazanc(
                         rs.getInt("kazanc_id"),
                         rs.getInt("alisveris_id"),
-                        rs.getInt("config"),
+                        rs.getInt("komisyon"),
                         rs.getBoolean("referans")
                     )
                 );
