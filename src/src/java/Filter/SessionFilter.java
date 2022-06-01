@@ -35,29 +35,41 @@ public class SessionFilter implements Filter {
         }
         
         if(u == null) {
-            if(url.contains("admin") || url.contains("ilanlar") || url.contains("hesabim")) {
+            // Giriş yapılmamışsa:
+            if(url.contains("admin") || url.contains("ilan") || url.contains("hesabim")) {
+                //Giriş Yapılması Gereken Sayfalar İsteniyorsa
+                // giris.xhtml sayfasına yönlendir
                 resp.sendRedirect(req.getContextPath() + "/giris.xhtml");
             }
             else {
+                //Giriş Yapılması Gereken Sayfalar İstenmiyorsa
                 fc.doFilter(sr, sr1);
             }
         }
         
         else {
-            if(url.contains("admin")) {
-                if(u.getSinif() == 0) {
+            //Giriş yapılmışsa
+            switch(u.getSinif()) {
+                case 0:
+                    // Superuser, tüm dizinlere erişim izni ver
                     fc.doFilter(sr, sr1);
-                }
-                else {
-                    resp.sendRedirect(req.getContextPath() + "/noperm.xhtml");
-                }
-            }
-            
-            else if(url.contains("kayit") || url.contains("giris")) {
-                resp.sendRedirect(req.getContextPath() + "/index.xhtml");
-            }
-            else {
-                fc.doFilter(sr, sr1);
+                    break;
+                    
+                case 1:
+                    //Bakıcı, admin hariç tüm dizinlere erişim izin ver
+                    if(url.contains("admin")) 
+                        resp.sendRedirect(req.getContextPath() + "/noperm.xhtml");
+                    else 
+                        fc.doFilter(sr, sr1);
+                    break;
+                    
+                case 2:
+                    //Müşteri, admin ve ilanolustur.xhtml hariç tüm dizinlere erişim izin ver
+                    if(url.contains("admin") || url.contains("ilanolustur")) 
+                        resp.sendRedirect(req.getContextPath() + "/noperm.xhtml");
+                    else 
+                        fc.doFilter(sr, sr1);
+                    break;
             }
         }
     }
