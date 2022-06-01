@@ -49,6 +49,11 @@ public class SessionFilter implements Filter {
         
         else {
             //Giriş yapılmışsa
+            
+            if(url.contains("giris") || url.contains("kayit"))
+                //Giriş veya Kayıt sayfaları isteniyorsa
+                resp.sendRedirect(req.getContextPath() + "/index.xhtml");
+            
             switch(u.getSinif()) {
                 case 0:
                     // Superuser, tüm dizinlere erişim izni ver
