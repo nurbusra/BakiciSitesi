@@ -20,12 +20,12 @@ public class ConfigDAO extends DBConnection {
         try {
             Statement st = this.getDb().createStatement();
             String values = "VALUES("
-                    + "'" + c._getOption() + "'" + ", "
-                    + "'" + c._getValue() + "'"
+                    + "'" + c.getOption() + "'" + ", "
+                    + "'" + c.getValue() + "'"
                     + ");";
 
             String query
-                    = "insert into CONFIG(option,value) " + values;
+                    = "insert into CONFIG(_option, _value) " + values;
             int r = st.executeUpdate(query);
 
             System.out.println("DB INSERT returned with: " + r);
@@ -37,8 +37,10 @@ public class ConfigDAO extends DBConnection {
     public void delete(Config c) {
         try {
             Statement st = this.getDb().createStatement();
-            String query = "delete from config where option=" + c._getOption();
+            String query = "delete from config where _option= " + "'" + c.getOption() + "'";  
             int r = st.executeUpdate(query);
+            
+            System.out.println("DB DELETE returned with: " + r);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
@@ -52,8 +54,8 @@ public class ConfigDAO extends DBConnection {
             String query;
             query = "UPDATE CONFIG " + "\n"
                     + "SET " + "\n"
-                    + "_value = " + "'" + c._getValue() + "'" + "\n"
-                    + "WHERE _option = " + c._getOption() + ";";
+                    + "_value = " + "'" + c.getValue() + "'" + "\n"
+                    + "WHERE _option = " + "'" + c.getOption() + "'" + ";";
 
             int r = st.executeUpdate(query);
 
@@ -75,9 +77,7 @@ public class ConfigDAO extends DBConnection {
             while (rs.next()) {
                 configList.add(new Config(
                         rs.getString("_option"),
-                        rs.getString("_value"),
-                        rs.getTimestamp("created"),
-                        rs.getTimestamp("updated")));
+                        rs.getString("_value")));
 
             }
         } catch (Exception ex) {

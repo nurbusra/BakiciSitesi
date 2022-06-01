@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author ok
  */
-@Named(value = "ConfigBean")
+@Named(value = "configBean")
 @SessionScoped
 public class ConfigBean implements Serializable {
     
@@ -64,6 +64,10 @@ public class ConfigBean implements Serializable {
 
     public void updateEntity() {
         this.getDao().update(this.entity);
+        this.entity = new Config();
+    }
+    
+    public void clearEntity() {
         this.entity = new Config();
     }
 
