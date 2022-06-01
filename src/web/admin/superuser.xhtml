@@ -9,29 +9,29 @@
     <ui:define name="content">
         <h:form id="form">
             <div class="mb-3">
-                <label class="form-label">user:</label>
-                <h:inputText styleClass="form-control" value="#{userBean.entity.kazanc}"/>
+                <label class="form-label">Superuser:</label>
+                <h:inputText styleClass="form-control" value="#{superuserBean.entity.user}"/>
             </div>
             <div class="mb-3">
-                <label class="form-label">Alisveris ID:</label>
-                <h:inputText styleClass="form-control" value="#{kazancBean.entity.alisveris_id}"/>
+                <label class="form-label">İsim:</label>
+                <h:inputText styleClass="form-control" value="#{superuserBean.entity.isim}"/>
             </div>
             <div class="mb-3">
-                <label class="form-label">Config:</label>
-                <h:inputText styleClass="form-control" value="#{kazancBean.entity.config}"/>
+                <label class="form-label">Email:</label>
+                <h:inputText styleClass="form-control" value="#{superuserBean.entity.email}"/>
             </div>
             <div class="mb-3">
-                <label class="form-label">Referans:</label>
-                <h:inputText styleClass="form-control" value="#{kazancBean.entity.referans}"/>
+                <label class="form-label">Sifre:</label>
+                <h:inputText styleClass="form-control" value="#{superuserBean.entity.sifre}"/>
             </div>
             <div class="mb-3">
-                <h:commandButton styleClass="btn btn-success" action="#{kazancBean.createEntity()}" value="Kaydet">
+                <h:commandButton styleClass="btn btn-success" action="#{superuserBean.createEntity()}" value="Kaydet">
                     <f:ajax execute="form" render="table form" />
                 </h:commandButton>
-                <h:commandButton styleClass="btn btn-primary" action="#{kazancBean.updateEntity()}" value="Update" >
+                <h:commandButton styleClass="btn btn-primary" action="#{superuserBean.updateEntity()}" value="Update" >
                     <f:ajax execute="form" render="table form" />
                 </h:commandButton>
-                <h:commandButton styleClass="btn btn-secondary"  action="#{kazancBean.clearEntity()}" value="Clear" >
+                <h:commandButton styleClass="btn btn-secondary"  action="#{superuserBean.clearEntity()}" value="Clear" >
                     <f:ajax execute="form" render="form" />
                 </h:commandButton>
             </div>
@@ -41,29 +41,29 @@
         <hr />
 
         <h:form id="table">        
-            <h:dataTable styleClass="table table-striped table-hover" value="#{kazancBean.list}" var="c">
+            <h:dataTable styleClass="table table-striped table-hover" value="#{superuserBean.list}" var="c">
                 <h:column>
                     <f:facet name="Header">ID</f:facet>
-                        #{c.bakici_id}
+                        #{c.user_id}
                 </h:column>
                 <h:column>
-                    <f:facet name="Header">Alisveris</f:facet>
-                        #{c.alisveris_id}
+                    <f:facet name="Header">İsim</f:facet>
+                        #{c.isim}
                 </h:column>
                 <h:column>
-                    <f:facet name="Header">Config</f:facet>
-                        #{c.config.config}
+                    <f:facet name="Header">Email</f:facet>
+                        #{c.email}
                 </h:column>
                 <h:column>
-                    <f:facet name="Header">Referans</f:facet>
-                        #{c.referans.referans}
+                    <f:facet name="Header">Sifre</f:facet>
+                        #{c.sifre}
                 </h:column>
                 <h:column>
                     <f:facet name="Header">Delete</f:facet>
-                    <h:commandButton styleClass="btn btn-danger btn-sm" action="#{kazancBean.deleteEntity()}" value="Sil">
+                    <h:commandButton styleClass="btn btn-danger btn-sm" action="#{superuserBean.deleteEntity()}" value="Sil">
                         <f:ajax execute="category-table" render="category-table category-form" />
                     </h:commandButton>
-                    <h:commandButton styleClass="btn btn-primary btn-sm" action="#{kazancBean.setEntity(c)}" value="Update" >
+                    <h:commandButton styleClass="btn btn-primary btn-sm" action="#{superuserBean.setEntity(c)}" value="Update" >
                         <f:ajax execute="table" render="table form" />
                     </h:commandButton>
                 </h:column>
