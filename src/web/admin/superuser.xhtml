@@ -10,7 +10,7 @@
         <h:form id="form">
             <div class="mb-3">
                 <label class="form-label">Superuser:</label>
-                <h:inputText styleClass="form-control" value="#{superuserBean.entity.user}"/>
+                <h:inputText styleClass="form-control" value="#{superuserBean.entity.superuser}"/>
             </div>
             <div class="mb-3">
                 <label class="form-label">İsim:</label>
@@ -65,7 +65,7 @@
                 <h:column>
                     <f:facet name="Header">Action</f:facet>
                     <h:commandButton styleClass="btn btn-danger btn-sm" action="#{superuserBean.deleteEntity()}" value="Sil">
-                        <f:ajax execute="category-table" render="category-table category-form" />
+                        <f:ajax execute="table" render="table form" />
                     </h:commandButton>
                     <h:commandButton styleClass="btn btn-primary btn-sm" action="#{superuserBean.setEntity(c)}" value="Düzenle" >
                         <f:ajax execute="table" render="table form" />
