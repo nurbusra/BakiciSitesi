@@ -4,8 +4,8 @@ package Controller;
  *
  * @author Merve
  */
-import DAO.DocumentDAO;
-import Entity.Document;
+import DAO.DocDAO;
+import Entity.Doc;
 import jakarta.inject.Named;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.servlet.http.Part;
@@ -19,9 +19,9 @@ import java.util.List;
 @SessionScoped
 public class DocumentBean implements Serializable {
 
-    private Document document;
-    private List<Document> documentList;
-    private DocumentDAO documentDao;
+    private Doc document;
+    private List<Doc> documentList;
+    private DocDAO documentDao;
     private Part doc;
 
     private final String uploadTo = "/admin/document/";
@@ -43,42 +43,42 @@ public class DocumentBean implements Serializable {
         return uploadTo;
     }
 
-    public Document getDocument() {
+    public Doc getDocument() {
         if (this.document == null) {
-            this.document = new Document();
+            this.document = new Doc();
         }
         return document;
     }
 
-    public void setDocument(Document document) {
+    public void setDocument(Doc document) {
         this.document = document;
     }
 
-    public List<Document> getDocumentList() {
-        this.documentList = this.getDocumetDao().findAll();
+    public List<Doc> getDocumentList() {
+        this.documentList = this.getDocumetDao().getList();
         return documentList;
     }
 
-    public void setDocumentList(List<Document> documentList) {
+    public void setDocumentList(List<Doc> documentList) {
         this.documentList = documentList;
     }
 
-    public DocumentDAO getDocumetDao() {
+    public DocDAO getDocumetDao() {
         if (this.documentDao == null) {
-            this.documentDao = new DocumentDAO();
+            this.documentDao = new DocDAO();
         }
         return documentDao;
     }
 
-    public void setDocumetDao(DocumentDAO documetDao) {
+    public void setDocumetDao(DocDAO documetDao) {
         this.documentDao = documetDao;
     }
 
-    public DocumentDAO getDocumentDao() {
+    public DocDAO getDocumentDao() {
         return documentDao;
     }
 
-    public void setDocumentDao(DocumentDAO documentDao) {
+    public void setDocumentDao(DocDAO documentDao) {
         this.documentDao = documentDao;
     }
 

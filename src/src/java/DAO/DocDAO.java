@@ -4,7 +4,7 @@
  */
 package DAO;
 
-import Entity.LoginLog;
+import Entity.Doc;
 import Util.DBConnection;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -16,20 +16,19 @@ import java.util.List;
  *
  * @author Merve
  */
-public class LoginLogDAO extends DBConnection {
+public class DocDAO extends DBConnection {
 
     private Connection db;
 
-    public void create(LoginLog c) {
+    public void create(Doc c) {
         try {
             Statement st = this.getDb().createStatement();
             String values = "VALUES("
-                    + c.getUser_id() + ","
-                    + "'" + c.getIp_addr() + "'"
+                    + "'" + c.getDoc_path()+ "'"
                     + ");";
 
             String query
-                    = "insert into LOGIN_LOG(user_id, ip_addr) " + values;
+                    = "insert into DOC(doc_path) " + values;
 
             System.out.println(query);
             int r = st.executeUpdate(query);
@@ -38,32 +37,33 @@ public class LoginLogDAO extends DBConnection {
 
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
+            ex.printStackTrace();
         }
     }
 
-    public void delete(LoginLog c) {
+    public void delete(Doc c) {
         try {
             Statement st = this.getDb().createStatement();
 
-            String query = "delete from login_log where login_id=" + c.getLogin_id();
+            String query = "delete from DOC where doc_id=" + c.getDoc_id();
             int r = st.executeUpdate(query);
+            System.out.println("DB DELETE returned with: " + r);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
+            ex.printStackTrace();
         }
     }
 
-    public void update(LoginLog c) {
+    public void update(Doc c) {
 
         try {
             Statement st = this.getDb().createStatement();
 
             String query;
-            query = "UPDATE LOGIN_LOG " + "\n"
+            query = "UPDATE DOC " + "\n"
                     + "SET " + "\n"
-                    + "user_id = " + c.getUser_id()
-                    + "tarih = " + c.getTarih() + "\n"
-                    + "ip_addr = " + c.getIp_addr() + "\n" 
-                    + "WHERE login_id = " + c.getLogin_id() + ";";
+                    + "doc_path = " + c.getDoc_path() + "\n" 
+                    + "WHERE doc_id = " + c.getDoc_id() + ";";
             System.out.println(query);
             int r = st.executeUpdate(query);
 
@@ -71,24 +71,23 @@ public class LoginLogDAO extends DBConnection {
 
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
+            ex.printStackTrace();
         }
 
     }
 
-    public List<LoginLog> getList() {
-        List<LoginLog> loginlogList = new ArrayList<>();
+    public List<Doc> getList() {
+        List<Doc> loginlogList = new ArrayList<>();
         try {
             Statement st = this.getDb().createStatement();
 
-            String query = "select * from login_log";
+            String query = "select * from DOC";
             ResultSet rs = st.executeQuery(query);
 
             while (rs.next()) {
-                loginlogList.add(new LoginLog(
-                        rs.getInt("login_id"),
-                        rs.getInt("user_id"),
-                        rs.getTimestamp("tarih"),
-                        rs.getString("ip_addr")
+                loginlogList.add(new Doc(
+                        rs.getInt("doc_id"),
+                        rs.getString("doc_path")
                     )
                 );
             }
