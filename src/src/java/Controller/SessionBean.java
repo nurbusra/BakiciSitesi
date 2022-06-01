@@ -6,16 +6,19 @@ package Controller;
 
 import DAO.MusteriDAO;
 import DAO.BakiciDAO;
+import DAO.LoginLogDAO;
 import DAO.SuperuserDAO;
 import DAO.UserDAO;
 import Entity.Bakici;
 import Entity.Musteri;
 import Entity.Superuser;
 import Entity.User_;
+import Entity.LoginLog;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
+import jakarta.servlet.http.HttpServletRequest;
 import java.io.Serializable;
 
 @Named(value = "sessionBean")
@@ -108,7 +111,7 @@ public class SessionBean implements Serializable {
     public void setUserDao(UserDAO userDao) {
         this.userDao = userDao;
     }
-
+    
     public User_ getEntity() {
         if (entity == null) {
             entity = new User_();
@@ -125,6 +128,7 @@ public class SessionBean implements Serializable {
         User_ target = this.getUserDao().getUserByEmail(this.entity.getEmail());
         
         if (entity == null || target == null) {
+            // Failed login
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("E-posta ya da şifre hatalı."));
             System.out.println("Failed login attempt by: " + this.entity.getEmail());
             this.entity = new User_();
@@ -132,6 +136,7 @@ public class SessionBean implements Serializable {
         }
 
         else if (target.getSifre().equals( this.entity.getSifre()) ) {
+            // Succesful login
             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("validUser", target);
             System.out.println("Successful login by: " + this.entity.getEmail());
             this.entity = target;
@@ -140,10 +145,13 @@ public class SessionBean implements Serializable {
             
             this.castUserType();
             
+            this.logIpAddr();
+            
             return "/index.xhtml";
         }
         
         else {
+            // Failed login
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("E-posta ya da şifre hatalı."));
             System.out.println("Failed login attempt by: " + this.entity.getEmail());
             this.entity = new User_();
@@ -173,6 +181,31 @@ public class SessionBean implements Serializable {
                 this.childMusteri = (Musteri) this.getMusteriDao().findByUser_id( this.entity.getUser_id() );
                 break;
         }
+    }
+    
+    public void logIpAddr() {
+        // get ip addr and user_id
+        // Create a row in login_log table
+        HttpServletRequest req = 
+                (HttpServletRequest) FacesContext.
+                        getCurrentInstance().getExternalContext().getRequest();
+        
+        String ipAddress = req.getHeader("X-FORWARDED-FOR");
+        
+        if (ipAddress != null) {
+            // cares only about the first IP if there is a list
+            ipAddress = ipAddress.replaceFirst(",.*", "");
+        } else {
+            ipAddress = req.getRemoteAddr();
+        }
+        
+        LoginLogDAO loginDao = new LoginLogDAO();
+        LoginLog log = new LoginLog();
+        
+        log.setIp_addr(ipAddress);
+        log.setUser_id(this.entity.getUser_id());
+        
+        loginDao.create(log);
     }
     
     public String createSu() {
