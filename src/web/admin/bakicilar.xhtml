@@ -43,23 +43,23 @@
         <h:form id="table">        
             <h:dataTable styleClass="table table-striped table-hover" value="#{bakiciBean.list}" var="c">
                 <h:column>
-                    <f:facet name="Header">ID</f:facet>
+                    <f:facet name="header">ID</f:facet>
                         #{c.bakici_id}
                 </h:column>
                 <h:column>
-                    <f:facet name="Header">Negatif Referans</f:facet>
+                    <f:facet name="header">Negatif Referans</f:facet>
                         #{c.neg_referans}
                 </h:column>
                 <h:column>
-                    <f:facet name="Header">Pozitif Referans</f:facet>
+                    <f:facet name="header">Pozitif Referans</f:facet>
                         #{c.poz_referans}
                 </h:column>
                 <h:column>
-                    <f:facet name="Header">Gecmis Alisveris</f:facet>
+                    <f:facet name="header">Gecmis Alisveris</f:facet>
                         #{c.gecmis_alisveris}
                 </h:column>
                 <h:column>
-                    <f:facet name="Header">Action</f:facet>
+                    <f:facet name="header">Action</f:facet>
                     <h:commandButton styleClass="btn btn-danger btn-sm" action="#{bakiciBean.deleteEntity()}" value="Sil">
                         <f:ajax execute="category-table" render="category-table category-form" />
                     </h:commandButton>
