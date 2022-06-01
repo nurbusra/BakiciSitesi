@@ -53,29 +53,30 @@ public class SessionFilter implements Filter {
             if(url.contains("giris") || url.contains("kayit"))
                 //Giriş veya Kayıt sayfaları isteniyorsa
                 resp.sendRedirect(req.getContextPath() + "/index.xhtml");
-            
-            switch(u.getSinif()) {
-                case 0:
-                    // Superuser, tüm dizinlere erişim izni ver
-                    fc.doFilter(sr, sr1);
-                    break;
-                    
-                case 1:
-                    //Bakıcı, admin hariç tüm dizinlere erişim izin ver
-                    if(url.contains("admin")) 
-                        resp.sendRedirect(req.getContextPath() + "/noperm.xhtml");
-                    else 
+            else {
+                switch(u.getSinif()) {
+                    case 0:
+                        // Superuser, tüm dizinlere erişim izni ver
                         fc.doFilter(sr, sr1);
-                    break;
-                    
-                case 2:
-                    //Müşteri, admin ve ilanolustur.xhtml hariç tüm dizinlere erişim izin ver
-                    if(url.contains("admin") || url.contains("ilanolustur")) 
-                        resp.sendRedirect(req.getContextPath() + "/noperm.xhtml");
-                    else 
-                        fc.doFilter(sr, sr1);
-                    break;
-            }
-        }
-    }
-}
+                        break;
+
+                    case 1:
+                        //Bakıcı, admin hariç tüm dizinlere erişim izin ver
+                        if(url.contains("admin")) 
+                            resp.sendRedirect(req.getContextPath() + "/noperm.xhtml");
+                        else 
+                            fc.doFilter(sr, sr1);
+                        break;
+
+                    case 2:
+                        //Müşteri, admin ve ilanolustur.xhtml hariç tüm dizinlere erişim izin ver
+                        if(url.contains("admin") || url.contains("ilanolustur")) 
+                            resp.sendRedirect(req.getContextPath() + "/noperm.xhtml");
+                        else 
+                            fc.doFilter(sr, sr1);
+                        break;
+                } //Switch
+            } //Else
+        } //Else
+    } //Method
+} //Class

@@ -15,7 +15,7 @@ import java.util.List;
  *
  * @author busra
  */
-@Named(value = "LoginLogBean")
+@Named(value = "loginlogBean")
 @SessionScoped
 public class LoginLogBean implements Serializable {
 
@@ -53,25 +53,28 @@ public class LoginLogBean implements Serializable {
     public void setList(List<LoginLog> list) {
         this.list = list;
     }
+    
+    public void clear() {
+        System.out.println("clear()");
+        this.entity = new LoginLog();
+    }
 
     public void createEntity() {
-        this.getDao().create(this.entity);
+        System.out.println("createEntity()");
+        this.getDao().create(this.getEntity());
         this.entity = new LoginLog();
     }
 
     public void deleteEntity() {
+        System.out.println("deleteEntity()");
         this.getDao().delete(entity);
         this.entity = new LoginLog();
         //return "/loginlog.xhtml?faces-redirect=true";
     }
 
     public void updateEntity() {
+        System.out.println("updateEntity()");
         this.getDao().update(this.entity);
         this.entity = new LoginLog();
     }
-
-    public String redirectToIlanlar() {
-        return "/loginlog.xhtml";
-    }
-
 }

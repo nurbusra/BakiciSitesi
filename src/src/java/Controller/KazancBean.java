@@ -94,4 +94,8 @@ public class KazancBean implements Serializable {
         this.entity = new Kazanc();
         return "";
     }
+    
+    public void clear() {
+        this.entity = new Kazanc();
+    }
 }

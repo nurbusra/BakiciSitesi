@@ -7,17 +7,17 @@
                 template="/template/enhancedTemplate.xhtml">
 
     <ui:define name="content">
-        <h:form id="form">
-             <div class="mb-3">
-                <label class="form-label">user_id:</label>
+        <h:form id="form">  
+            <div class="mb-3">
+                <label class="form-label">User ID</label>
                 <h:inputText styleClass="form-control" value="#{loginlogBean.entity.user_id}"/>
             </div>
-             <div class="mb-3">
-                <label class="form-label">tarih:</label>
+            <div class="mb-3">
+                <label class="form-label">Tarih</label>
                 <h:inputText styleClass="form-control" value="#{loginlogBean.entity.tarih}"/>
             </div>
             <div class="mb-3">
-                <label class="form-label">ip_addr:</label>
+                <label class="form-label">IP Adresi</label>
                 <h:inputText styleClass="form-control" value="#{loginlogBean.entity.ip_addr}"/>
             </div>
             <div class="mb-3">
@@ -27,15 +27,12 @@
                 <h:commandButton styleClass="btn btn-primary" action="#{loginlogBean.updateEntity()}" value="Update" >
                     <f:ajax execute="form" render="table form" />
                 </h:commandButton>
-                <h:commandButton styleClass="btn btn-secondary"  action="#{loginlogBean.clearEntity()}" value="Clear" >
+                <h:commandButton styleClass="btn btn-secondary" action="#{loginlogBean.clear()}" value="Clear" >
                     <f:ajax execute="form" render="form" />
                 </h:commandButton>
             </div>
         </h:form>
-
         <hr />
-        <hr />
-
         <h:form id="table">        
             <h:dataTable styleClass="table table-striped " value="#{loginlogBean.list}" var="c">
                 <h:column>
@@ -57,16 +54,16 @@
                 
                 <h:column>
                     <f:facet name="header">Action</f:facet>
-                    <h:commandButton styleClass="btn btn-danger" value="Sil" action="#{loginlogBean.deleteEntity}">
-                        <f:actionListener binding="#{loginlogBean.setEntity(i)}" />
+                    <h:commandButton styleClass="btn btn-danger" value="Sil" action="#{loginlogBean.deleteEntity()}">
+                        <f:actionListener binding="#{loginlogBean.setEntity(c)}" />
                         <f:ajax execute="table" render="table"/>
                     </h:commandButton>
                    
-                    <h:commandButton styleClass="btn btn-warning" value="Düzenle" action="#{loginlogBean.setEntity(i)}">
+                    <h:commandButton styleClass="btn btn-warning" value="Düzenle" action="#{loginlogBean.setEntity(c)}">
                         <f:ajax execute="table" render="form"/>
                     </h:commandButton>
                 </h:column>
             </h:dataTable>
-        </h:form> 
+        </h:form>        
     </ui:define>
 </ui:composition>

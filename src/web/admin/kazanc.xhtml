@@ -23,7 +23,7 @@
                 <h:commandButton styleClass="btn btn-primary" action="#{kazancBean.updateEntity()}" value="Update" >
                     <f:ajax execute="form" render="table form" />
                 </h:commandButton>
-                <h:commandButton styleClass="btn btn-secondary"  action="#{kazancBean.clearEntity()}" value="Clear" >
+                <h:commandButton styleClass="btn btn-secondary"  action="#{kazancBean.clear()}" value="Clear" >
                     <f:ajax execute="form" render="form" />
                 </h:commandButton>
             </div>
@@ -36,7 +36,7 @@
             <h:dataTable styleClass="table table-striped " value="#{kazancBean.list}" var="i">
                 <h:column>
                     <f:facet name="header">ID</f:facet>
-                        #{i.bakici_id}
+                        #{i.kazanc_id}
                 </h:column>
                 <h:column>
                     <f:facet name="header">Alisveris</f:facet>
