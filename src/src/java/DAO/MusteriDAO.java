@@ -60,7 +60,7 @@ public class MusteriDAO extends DBConnection {
             Statement st = this.getDb().createStatement();
 
             String query;
-            query = "UPDATE MUSTERİ " + "\n"
+            query = "UPDATE MUSTERI " + "\n"
                     + "SET " + "\n"
                     + "isim = " + "'" + c.getIsim() + "'" + ",\n"
                     + "email = " + "'" + c.getEmail() + "'" + ",\n"

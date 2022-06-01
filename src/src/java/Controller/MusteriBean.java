@@ -41,7 +41,8 @@ public class MusteriBean implements Serializable {
     }
 
     public List<Musteri> getList() {
-        return this.getDao().getList();
+        list = this.getDao().getList();
+        return list;
     }
 
     public void setList(List<Musteri> list) {
@@ -60,6 +61,10 @@ public class MusteriBean implements Serializable {
     
     public void updateEntity() {
         this.getDao().update(this.entity);
+        this.entity = new Musteri();
+    }
+    
+    public void clear() {
         this.entity = new Musteri();
     }
 }
