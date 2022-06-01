@@ -4,34 +4,27 @@ import java.sql.Timestamp;
 
 public class LoginLog {
 
-    private int login_id;
-    private Timestamp tarih;
+    private int login_id; //DEFAULT
     private int user_id;
-//<<<<<<< Updated upstream
-    private Timestamp created;
-    private Timestamp updated;
+    private Timestamp tarih; //DEFAULT
+    private String ip_addr;
 
-//>>>>>>> Stashed changes
-
+    //Controller
     public LoginLog() {
     }
 
-//<<<<<<< Updated upstream
-    public LoginLog(Timestamp tarih, int user_id) {
-        this.tarih = tarih;
+    //Create
+    public LoginLog(int user_id, String ip_addr) {
         this.user_id = user_id;
+        this.ip_addr = ip_addr;
     }
 
-    public LoginLog(int login_id, Timestamp tarih, int user_id,Timestamp created,Timestamp updated) {;
-    }
-
-    public LoginLog(int login_id, String ip_addr, Timestamp tarih, int user_id) {
-//>>>>>>> Stashed changes
+    //Retrieve
+    public LoginLog(int login_id, int user_id, Timestamp tarih, String ip_addr)  {
         this.login_id = login_id;
-        this.tarih = tarih;
         this.user_id = user_id;
-        this.created=created;
-        this.updated=updated;
+        this.tarih = tarih;
+        this.ip_addr = ip_addr;
     }
 
     public int getLogin_id() {
@@ -59,25 +52,14 @@ public class LoginLog {
         this.user_id = user_id;
     }
 
-//<<<<<<< Updated upstream
-    public Timestamp getCreated() {
-        return created;
+    public String getIp_addr() {
+        return ip_addr;
     }
 
-    public void setCreated(Timestamp created) {
-        this.created = created;
+    public void setIp_addr(String ip_addr) {
+        this.ip_addr = ip_addr;
     }
 
-    public Timestamp getUpdated() {
-        return updated;
-    }
-
-    public void setUpdated(Timestamp updated) {
-        this.updated = updated;
-    }
-    
-
-//>>>>>>> Stashed changes
     @Override
     public String toString() {
         return "LoginLog{" + "login_id=" + login_id + "user_id=" + user_id + '}';

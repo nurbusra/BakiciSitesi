@@ -24,14 +24,14 @@ public class LoginLogDAO extends DBConnection {
         try {
             Statement st = this.getDb().createStatement();
             String values = "VALUES("
-                    + c.getLogin_id() + ", "
-                    + c.getTarih() + ","
-                    + c.getUser_id()
+                    + c.getUser_id() + ","
+                    + "'" + c.getIp_addr() + "'"
                     + ");";
 
             String query
-                    = "insert into LOGINLOG(login_id, tarih ,user_id) " + values;
+                    = "insert into LOGIN_LOG(user_id, ip_addr) " + values;
 
+            System.out.println(query);
             int r = st.executeUpdate(query);
 
             System.out.println("DB INSERT returned with: " + r);
@@ -45,7 +45,7 @@ public class LoginLogDAO extends DBConnection {
         try {
             Statement st = this.getDb().createStatement();
 
-            String query = "delete from loginlog where id=" + c.getLogin_id();
+            String query = "delete from login_log where id=" + c.getLogin_id();
             int r = st.executeUpdate(query);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
@@ -58,10 +58,13 @@ public class LoginLogDAO extends DBConnection {
             Statement st = this.getDb().createStatement();
 
             String query;
-            query = "UPDATE LOGINLOG " + "\n"
+            query = "UPDATE LOGIN_LOG " + "\n"
                     + "SET " + "\n"
+                    + "user_id = " + c.getUser_id()
                     + "tarih = " + c.getTarih() + "\n"
+                    + "ip_addr = " + c.getIp_addr() + "\n" 
                     + "WHERE login_id = " + c.getLogin_id() + ";";
+            System.out.println(query);
             int r = st.executeUpdate(query);
 
             System.out.println("DB UPDATE returned with: " + r);
@@ -77,20 +80,21 @@ public class LoginLogDAO extends DBConnection {
         try {
             Statement st = this.getDb().createStatement();
 
-            String query = "select * from loginlog";
+            String query = "select * from login_log";
             ResultSet rs = st.executeQuery(query);
 
             while (rs.next()) {
                 loginlogList.add(new LoginLog(
                         rs.getInt("login_id"),
-                        rs.getTimestamp("tarih"),
                         rs.getInt("user_id"),
-                        rs.getTimestamp("created"),
-                        rs.getTimestamp("updated")));
-
+                        rs.getTimestamp("tarih"),
+                        rs.getString("ip_addr")
+                    )
+                );
             }
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
+            ex.printStackTrace();
         }
         return loginlogList;
     }

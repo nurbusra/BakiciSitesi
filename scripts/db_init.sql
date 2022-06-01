@@ -98,6 +98,18 @@ CREATE TABLE Config(
 );
 INSERT INTO Config(_option, _value) VALUES('komisyon', '25');
 
+/*
+	Login Event Logger Table
+*/
+DROP TABLE IF EXISTS login_log CASCADE;
+CREATE TABLE login_log(
+	login_id SERIAL,
+	user_id int NOT NULL,
+	tarih TIMESTAMP DEFAULT NOW(),
+	ip_addr varchar(50) NOT NULL,
+	PRIMARY KEY(login_id)
+);
+
 /*	Kazanc
 	MusteriXilan / odendi == True
 */
