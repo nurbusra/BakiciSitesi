@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author ok
  */
-@Named(value = "configBean")
+@Named(value = "ConfigBean")
 @SessionScoped
 public class ConfigBean implements Serializable {
     
@@ -53,21 +53,21 @@ public class ConfigBean implements Serializable {
 
     public void createEntity() {
         this.getDao().create(this.entity);
-        this.entity = new LoginLog();
+        this.entity = new Config();
     }
 
     public void deleteEntity() {
         this.getDao().delete(entity);
-        this.entity = new LoginLog();
+        this.entity = new Config();
         //return "/loginlog.xhtml?faces-redirect=true";
     }
 
     public void updateEntity() {
         this.getDao().update(this.entity);
-        this.entity = new LoginLog();
+        this.entity = new Config();
     }
 
     public String redirectToIlanlar() {
-        return "/loginlog.xhtml";
+        return "/config.xhtml";
     }
 }
