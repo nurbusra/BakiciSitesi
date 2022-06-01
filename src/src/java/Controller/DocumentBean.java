@@ -19,7 +19,7 @@ import java.util.List;
 @SessionScoped
 public class DocumentBean implements Serializable {
 
-    private Doc document;
+    private Doc entity;
     private List<Doc> documentList;
     private DocDAO documentDao;
     private Part doc;
@@ -43,15 +43,15 @@ public class DocumentBean implements Serializable {
         return uploadTo;
     }
 
-    public Doc getDocument() {
-        if (this.document == null) {
-            this.document = new Doc();
+    public Doc getEntity() {
+        if (this.entity == null) {
+            this.entity = new Doc();
         }
-        return document;
+        return entity;
     }
 
-    public void setDocument(Doc document) {
-        this.document = document;
+    public void setEntity(Doc entity) {
+        this.entity = entity;
     }
 
     public List<Doc> getDocumentList() {

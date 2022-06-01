@@ -33,3 +33,5 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
+
+web/admin/document/
