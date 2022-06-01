@@ -77,12 +77,12 @@
                 </h:column>
                 <h:column>
                     <f:facet name="header">Action</f:facet>
-                    <h:commandButton styleClass="btn btn-danger" value="Sil" action="#{musteriBean.deleteEntity}">
+                    <h:commandButton styleClass="btn btn-danger btn-sm" value="Sil" action="#{musteriBean.deleteEntity()}">
                         <f:actionListener binding="#{musteriBean.setEntity(c)}" />
                         <f:ajax execute="table" render="table"/>
                     </h:commandButton>
                    
-                    <h:commandButton styleClass="btn btn-warning" value="Düzenle" action="#{musteriBean.setEntity(c)}">
+                    <h:commandButton styleClass="btn btn-primary btn-sm" value="Düzenle" action="#{musteriBean.setEntity(c)}">
                         <f:ajax execute="table" render="form"/>
                     </h:commandButton>
                 </h:column>

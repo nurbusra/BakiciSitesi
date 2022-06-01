@@ -159,4 +159,8 @@ public class SuperuserDAO extends DBConnection {
         this.db = db;
     }
 
+    public void clear(Superuser entity) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
 }

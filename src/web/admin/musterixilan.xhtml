@@ -55,7 +55,7 @@
                         #{c.odendi}
                 </h:column>
                 <h:column>
-                    <f:facet name="header">Delete</f:facet>
+                    <f:facet name="header">Action</f:facet>
                     <h:commandButton styleClass="btn btn-danger btn-sm" action="#{musterixilanBean.deleteEntity()}" value="Sil">
                         <f:actionListener binding="#{musterixilanBean.setEntity(c)}" />
                         <f:ajax execute="table" render="table" />
