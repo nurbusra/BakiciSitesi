@@ -19,6 +19,8 @@ public class SuperuserBean implements Serializable {
     private Superuser entity;
     private SuperuserDAO dao;
     private List<Superuser> list;
+    private Superuser setEntity;
+    private Superuser Entity;
     
     public SuperuserBean() {
     }
@@ -66,4 +68,10 @@ public class SuperuserBean implements Serializable {
         this.entity = new Superuser();
         return "/superuser.xhtml?faces-redirect=true";
     }
+    
+    public void clearEntity() {
+        this.entity = new Superuser();
+    }
+        
 }
+  
