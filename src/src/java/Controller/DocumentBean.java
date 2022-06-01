@@ -24,7 +24,7 @@ public class DocumentBean implements Serializable {
     private DocumentDAO documentDao;
     private Part doc;
 
-    private final String uploadTo = "/User/Merve/upload";
+    private final String uploadTo = "/admin/document/";
 
     public DocumentBean() {
     }
