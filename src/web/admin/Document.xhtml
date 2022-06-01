@@ -7,13 +7,58 @@
                 template="/template/enhancedTemplate.xhtml">
 
     <ui:define name="content">
-        <h:form enctype="multipart/form-data">
+        <h:form id ="upload" enctype="multipart/form-data">
             <div class="form-group">
                 <label>File</label>
-                <h:inputFile value="#{documentBean.entity}" styleClass="custom-file" />
+                <h:inputFile value="#{documentBean.doc}" styleClass="custom-file" />
             </div>
             <h:commandButton action="#{documentBean.upload}" value="Upload" styleClass="btn btn-primary" />
+        </h:form> <br/><br/>
+        
+        
+        <h:form id="form">
+            <div class="mb-3">
+                <label class="form-label">Path:</label>
+                <h:inputText styleClass="form-control" value="#{documentBean.entity.doc_path}"/>
+            </div>
+            <div class="mb-3">
+                <h:commandButton styleClass="btn btn-success" action="#{documentBean.createEntity()}" value="Kaydet">
+                    <f:ajax execute="form" render="table form" />
+                </h:commandButton>
+                <h:commandButton styleClass="btn btn-primary" action="#{documentBean.updateEntity()}" value="Update" >
+                    <f:ajax execute="form" render="table form" />
+                </h:commandButton>
+                <h:commandButton styleClass="btn btn-secondary"  action="#{documentBean.clear()}" value="Clear" >
+                    <f:ajax execute="form" render="form" />
+                </h:commandButton>
+            </div>
         </h:form>
+
+        <hr />
+
+        <h:form id="table">        
+            <h:dataTable styleClass="table table-striped " value="#{documentBean.documentList}" var="i">
+                <h:column>
+                    <f:facet name="header">ID</f:facet>
+                        #{i.doc_id}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Path</f:facet>
+                        #{i.doc_path}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Action</f:facet>
+                    <h:commandButton styleClass="btn btn-danger" value="Sil" action="#{documentBean.deleteEntity}">
+                        <f:actionListener binding="#{documentBean.setEntity(i)}" />
+                        <f:ajax execute="table" render="table"/>
+                    </h:commandButton>
+                   
+                    <h:commandButton styleClass="btn btn-warning" value="Düzenle" action="#{documentBean.setEntity(i)}">
+                        <f:ajax execute="table" render="form"/>
+                    </h:commandButton>
+                </h:column>
+            </h:dataTable>
+        </h:form> 
     </ui:define>
 </ui:composition>
 

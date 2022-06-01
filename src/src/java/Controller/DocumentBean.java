@@ -24,7 +24,7 @@ public class DocumentBean implements Serializable {
     private DocDAO documentDao;
     private Part doc;
 
-    private final String uploadTo = "/admin/document/";
+    private final String uploadTo = "/Users/" + System.getProperty("user.name") + "/Desktop/upload/";
 
     public DocumentBean() {
     }
@@ -34,8 +34,13 @@ public class DocumentBean implements Serializable {
             InputStream input = doc.getInputStream();
             File f = new File(uploadTo + doc.getSubmittedFileName());
             Files.copy(input, f.toPath());
+            
+            this.getEntity().setDoc_path(this.uploadTo + doc.getSubmittedFileName());
+            this.createEntity();
+            
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            e.printStackTrace();
         }
     }
 
@@ -75,6 +80,7 @@ public class DocumentBean implements Serializable {
     }
 
     public DocDAO getDocumentDao() {
+        if(documentDao == null) documentDao = new DocDAO();
         return documentDao;
     }
 
@@ -88,6 +94,18 @@ public class DocumentBean implements Serializable {
 
     public void setDoc(Part doc) {
         this.doc = doc;
+    }
+    
+    public void createEntity() {
+        this.getDocumentDao().create(entity);
+    }
+    
+    public void deleteEntity() {
+        this.getDocumentDao().delete(entity);
+    }
+    
+    public void clear() {
+        this.entity = new Doc();
     }
 
 }
