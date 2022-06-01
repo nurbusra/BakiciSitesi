@@ -9,29 +9,29 @@
     <ui:define name="content">
         <h:form id="form">
             <div class="mb-3">
-                <label class="form-label">Bakici:</label>
-                <h:inputText styleClass="form-control" value="#{bakiciBean.entity.bakici}"/>
+                <label class="form-label">user:</label>
+                <h:inputText styleClass="form-control" value="#{userBean.entity.kazanc}"/>
             </div>
             <div class="mb-3">
-                <label class="form-label">Negatif Referans:</label>
-                <h:inputText styleClass="form-control" value="#{bakiciBean.entity.neg_referans}"/>
+                <label class="form-label">Alisveris ID:</label>
+                <h:inputText styleClass="form-control" value="#{kazancBean.entity.alisveris_id}"/>
             </div>
             <div class="mb-3">
-                <label class="form-label">Pozitif Referans:</label>
-                <h:inputText styleClass="form-control" value="#{bakiciBean.entity.poz_referans}"/>
+                <label class="form-label">Config:</label>
+                <h:inputText styleClass="form-control" value="#{kazancBean.entity.config}"/>
             </div>
             <div class="mb-3">
-                <label class="form-label">Gecmis Alisveris:</label>
-                <h:inputText styleClass="form-control" value="#{bakiciBean.entity.gecmis_alisveris}"/>
+                <label class="form-label">Referans:</label>
+                <h:inputText styleClass="form-control" value="#{kazancBean.entity.referans}"/>
             </div>
             <div class="mb-3">
-                <h:commandButton styleClass="btn btn-success" action="#{bakiciBean.createEntity()}" value="Kaydet">
+                <h:commandButton styleClass="btn btn-success" action="#{kazancBean.createEntity()}" value="Kaydet">
                     <f:ajax execute="form" render="table form" />
                 </h:commandButton>
-                <h:commandButton styleClass="btn btn-primary" action="#{bakiciBean.updateEntity()}" value="Update" >
+                <h:commandButton styleClass="btn btn-primary" action="#{kazancBean.updateEntity()}" value="Update" >
                     <f:ajax execute="form" render="table form" />
                 </h:commandButton>
-                <h:commandButton styleClass="btn btn-secondary"  action="#{bakiciBean.clearEntity()}" value="Clear" >
+                <h:commandButton styleClass="btn btn-secondary"  action="#{kazancBean.clearEntity()}" value="Clear" >
                     <f:ajax execute="form" render="form" />
                 </h:commandButton>
             </div>
@@ -41,29 +41,29 @@
         <hr />
 
         <h:form id="table">        
-            <h:dataTable styleClass="table table-striped table-hover" value="#{bakiciBean.list}" var="c">
+            <h:dataTable styleClass="table table-striped table-hover" value="#{kazancBean.list}" var="c">
                 <h:column>
                     <f:facet name="Header">ID</f:facet>
                         #{c.bakici_id}
                 </h:column>
                 <h:column>
-                    <f:facet name="Header">Negatif Referans</f:facet>
-                        #{c.neg_referans}
+                    <f:facet name="Header">Alisveris</f:facet>
+                        #{c.alisveris_id}
                 </h:column>
                 <h:column>
-                    <f:facet name="Header">Pozitif Referans</f:facet>
-                        #{c.poz_referans}
+                    <f:facet name="Header">Config</f:facet>
+                        #{c.config.config}
                 </h:column>
                 <h:column>
-                    <f:facet name="Header">Gecmis Alisveris</f:facet>
-                        #{c.gecmis_alisveris}
+                    <f:facet name="Header">Referans</f:facet>
+                        #{c.referans.referans}
                 </h:column>
                 <h:column>
                     <f:facet name="Header">Delete</f:facet>
-                    <h:commandButton styleClass="btn btn-danger btn-sm" action="#{bakiciBean.deleteEntity()}" value="Sil">
+                    <h:commandButton styleClass="btn btn-danger btn-sm" action="#{kazancBean.deleteEntity()}" value="Sil">
                         <f:ajax execute="category-table" render="category-table category-form" />
                     </h:commandButton>
-                    <h:commandButton styleClass="btn btn-primary btn-sm" action="#{bakiciBean.setEntity(c)}" value="Update" >
+                    <h:commandButton styleClass="btn btn-primary btn-sm" action="#{kazancBean.setEntity(c)}" value="Update" >
                         <f:ajax execute="table" render="table form" />
                     </h:commandButton>
                 </h:column>
