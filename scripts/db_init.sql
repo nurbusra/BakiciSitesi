@@ -110,6 +110,16 @@ CREATE TABLE login_log(
 	PRIMARY KEY(login_id)
 );
 
+/*
+	Table for holding document paths
+*/
+DROP TABLE IF EXISTS doc CASCADE;
+CREATE TABLE doc(
+	doc_id SERIAL,
+	doc_path varchar(100) NOT NULL,
+	PRIMARY KEY(doc_id)
+); 
+
 /*	Kazanc
 	MusteriXilan / odendi == True
 */
