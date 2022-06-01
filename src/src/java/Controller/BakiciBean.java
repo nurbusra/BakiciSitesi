@@ -42,28 +42,33 @@ public class BakiciBean implements Serializable {
     }
 
     public List<Bakici> getList() {
-        return this.getDao().getList();
+        this.list = this.getDao().getList();
+        return list;
     }
 
     public void setList(List<Bakici> list) {
         this.list = list;
     }
     
-    public String createEntity() {
+    public void createEntity() {
         this.getDao().create(this.entity);
         this.entity = new Bakici();
-        return "/bakicilar.xhtml?faces-redirect=true";
+        //return "/bakicilar.xhtml?faces-redirect=true";
     }
     
-    public String deleteEntity() {
+    public void deleteEntity() {
         this.getDao().delete(entity);
         this.entity = new Bakici();
-        return "/bakicilar.xhtml?faces-redirect=true";
+        //return "/bakicilar.xhtml?faces-redirect=true";
     }
     
-    public String updateEntity() {
+    public void updateEntity() {
         this.getDao().update(this.entity);
         this.entity = new Bakici();
-        return "/bakicilar.xhtml?faces-redirect=true";
+        //return "/bakicilar.xhtml?faces-redirect=true";
+    }
+    
+    public void clearEntity() {
+        this.entity = new Bakici();
     }
 }

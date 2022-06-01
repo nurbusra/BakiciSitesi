@@ -9,20 +9,12 @@
     <ui:define name="content">
         <h:form id="form">
             <div class="mb-3">
-                <label class="form-label">Bakici:</label>
-                <h:inputText styleClass="form-control" value="#{bakiciBean.entity.bakici}"/>
+                <label class="form-label">İsim:</label>
+                <h:inputText styleClass="form-control" value="#{bakiciBean.entity.isim}"/>
             </div>
             <div class="mb-3">
-                <label class="form-label">Negatif Referans:</label>
-                <h:inputText styleClass="form-control" value="#{bakiciBean.entity.neg_referans}"/>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Pozitif Referans:</label>
-                <h:inputText styleClass="form-control" value="#{bakiciBean.entity.poz_referans}"/>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Gecmis Alisveris:</label>
-                <h:inputText styleClass="form-control" value="#{bakiciBean.entity.gecmis_alisveris}"/>
+                <label class="form-label">Email:</label>
+                <h:inputText styleClass="form-control" value="#{bakiciBean.entity.email}"/>
             </div>
             <div class="mb-3">
                 <h:commandButton styleClass="btn btn-success" action="#{bakiciBean.createEntity()}" value="Kaydet">
@@ -47,16 +39,12 @@
                         #{c.bakici_id}
                 </h:column>
                 <h:column>
-                    <f:facet name="header">Negatif Referans</f:facet>
-                        #{c.neg_referans}
+                    <f:facet name="header">İsim</f:facet>
+                        #{c.isim}
                 </h:column>
                 <h:column>
-                    <f:facet name="header">Pozitif Referans</f:facet>
-                        #{c.poz_referans}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Gecmis Alisveris</f:facet>
-                        #{c.gecmis_alisveris}
+                    <f:facet name="header">Email</f:facet>
+                        #{c.email}
                 </h:column>
                 <h:column>
                     <f:facet name="header">Action</f:facet>
