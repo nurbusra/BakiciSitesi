@@ -8,9 +8,17 @@
 
     <ui:define name="content">
         <h:form id="form">
-            <div class="mb-3">
+             <div class="mb-3">
+                <label class="form-label">user_id:</label>
+                <h:inputText styleClass="form-control" value="#{loginlogBean.entity.user_id}"/>
+            </div>
+             <div class="mb-3">
                 <label class="form-label">tarih:</label>
                 <h:inputText styleClass="form-control" value="#{loginlogBean.entity.tarih}"/>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">ip_addr:</label>
+                <h:inputText styleClass="form-control" value="#{loginlogBean.entity.ip_addr}"/>
             </div>
             <div class="mb-3">
                 <h:commandButton styleClass="btn btn-success" action="#{loginlogBean.createEntity()}" value="Kaydet">
@@ -41,6 +49,10 @@
                 <h:column>
                     <f:facet name="header">Tarih</f:facet>
                         #{c.tarih}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Ip_addr</f:facet>
+                        #{c.ip_addr}
                 </h:column>
                 
                 <h:column>
