@@ -101,7 +101,7 @@ public class SuperuserDAO extends DBConnection {
         try {
             Statement st = this.getDb().createStatement();
 
-            String query = ("select * from SUPERUSER limit 5 offset 0"+offset);
+            String query = ("select * from SUPERUSER limit 1 offset 0"+offset);
             ResultSet rs = st.executeQuery(query);
 
             while (rs.next()) {

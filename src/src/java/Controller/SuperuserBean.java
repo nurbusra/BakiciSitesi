@@ -110,7 +110,7 @@ public class SuperuserBean implements Serializable {
     public int getPageCaount() {
         List<Superuser> glist = this.getDao().getList();
         int size = glist.size();
-        int pageCount = (int) Math.ceil(size/5);
+        int pageCount = (int) Math.ceil(size/1);
                 
         return pageCaount;
     }
