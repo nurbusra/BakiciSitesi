@@ -25,6 +25,11 @@
                                          rendered="#{sessionBean.authorized}" 
                                          value="Hesabım"/> </div>
                         
+                        <div class="container ml-2 mt-1"> <h:commandButton styleClass="button btn-sm btn-primary" 
+                                         action="/admin/admin.xhtml?faces-redirect=true" 
+                                         rendered="#{sessionBean.authorized and sessionBean.entity.sinif == 0}" 
+                                         value="Admin"/> </div>
+                        
                         <div class="container mt-1"> <h:commandButton styleClass="button btn-sm btn-danger" 
                                          action="#{sessionBean.logout()}" 
                                          rendered="#{sessionBean.authorized}" 
