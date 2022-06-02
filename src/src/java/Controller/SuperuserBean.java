@@ -23,7 +23,7 @@ public class SuperuserBean implements Serializable {
     private Superuser Entity;
     
     private int page=1;
-    private int pageCaount=0; 
+    private int pageCount; 
             
             
     public SuperuserBean() {
@@ -50,13 +50,13 @@ public class SuperuserBean implements Serializable {
     public void previous(){
        page--;
        if (page < 1) {
-           page = this.getPageCaount();
+           page = this.getPageCount();
        }
     }
     
     public void next(){
        page++;
-       if (page > this.getPageCaount() ){
+       if (page > this.getPageCount() ){
            page = 1;
        }
     }
@@ -107,16 +107,16 @@ public class SuperuserBean implements Serializable {
         this.page = page;
     }
 
-    public int getPageCaount() {
+    public int getPageCount() {
         List<Superuser> glist = this.getDao().getList();
         int size = glist.size();
         int pageCount = (int) Math.ceil(size/1);
                 
-        return pageCaount;
+        return pageCount;
     }
 
-    public void setPageCaount(int pageCaount) {
-        this.pageCaount = pageCaount;
+    public void setPageCount(int pageCount) {
+        this.pageCount = pageCount;
     }
         
 }
