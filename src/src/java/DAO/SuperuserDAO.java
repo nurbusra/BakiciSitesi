@@ -66,12 +66,42 @@ public class SuperuserDAO extends DBConnection {
         }
     }
 
-    public List<Superuser> getList() {
+        public List<Superuser> getList() {
+        
         List<Superuser> superuserList = new ArrayList<>();
         try {
             Statement st = this.getDb().createStatement();
 
-            String query = "select * from SUPERUSER";
+            String query = ("select * from SUPERUSER");
+            ResultSet rs = st.executeQuery(query);
+
+            while (rs.next()) {
+                superuserList.add( new Superuser(
+                        rs.getInt("user_id"),
+                        rs.getString("isim"),
+                        rs.getString("email"), 
+                        rs.getString("sifre"),
+                        rs.getInt("sinif"),
+                        rs.getInt("su_id")
+                    )
+                );
+            }
+            
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return superuserList;
+    }
+    
+    public List<Superuser> getList(int page) {
+        
+        int offset = (page-1)*5;
+        
+        List<Superuser> superuserList = new ArrayList<>();
+        try {
+            Statement st = this.getDb().createStatement();
+
+            String query = ("select * from SUPERUSER limit 5 offset 0"+offset);
             ResultSet rs = st.executeQuery(query);
 
             while (rs.next()) {

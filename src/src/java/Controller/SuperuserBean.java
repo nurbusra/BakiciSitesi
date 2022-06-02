@@ -22,6 +22,10 @@ public class SuperuserBean implements Serializable {
     private Superuser setEntity;
     private Superuser Entity;
     
+    private int page=1;
+    private int pageCaount=0; 
+            
+            
     public SuperuserBean() {
     }
 
@@ -43,8 +47,22 @@ public class SuperuserBean implements Serializable {
         this.dao = dao;
     }
 
+    public void previous(){
+       page--;
+       if (page < 1) {
+           page = this.getPageCaount();
+       }
+    }
+    
+    public void next(){
+       page++;
+       if (page > this.getPageCaount() ){
+           page = 1;
+       }
+    }
+    
     public List<Superuser> getList() {
-        return this.getDao().getList();
+        return this.getDao().getList(page);
     }
 
     public void setList(List<Superuser> list) {
@@ -71,6 +89,34 @@ public class SuperuserBean implements Serializable {
     
     public void clearEntity() {
         this.entity = new Superuser();
+    }
+
+    public Superuser getSetEntity() {
+        return setEntity;
+    }
+
+    public void setSetEntity(Superuser setEntity) {
+        this.setEntity = setEntity;
+    }
+
+    public int getPage() {
+        return page;
+    }
+
+    public void setPage(int page) {
+        this.page = page;
+    }
+
+    public int getPageCaount() {
+        List<Superuser> glist = this.getDao().getList();
+        int size = glist.size();
+        int pageCount = (int) Math.ceil(size/5);
+                
+        return pageCaount;
+    }
+
+    public void setPageCaount(int pageCaount) {
+        this.pageCaount = pageCaount;
     }
         
 }
